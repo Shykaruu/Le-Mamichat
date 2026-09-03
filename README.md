@@ -86,7 +86,7 @@ progression s'adaptent tout seuls.
 Classes disponibles dans `newspaper.css` :
 
 - Titres : `.kicker` (+ `--orange`, `--ghost`), `.headline` (+ `--xl`, `--md`,
-  `--sm`, `--orange`, `--blue`, `--outline`), `.deck`, `.byline`, `.subhead`
+  `--sm`, `--orange`, `--blue`), `.deck`, `.byline`, `.subhead`
 - Texte : `.columns` (+ `--1`, `--3`), `.dropcap`, `.pullquote`
 - Encadrés : `.box` (+ `--accent`, `--blue`), `.stamp` (+ `--blue`), `.toc`
 - Images : `.plate` (+ `--orange`, `--paper`, `--tall`, `--wide`), `.caption`
