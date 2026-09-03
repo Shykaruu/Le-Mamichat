@@ -33,6 +33,7 @@
   --rule-hair:     color-mix(in srgb, var(--ink) 35%, transparent);
   --accent:        var(--orange);
   --accent-alt:    var(--blue);
+  --error:         #C0341A;
   --selection-bg:  var(--orange);
   --selection-fg:  var(--paper-50);
 

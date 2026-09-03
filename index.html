@@ -113,6 +113,9 @@
         <span class="toolbar__meta">
           Édition spéciale <b>80 ans</b> &middot; Vendredi <b>11 septembre 2026</b>
         </span>
+        <button class="toolbar__pdf" type="button" data-action="pdf">
+          Télécharger en PDF
+        </button>
       </header>
 
       <main class="stage">
@@ -148,7 +151,7 @@
                   </div>
 
                   <p class="cover__blurb">
-                    Quatre-vingts ans, quatre bateaux, trois océans et une quantité
+                    Quatre-vingts ans, trois bateaux, trois océans et une quantité
                     déraisonnable de chantilly. Toute la rédaction s'y est mise.
                   </p>
 
@@ -670,8 +673,8 @@
                   <li><time>1979</time><span>Moorea, puis Ua Pou aux Marquises. Naissance de Marine.</span></li>
                   <li><time>1981</time><span>Nuku-Hiva : naissance d'Elsa. Puis Boussay, pour souffler.</span></li>
                   <li><time>1982</time><span>L'Alaska sur Jandira, puis Le Tampon, à La Réunion.</span></li>
-                  <li><time>1985</time><span><b>La Souris-Blanche</b>, huit années durant.</span></li>
-                  <li><time>1993</time><span><b>Farewell</b>. Le nom était prémonitoire, pas définitif.</span></li>
+                  <li><time>1985</time><span>La maison de Trois-Bassins, dite <b>La Souris-Blanche</b> — un sous-préfet l’a inaugurée, le surnom est resté.</span></li>
+                  <li><time>1992</time><span>Tour du monde vers l’ouest sur <b>Farewell</b>, goélette de 17 m : Madagascar, Le Cap, Panama, Tonga, l’Australie.</span></li>
                   <li><time>1998</time><span>Mayotte, puis la Mauritanie, l'Afrique du Sud, la Polynésie.</span></li>
                   <li><time>2014</time><span>L'Antarctique, cheffe cuisinière à bord du <b>Golden Fleece</b>.</span></li>
                 </ul>
@@ -680,15 +683,15 @@
                 <div class="grid grid--2">
                   <div class="box box--accent">
                     <h3 class="box__title">Les chiffres de la rédaction</h3>
-                    <p><b>80</b> — années au compteur. <b>4</b> — bateaux : Jandira, La
-                    Souris-Blanche, Farewell, Golden Fleece. <b>3</b> — filles, plus un fils.
-                    <b>1</b> — chienne, Zumba. <b>∞</b> — bombes de chantilly.</p>
+                    <p><b>80</b> — années au compteur. <b>3</b> — bateaux : Jandira, Farewell,
+                    Golden Fleece. <b>3</b> — filles, plus un fils. <b>1</b> — chienne, Zumba.
+                    <b>∞</b> — bombes de chantilly.</p>
                     <p style="margin-top: 0.5em"><i>Relevé par Pacha</i></p>
                   </div>
 
                   <figure class="photo">
                     <div class="photo__slot">
-                      <span class="photo__hint">La Souris-Blanche<br />bateaux/</span>
+                      <span class="photo__hint">Farewell<br />bateaux/</span>
                     </div>
                     <figcaption>À légender.</figcaption>
                   </figure>
@@ -927,11 +930,7 @@
 
                 <span class="kicker">Une aventure givrée</span>
                 <h2 class="headline headline--md headline--blue">Antartica</h2>
-                <p class="deck">
-                  Un film en Didimension. Pendant que la plupart d'entre nous poursuivaient
-                  tranquillement leur quotidien, notre mère, elle, est partie cuisiner en
-                  Antarctique.
-                </p>
+                <p class="deck">Un film en Didimension.</p>
                 <p class="byline">
                   <span class="byline__author">Un film de Didi</span>
                   <span class="byline__sep">&bull;</span>
@@ -956,9 +955,12 @@
 
                 <div class="columns columns--2">
                   <p>
+                    Pendant que la plupart d’entre nous poursuivaient tranquillement leur
+                    quotidien, notre Maman, elle est partie cuisiner en l’Antarctique !
+                  </p>
+                  <p>
                     Alors, chers lecteurs, ouvrez grand les yeux, montez à bord du Golden
-                    Fleece et laissez-vous embarquer. Archive exceptionnelle, à regarder quand
-                    vous voulez, où vous voulez.
+                    Fleece… et laissez-vous embarquer.
                   </p>
 
                   <div class="ad ad--blue">
@@ -1016,13 +1018,13 @@
                     <figcaption>Photographie de Julien.</figcaption>
                   </figure>
 
-                  <h3 class="subhead">Médecine &amp; psycho</h3>
-                  <p>
-                    Notre rubrique santé revient cette semaine sur les deux piliers de la
-                    pharmacopée familiale : <b>le doliprane</b>, ce petit comprimé qui peut
-                    parfois tout arranger, et <b>le charbon</b>, invoqué pour à peu près tout
-                    le reste.
-                  </p>
+                  <div class="box">
+                    <h3 class="box__title">Médecine &amp; psycho</h3>
+                    <p>
+                      <b>Emplacement réservé</b> — Tout sur le doliprane et le charbon, les
+                      deux piliers de la pharmacopée familiale. La rubrique attend sa plume.
+                    </p>
+                  </div>
 
                   <div class="classifieds">
                     <p class="classifieds__head">Offres d'emploi</p>
@@ -1197,16 +1199,21 @@
                 </header>
 
                 <span class="kicker kicker--orange">Mots croisés</span>
-                <h2 class="headline headline--md">Les mots croisés qui lui ressemblent</h2>
-                <p class="deck">
-                  Les mots de sa vie, de ses voyages, de sa famille et de ses expressions.
-                  Les six cases entourées livrent le mot final.
+                <h2 class="headline headline--md">Les mots qui lui ressemblent</h2>
+
+                <p class="crossword__clue" data-crossword-clue>
+                  Touchez une case pour commencer. Un second appui sur la même case
+                  bascule entre horizontal et vertical.
                 </p>
 
                 <div class="crossword" data-crossword>
-                  <div class="crossword__grid" data-crossword-grid>
-                    <span class="photo__hint">Grille interactive<br />prochaine étape</span>
-                  </div>
+                  <div class="crossword__grid" data-crossword-grid></div>
+                </div>
+
+                <div class="crossword__tools">
+                  <button class="cw-btn" type="button" data-crossword-check>Vérifier</button>
+                  <button class="cw-btn" type="button" data-crossword-clear>Effacer</button>
+                  <span class="crossword__status" data-crossword-status></span>
                 </div>
 
                 <footer class="colophon">
@@ -1226,38 +1233,18 @@
 
                 <div class="columns columns--2 clues">
                   <h3 class="subhead">Horizontalement</h3>
-                  <p><b>1.</b> Huile parfumée des îles, synonyme de vacances et de douceur.</p>
-                  <p><b>2.</b> Fleur blanche au parfum délicat.</p>
-                  <p><b>4.</b> Village d'Indre-et-Loire, cœur géographique de la famille.</p>
-                  <p><b>5.</b> Son « soleil »… et la fille qui signe ce journal.</p>
-                  <p><b>7.</b> Immense étendue bleue qui a accompagné tant de voyages.</p>
-                  <p><b>12.</b> Cité tunisienne chargée d'histoire et de souvenirs.</p>
-                  <p><b>13.</b> Frère né en Guyane, explorateur des étoiles, consultant au GEIPAN.</p>
-                  <p><b>16.</b> Gâteau tunisien aux dattes, à déguster sans modération.</p>
-                  <p><b>22.</b> Sœur née à Nuku Hiva.</p>
+                  <ul class="clue-list" data-clues="horizontal"></ul>
 
                   <h3 class="subhead">Verticalement</h3>
-                  <p><b>3.</b> Lieu où Maman a vécu à La Réunion.</p>
-                  <p><b>6.</b> Le petit comprimé qui peut parfois tout arranger.</p>
-                  <p><b>8.</b> Petite chienne adorable, fidèle compagne de tous leurs périples.</p>
-                  <p><b>9.</b> Parfum précieux… et souvenir d'un flacon cassé à l'adolescence.</p>
-                  <p><b>10.</b> Sœur née à Moorea, le 1<sup>er</sup> septembre 1979.</p>
-                  <p><b>11.</b> Ce que Karine est pour sa Maman.</p>
-                  <p><b>14.</b> « Je vais appeler les… » quand personne ne répond.</p>
-                  <p><b>15.</b> Premier bateau avec lequel l'aventure a commencé en famille.</p>
-                  <p><b>17.</b> Surnom de Fabien à bord du grand voyage.</p>
-                  <p><b>18.</b> Crème célèbre… et mot qui lui ressemble forcément.</p>
-                  <p><b>19.</b> Île des Marquises où Maman a repris le métier de professeure.</p>
-                  <p><b>20.</b> Expression favorite, prononcée avec conviction.</p>
-                  <p><b>21.</b> Façon de voyager sans bouger de son fauteuil.</p>
+                  <ul class="clue-list" data-clues="vertical"></ul>
                 </div>
 
                 <div class="box box--accent">
                   <h3 class="box__title">Le mot final</h3>
                   <p>
-                    Six cases entourées, six lettres, un mot que l'on se dit en famille.
-                    Réponse à réclamer auprès de la rédaction.
+                    Les six cases orange, lues de gauche à droite et de haut en bas.
                   </p>
+                  <div class="cw-final" data-crossword-final></div>
                 </div>
 
                 <footer class="colophon">

@@ -96,3 +96,9 @@
   /* Un bon deja detache reste detache sur le papier. */
   .coupon__tear { display: none; }
 }
+
+@media print {
+  /* Un journal qu'on imprime repart neuf : tous les bons sont rattaches. */
+  .coupon.is-torn .coupon__sheet { display: block; }
+  .coupon.is-torn .coupon__stub { display: none; }
+}

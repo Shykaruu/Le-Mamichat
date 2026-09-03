@@ -560,44 +560,6 @@
   .weather__cell { border-right: 0; border-bottom: var(--rule-thin) solid currentColor; }
 }
 
-/* --- Mots croises --------------------------------------------------------- */
-/* La grille absorbe la hauteur restante : la page ne peut pas deborder. */
-.crossword {
-  flex: 1 1 auto;
-  min-height: 0;
-  display: flex;
-  margin-top: 0.8cqw;
-}
-
-.crossword__grid {
-  flex: 1;
-  display: grid;
-  place-items: center;
-  border: var(--rule-med) solid var(--ink);
-  background: var(--paper-200);
-  color: var(--ink-soft);
-}
-
-/* Definitions : plus serrees que le texte courant, comme dans un vrai journal. */
-.clues {
-  font-size: clamp(0.52rem, 1.85cqw, 0.8rem);
-  line-height: 1.35;
-  text-align: left;
-  hyphens: none;
-}
-
-.clues p {
-  text-indent: 0;
-  margin-bottom: 0.25em;
-  padding-left: 1.6em;
-  text-indent: -1.6em;
-}
-
-.clues b {
-  font-family: var(--font-mono);
-  color: var(--orange-deep);
-}
-
 /* --- Lecteur vidéo -------------------------------------------------------- */
 .player {
   display: block;

@@ -354,3 +354,23 @@
 
   .btn { padding: 0.5em 0.8em; }
 }
+
+/* Bouton d'export PDF : il n'appartient pas au journal, seulement a la barre. */
+.toolbar__pdf {
+  padding: 0.35em 0.9em;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: var(--step--2);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--paper-50);
+  border: var(--rule-med) solid var(--ink);
+  border-radius: 999px;
+  transition: background-color 140ms var(--ui-ease), color 140ms var(--ui-ease);
+}
+
+.toolbar__pdf:hover {
+  background: var(--orange);
+  color: var(--paper-50);
+}
