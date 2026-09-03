@@ -1,0 +1,88 @@
+/* =========================================================
+   Design tokens — palette retro : beige papier + orange vif
+   + bleu (complementaire de l'orange)
+   ========================================================= */
+
+:root {
+  /* --- Papier (beige de reference) --- */
+  --paper-50:  #F6F1E7;
+  --paper-100: #EDE5D7; /* fond de base */
+  --paper-200: #E3D9C7;
+  --paper-300: #D2C6AF;
+  --paper-400: #B9AA8F;
+
+  /* --- Encre --- */
+  --ink:       #1F1B16;
+  --ink-soft:  #4A4238;
+  --ink-faint: #8C8271;
+
+  /* --- Orange (couleur primaire) --- */
+  --orange:      #F0692F;
+  --orange-deep: #D24C17;
+  --orange-soft: #F9A272;
+
+  /* --- Bleu (couleur secondaire / complementaire) --- */
+  --blue:      #1F6FA8;
+  --blue-deep: #123A5C;
+  --blue-soft: #7CB0D2;
+
+  /* --- Roles semantiques --- */
+  --bg:            var(--paper-100);
+  --surface:       var(--paper-50);
+  --rule:          var(--ink);
+  --rule-hair:     color-mix(in srgb, var(--ink) 35%, transparent);
+  --accent:        var(--orange);
+  --accent-alt:    var(--blue);
+  --selection-bg:  var(--orange);
+  --selection-fg:  var(--paper-50);
+
+  /* --- Typographie --- */
+  --font-masthead: 'UnifrakturCook', 'Times New Roman', serif;
+  --font-display:  'Anton', 'Haettenschweiler', 'Arial Narrow', sans-serif;
+  --font-sans:     'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --font-serif:    'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-mono:     'Space Mono', 'Courier New', monospace;
+
+  --step--2: clamp(0.62rem, 0.58rem + 0.2vw, 0.72rem);
+  --step--1: clamp(0.74rem, 0.70rem + 0.2vw, 0.84rem);
+  --step-0:  clamp(0.92rem, 0.88rem + 0.25vw, 1.02rem);
+  --step-1:  clamp(1.16rem, 1.05rem + 0.5vw, 1.4rem);
+  --step-2:  clamp(1.5rem, 1.3rem + 1vw, 2.1rem);
+  --step-3:  clamp(2.1rem, 1.6rem + 2.4vw, 3.4rem);
+  --step-4:  clamp(3rem, 2rem + 5vw, 6.5rem);
+
+  /* --- Rythme --- */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs:  0.75rem;
+  --space-s:   1rem;
+  --space-m:   1.5rem;
+  --space-l:   2.25rem;
+  --space-xl:  3.5rem;
+
+  /* --- Filets --- */
+  --rule-thin:  1px;
+  --rule-med:   2px;
+  --rule-thick: 6px;
+
+  /* --- Motion --- */
+  --flip-duration: 900ms;
+  --flip-ease: cubic-bezier(0.2, 0.8, 0.25, 1);
+  --ui-ease: cubic-bezier(0.3, 0.7, 0.2, 1);
+
+  /* --- Ombres (encre, pas de gris bleute) --- */
+  --shadow-page: 0 24px 60px -28px rgba(31, 27, 22, 0.65);
+  --shadow-lift: 0 6px 0 0 var(--ink);
+
+  color-scheme: light;
+}
+
+/* Textures reutilisables ------------------------------------------------- */
+:root {
+  --tex-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  --tex-halftone: radial-gradient(
+    circle at center,
+    rgba(31, 27, 22, 0.35) 0 22%,
+    transparent 23%
+  );
+}

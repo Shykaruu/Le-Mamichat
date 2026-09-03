@@ -1,0 +1,337 @@
+/* =========================================================
+   Le livre : mise en scene + moteur de tourne-page 3D
+   ========================================================= */
+
+.app {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: var(--space-s);
+  padding: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+/* --- Barre superieure ---------------------------------------------------- */
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-s);
+  flex-wrap: wrap;
+  padding-bottom: var(--space-2xs);
+  border-bottom: var(--rule-med) solid var(--ink);
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.toolbar__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  font-weight: 700;
+}
+
+.toolbar__dot {
+  width: 0.6em;
+  height: 0.6em;
+  border-radius: 50%;
+  background: var(--orange);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--orange) 25%, transparent);
+}
+
+.toolbar__meta { color: var(--ink-soft); }
+.toolbar__meta b { color: var(--blue-deep); }
+
+/* --- Scene --------------------------------------------------------------- */
+.stage {
+  display: grid;
+  place-items: center;
+  perspective: 2600px;
+  perspective-origin: 50% 45%;
+  min-height: 0;
+  container-type: size;
+}
+
+.book {
+  position: relative;
+  /* Le livre se cale sur la plus contraignante des deux dimensions de la scene. */
+  width: min(96cqw, calc(96cqh * 1.48));
+  aspect-ratio: 1.48 / 1;
+  transform-style: preserve-3d;
+  transition: transform 550ms var(--ui-ease);
+}
+
+/* Journal ferme ou termine : on recentre la page unique visible. */
+:root[data-spread='0'] .book:not(.is-single) { transform: translateX(-25%); }
+:root[data-closing] .book:not(.is-single) { transform: translateX(25%); }
+
+/* Creux de reliure. L'ombre portee est sur les pages (.face) : sinon elle
+   deborde sur la moitie vide quand le journal est ferme. */
+.book::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 46px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 60;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(31, 27, 22, 0.16) 42%,
+    rgba(31, 27, 22, 0.26) 50%,
+    rgba(31, 27, 22, 0.16) 58%,
+    transparent 100%
+  );
+  mix-blend-mode: multiply;
+}
+
+/* --- Feuilles ------------------------------------------------------------ */
+.sheet {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  transition: transform var(--flip-duration) var(--flip-ease);
+  will-change: transform;
+}
+
+.sheet.is-turned { transform: rotateY(-180deg); }
+
+.face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background-color: var(--surface);
+  background-image:
+    radial-gradient(ellipse 90% 60% at 30% 0%, var(--paper-50), transparent 70%),
+    linear-gradient(180deg, var(--paper-50), var(--paper-200));
+  box-shadow: var(--shadow-page);
+}
+
+.face--back { transform: rotateY(180deg); }
+
+/* Degrade de pliure : sombre cote reliure */
+.face::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  background: linear-gradient(
+    to right,
+    rgba(31, 27, 22, 0.20) 0%,
+    rgba(31, 27, 22, 0.05) 6%,
+    transparent 18%
+  );
+}
+
+.face--back::after {
+  background: linear-gradient(
+    to left,
+    rgba(31, 27, 22, 0.20) 0%,
+    rgba(31, 27, 22, 0.05) 6%,
+    transparent 18%
+  );
+}
+
+/* Contenu scrollable a l'interieur d'une page */
+.page {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: clamp(1rem, 2.4cqw, 2.4rem);
+  container-type: inline-size;
+  scrollbar-width: thin;
+}
+
+.page::-webkit-scrollbar { width: 6px; }
+.page::-webkit-scrollbar-thumb { background: var(--paper-400); }
+
+/* --- Commandes ----------------------------------------------------------- */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.5rem, 2vw, 1.25rem);
+  flex-wrap: wrap;
+  padding-top: var(--space-2xs);
+  border-top: var(--rule-med) solid var(--ink);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.5em 1.1em;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: var(--step--1);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--paper-50);
+  border: var(--rule-med) solid var(--ink);
+  border-radius: 999px;
+  transition: transform 140ms var(--ui-ease), background-color 140ms var(--ui-ease),
+    color 140ms var(--ui-ease), box-shadow 140ms var(--ui-ease);
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--orange);
+  color: var(--paper-50);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 0 0 var(--ink);
+}
+
+.btn:active:not(:disabled) { transform: translateY(0); box-shadow: none; }
+
+.btn:disabled { opacity: 0.32; cursor: not-allowed; }
+
+.btn__arrow { font-size: 1.1em; line-height: 1; }
+
+/* Pastilles de navigation */
+.pager {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.pager__dot {
+  width: 11px;
+  height: 11px;
+  padding: 0;
+  border: var(--rule-thin) solid var(--ink);
+  border-radius: 50%;
+  background: transparent;
+  transition: background-color 200ms var(--ui-ease), transform 200ms var(--ui-ease);
+}
+
+.pager__dot:hover { background: var(--blue-soft); }
+
+.pager__dot[aria-current='true'] {
+  background: var(--orange);
+  transform: scale(1.35);
+}
+
+.counter {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.12em;
+  min-width: 7ch;
+  text-align: center;
+}
+
+.counter b { color: var(--orange-deep); }
+
+/* Barre de progression */
+.progress {
+  position: relative;
+  width: min(320px, 40vw);
+  height: 6px;
+  background: var(--paper-300);
+  border: var(--rule-thin) solid var(--ink);
+}
+
+.progress__bar {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0%;
+  background: var(--blue);
+  transition: width var(--flip-duration) var(--flip-ease);
+}
+
+/* --- Mode page unique (mobile / ecrans etroits) -------------------------- */
+/* Sur mobile la page occupe toute la scene : l'ecran est deja au bon format. */
+.book.is-single {
+  width: min(100cqw, 560px);
+  height: 100cqh;
+  aspect-ratio: auto;
+}
+.book.is-single::after { display: none; }
+
+.book.is-single .sheet {
+  left: 0;
+  width: 100%;
+  transform: none !important;
+  transition: none;
+}
+
+.book.is-single .face {
+  transform: none;
+  visibility: hidden;
+  transition: opacity 320ms var(--ui-ease), transform 320ms var(--ui-ease);
+}
+
+.book.is-single .face::after { display: none; }
+
+.book.is-single .face.is-active {
+  visibility: visible;
+  z-index: 10;
+  animation: page-in 340ms var(--ui-ease) both;
+}
+
+.book.is-single .face.is-active[data-dir='back'] { animation-name: page-in-back; }
+
+@keyframes page-in {
+  from { opacity: 0; transform: translateX(9%) rotate(0.6deg); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes page-in-back {
+  from { opacity: 0; transform: translateX(-9%) rotate(-0.6deg); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Astuce d'usage */
+.hint {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  text-align: center;
+  width: 100%;
+}
+
+.hint kbd {
+  font: inherit;
+  padding: 0.1em 0.45em;
+  border: var(--rule-thin) solid var(--ink-faint);
+  border-radius: 3px;
+}
+
+/* --- Ecrans etroits : commandes compactes -------------------------------- */
+@media (max-width: 620px) {
+  .app { gap: var(--space-2xs); padding: 0.5rem; }
+
+  .toolbar { justify-content: center; text-align: center; }
+
+  .controls {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: var(--space-2xs);
+    padding-top: var(--space-2xs);
+  }
+
+  .controls .progress { display: none; }
+
+  .pager { justify-content: center; }
+
+  .counter { grid-column: 1 / -1; order: 3; }
+
+  .hint { grid-column: 1 / -1; order: 4; }
+
+  .btn { padding: 0.5em 0.8em; }
+}

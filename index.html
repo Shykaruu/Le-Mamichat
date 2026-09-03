@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Le Canard Orange — Journal rétro interactif</title>
+    <meta
+      name="description"
+      content="Maquette de journal rétro interactif : papier beige, orange vif et bleu complémentaire."
+    />
+    <meta name="theme-color" content="#EDE5D7" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Space+Mono:wght@400;700&family=UnifrakturCook:wght@700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="app">
+      <!-- ================= Barre supérieure ================= -->
+      <header class="toolbar">
+        <span class="toolbar__brand">
+          <span class="toolbar__dot" aria-hidden="true"></span>
+          Le Canard Orange
+        </span>
+        <span class="toolbar__meta">
+          Édition du <b>3 septembre</b> &middot; Numéro <b>58</b> &middot; 2,50 €
+        </span>
+      </header>
+
+      <!-- ================= Le journal ================= -->
+      <main class="stage">
+        <div class="book" aria-label="Journal interactif">
+          <!-- ---------- Feuillet 1 ---------- -->
+          <div class="sheet">
+            <!-- Page 1 : couverture -->
+            <div class="face face--front">
+              <article class="page">
+                <div class="cover">
+                  <header class="masthead">
+                    <div class="masthead__top">
+                      <span>Maquette &middot; V0.1</span>
+                      <span>N&deg; 58</span>
+                    </div>
+                    <h1 class="masthead__title">Le Canard Orange</h1>
+                    <p class="masthead__tagline">Encre fraîche &middot; Papier libre</p>
+                  </header>
+
+                  <div class="cover__body">
+                    <span class="kicker kicker--orange">À la une</span>
+                    <div class="cover__hero">
+                      <h2 class="headline headline--xl headline--orange">
+                        Le papier<br />reprend<br />la parole
+                      </h2>
+                    </div>
+                    <p class="deck">
+                      Une maquette de journal pensée pour l’écran : mêmes colonnes, mêmes
+                      filets, mêmes gros titres — mais on tourne les pages du bout des doigts.
+                    </p>
+
+                    <div class="grid grid--asym">
+                      <figure>
+                        <div class="plate plate--tall">
+                          <span class="plate__label">Image<br />à venir</span>
+                        </div>
+                        <figcaption class="caption">
+                          Emplacement photo — remplacer par une vraie image.
+                        </figcaption>
+                      </figure>
+
+                      <div class="columns columns--1 dropcap">
+                        <p>
+                          Ce gabarit sert de terrain d’essai typographique. Les titres sont
+                          taillés dans une grasse condensée, le corps de texte reste en labeur
+                          sérif, et la couleur ne sert qu’à guider l’œil.
+                        </p>
+                        <p>
+                          Tout le contenu ci-dessous est provisoire : il attend la vraie
+                          rédaction. La structure, elle, est déjà celle d’un quotidien.
+                        </p>
+                        <blockquote class="pullquote">
+                          « On lit d’abord avec les yeux, ensuite seulement avec la tête. »
+                          <cite>Atelier de maquette</cite>
+                        </blockquote>
+                      </div>
+                    </div>
+                  </div>
+
+                  <footer class="colophon">
+                    <span>Tournez la page &rarr;</span>
+                    <span>Page 01</span>
+                  </footer>
+                </div>
+              </article>
+            </div>
+
+            <!-- Page 2 : sommaire + édito -->
+            <div class="face face--back">
+              <article class="page">
+                <header class="running-head">
+                  <span class="running-head__section">Sommaire</span>
+                  <span class="running-head__folio">Page 02</span>
+                </header>
+
+                <div class="grid grid--sidebar">
+                  <section>
+                    <h2 class="headline headline--md">Dans ce numéro</h2>
+                    <hr class="rule rule--orange" />
+                    <ol class="toc">
+                      <li><span class="toc__num">03</span> Le grand format <span class="toc__dots"></span> Enquête</li>
+                      <li><span class="toc__num">04</span> Portfolio en trame <span class="toc__dots"></span> Images</li>
+                      <li><span class="toc__num">05</span> Les chiffres du jour <span class="toc__dots"></span> Données</li>
+                      <li><span class="toc__num">06</span> Entretien <span class="toc__dots"></span> Culture</li>
+                      <li><span class="toc__num">07</span> Brèves &amp; agenda <span class="toc__dots"></span> Ville</li>
+                      <li><span class="toc__num">08</span> Ours &amp; mentions <span class="toc__dots"></span> Maison</li>
+                    </ol>
+                  </section>
+
+                  <aside>
+                    <div class="box box--blue">
+                      <h3 class="box__title">L’édito</h3>
+                      <p>
+                        Une page se tourne, littéralement. Ce numéro teste la grille, les
+                        couleurs et le geste : tout le reste viendra ensuite.
+                      </p>
+                    </div>
+                    <p class="stamp">Épreuve</p>
+                  </aside>
+                </div>
+
+                <hr class="rule rule--double" />
+
+                <div class="columns">
+                  <p>
+                    Le gabarit repose sur une palette réduite : un beige de papier, un orange
+                    vif pour l’accroche, un bleu pour l’équilibre. Rien d’autre.
+                  </p>
+                  <p>
+                    Les blocs colorés servent de repères de lecture. Ils marquent les entrées,
+                    les encadrés, les chiffres — jamais le texte courant.
+                  </p>
+                  <p>
+                    Chaque page est un conteneur autonome : la typographie s’adapte à sa
+                    largeur, pas à celle de la fenêtre.
+                  </p>
+                  <p>
+                    Ce principe permet de garder exactement la même maquette sur un grand
+                    écran et sur un téléphone.
+                  </p>
+                </div>
+
+                <footer class="colophon">
+                  <span>Le Canard Orange</span>
+                  <span>Page 02</span>
+                </footer>
+              </article>
+            </div>
+          </div>
+
+          <!-- ---------- Feuillet 2 ---------- -->
+          <div class="sheet">
+            <!-- Page 3 : grand format -->
+            <div class="face face--front">
+              <article class="page">
+                <header class="running-head">
+                  <span class="running-head__section">Enquête</span>
+                  <span class="running-head__folio">Page 03</span>
+                </header>
+
+                <span class="kicker">Grand format</span>
+                <h2 class="headline headline--md">
+                  Ce que la grille raconte avant même les mots
+                </h2>
+                <p class="deck">
+                  Filets, colonnes, blancs tournants : la mise en page dit déjà quoi lire,
+                  dans quel ordre, et à quelle vitesse.
+                </p>
+                <p class="byline">
+                  <span class="byline__author">Par la rédaction</span>
+                  <span class="byline__sep">&bull;</span>
+                  <span>Lecture 6 min</span>
+                </p>
+
+                <div class="columns columns--2 dropcap">
+                  <p>
+                    Avant d’écrire une ligne, un journal choisit sa respiration. La largeur des
+                    colonnes fixe la longueur des phrases, l’interligne fixe le rythme.
+                  </p>
+                  <p>
+                    Ici, deux colonnes justifiées avec césures : suffisamment étroites pour être
+                    lues d’un trait, suffisamment larges pour éviter les trous.
+                  </p>
+                  <h3 class="subhead">Le rôle de la couleur</h3>
+                  <p>
+                    L’orange n’apparaît que sur les points d’entrée : lettrine, filets hauts,
+                    tampons. Le bleu vient équilibrer, jamais concurrencer.
+                  </p>
+                  <blockquote class="pullquote">
+                    « Un titre bien posé fait la moitié du travail de l’article. »
+                    <cite>Note d’atelier</cite>
+                  </blockquote>
+                  <p>
+                    Le reste du texte reste en encre sombre sur beige, avec un léger grain qui
+                    rappelle l’impression offset.
+                  </p>
+                  <h3 class="subhead">Ce qui reste à écrire</h3>
+                  <p>
+                    Le contenu définitif remplacera ce faux texte sans toucher au style : les
+                    classes portent la mise en forme, pas les paragraphes.
+                  </p>
+                  <p>
+                    C’est le principe même d’une maquette : on la remplit, on ne la refait pas.
+                  </p>
+                </div>
+
+                <footer class="colophon">
+                  <span>Enquête</span>
+                  <span>Page 03</span>
+                </footer>
+              </article>
+            </div>
+
+            <!-- Page 4 : portfolio -->
+            <div class="face face--back">
+              <article class="page">
+                <header class="running-head">
+                  <span class="running-head__section">Images</span>
+                  <span class="running-head__folio">Page 04</span>
+                </header>
+
+                <span class="kicker kicker--orange">Portfolio</span>
+                <h2 class="headline headline--md headline--blue">En trame</h2>
+
+                <figure>
+                  <div class="plate plate--wide plate--orange">
+                    <span class="plate__label">Photo pleine largeur</span>
+                  </div>
+                  <figcaption class="caption">
+                    Les aplats tramés tiennent lieu d’images tant que la banque photo n’est pas prête.
+                  </figcaption>
+                </figure>
+
+                <div class="grid grid--2">
+                  <figure>
+                    <div class="plate"><span class="plate__label">Vignette</span></div>
+                    <figcaption class="caption">Légende courte.</figcaption>
+                  </figure>
+                  <figure>
+                    <div class="plate plate--paper"><span class="plate__label">Vignette</span></div>
+                    <figcaption class="caption">Légende courte.</figcaption>
+                  </figure>
+                </div>
+
+                <div class="box box--accent">
+                  <h3 class="box__title">Note de fabrication</h3>
+                  <p>
+                    La trame est une simple répétition de points en CSS : elle s’imprime bien et
+                    ne coûte aucune image.
+                  </p>
+                </div>
+
+                <footer class="colophon">
+                  <span>Portfolio</span>
+                  <span>Page 04</span>
+                </footer>
+              </article>
+            </div>
+          </div>
+
+          <!-- ---------- Feuillet 3 ---------- -->
+          <div class="sheet">
+            <!-- Page 5 : données -->
+            <div class="face face--front">
+              <article class="page">
+                <header class="running-head">
+                  <span class="running-head__section">Données</span>
+                  <span class="running-head__folio">Page 05</span>
+                </header>
+
+                <span class="kicker">Les chiffres</span>
+                <h2 class="headline headline--md">Trois nombres, une tendance</h2>
+                <hr class="rule" />
+
+                <div class="grid grid--2">
+                  <div class="box">
+                    <h3 class="box__title">Tirage</h3>
+                    <p class="headline headline--sm headline--orange">12 400</p>
+                    <p>exemplaires par édition.</p>
+                  </div>
+                  <div class="box">
+                    <h3 class="box__title">Colonnes</h3>
+                    <p class="headline headline--sm headline--blue">2 à 3</p>
+                    <p>selon la largeur de la page.</p>
+                  </div>
+                </div>
+
+                <div class="columns columns--1">
+                  <p>
+                    Les encadrés chiffrés reprennent la même grasse condensée que les titres :
+                    la donnée devient un élément graphique à part entière.
+                  </p>
+                  <p>
+                    Ils se placent indifféremment en pied de colonne ou en tête de page, sans
+                    casser le flux du texte.
+                  </p>
+                </div>
+
+                <p class="stamp stamp--blue">Provisoire</p>
+
+                <footer class="colophon">
+                  <span>Données</span>
+                  <span>Page 05</span>
+                </footer>
+              </article>
+            </div>
+
+            <!-- Page 6 : entretien -->
+            <div class="face face--back">
+              <article class="page">
+                <header class="running-head">
+                  <span class="running-head__section">Culture</span>
+                  <span class="running-head__folio">Page 06</span>
+                </header>
+
+                <span class="kicker kicker--ghost">Entretien</span>
+                <h2 class="headline headline--md">
+                  « Le rétro, c’est de la contrainte assumée »
+                </h2>
+                <p class="byline">
+                  <span class="byline__author">Propos recueillis</span>
+                  <span class="byline__sep">&bull;</span>
+                  <span>Studio</span>
+                </p>
+
+                <div class="columns">
+                  <p>
+                    <strong>Pourquoi partir d’un journal papier ?</strong> Parce que la
+                    contrainte est claire : une grille, deux couleurs, un format fixe.
+                  </p>
+                  <p>
+                    <strong>Et l’écran ?</strong> Il apporte le geste. On tourne la page, on
+                    revient en arrière, on garde le plaisir de la manipulation.
+                  </p>
+                  <blockquote class="pullquote">
+                    « On ne copie pas le papier, on en garde les réflexes. »
+                    <cite>Entretien</cite>
+                  </blockquote>
+                  <p>
+                    <strong>Le prochain chantier ?</strong> Le contenu réel, et une vraie
+                    hiérarchie d’articles page après page.
+                  </p>
+                </div>
+
+                <footer class="colophon">
+                  <span>Culture</span>
+                  <span>Page 06</span>
+                </footer>
+              </article>
+            </div>
+          </div>
+
+          <!-- ---------- Feuillet 4 ---------- -->
+          <div class="sheet">
+            <!-- Page 7 : brèves -->
+            <div class="face face--front">
+              <article class="page">
+                <header class="running-head">
+                  <span class="running-head__section">Ville</span>
+                  <span class="running-head__folio">Page 07</span>
+                </header>
+
+                <h2 class="headline headline--md headline--outline">Brèves</h2>
+                <hr class="rule rule--thick" />
+
+                <div class="columns columns--3">
+                  <h3 class="subhead">Marché</h3>
+                  <p>Texte provisoire pour une brève de quelques lignes seulement.</p>
+                  <h3 class="subhead">Travaux</h3>
+                  <p>Texte provisoire, deuxième brève, même longueur approximative.</p>
+                  <h3 class="subhead">Agenda</h3>
+                  <p>Texte provisoire, troisième brève pour équilibrer la colonne.</p>
+                  <h3 class="subhead">Météo</h3>
+                  <p>Beau et sec sur toute la maquette, vent d’orange faible.</p>
+                </div>
+
+                <div class="box">
+                  <h3 class="box__title">Petites annonces</h3>
+                  <p>
+                    Cherche rédacteur pour remplir huit pages. Écrire au journal, colonne de
+                    droite.
+                  </p>
+                </div>
+
+                <footer class="colophon">
+                  <span>Ville</span>
+                  <span>Page 07</span>
+                </footer>
+              </article>
+            </div>
+
+            <!-- Page 8 : ours -->
+            <div class="face face--back">
+              <article class="page">
+                <header class="running-head">
+                  <span class="running-head__section">Ours</span>
+                  <span class="running-head__folio">Page 08</span>
+                </header>
+
+                <div class="cover">
+                  <div class="cover__body">
+                    <h2 class="headline headline--md headline--orange">Fin du numéro</h2>
+                    <p class="deck">
+                      Retournez à la couverture avec la touche <kbd>Début</kbd>, ou revenez
+                      page à page.
+                    </p>
+                    <hr class="rule rule--double" />
+                    <div class="columns columns--1">
+                      <p>
+                        Maquette réalisée en HTML, CSS et TypeScript. Aucune dépendance
+                        d’exécution : le tourne-page est écrit à la main.
+                      </p>
+                      <p>Palette : beige papier, orange vif, bleu complémentaire.</p>
+                    </div>
+                  </div>
+
+                  <footer class="colophon">
+                    <span>Le Canard Orange &mdash; maquette</span>
+                    <span>Page 08</span>
+                  </footer>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- ================= Commandes ================= -->
+      <footer class="controls">
+        <button class="btn" type="button" data-action="prev">
+          <span class="btn__arrow" aria-hidden="true">&larr;</span> Précédent
+        </button>
+
+        <span class="pager" data-pager aria-label="Aller à un feuillet"></span>
+
+        <span class="counter" data-counter aria-live="polite">01 / 08</span>
+
+        <div class="progress" role="presentation">
+          <span class="progress__bar" data-progress></span>
+        </div>
+
+        <button class="btn" type="button" data-action="next">
+          Suivant <span class="btn__arrow" aria-hidden="true">&rarr;</span>
+        </button>
+
+        <p class="hint">
+          <kbd>&larr;</kbd> <kbd>&rarr;</kbd> pour tourner &middot; balayez sur mobile
+        </p>
+      </footer>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

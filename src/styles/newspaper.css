@@ -1,0 +1,446 @@
+/* =========================================================
+   Composants editoriaux : bandeau, titres, colonnes, encarts
+   Les tailles sont en cqw : chaque page est un container.
+   ========================================================= */
+
+/* --- Bandeau de titre ---------------------------------------------------- */
+.masthead {
+  text-align: center;
+  padding-bottom: 0.6cqw;
+  border-bottom: var(--rule-thick) solid var(--ink);
+  margin-bottom: 1.2cqw;
+}
+
+.masthead__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2xs);
+  font-family: var(--font-mono);
+  font-size: clamp(0.5rem, 1.5cqw, 0.7rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding-bottom: 0.5cqw;
+  border-bottom: var(--rule-thin) solid var(--ink);
+}
+
+.masthead__title {
+  font-family: var(--font-masthead);
+  font-weight: 700;
+  font-size: clamp(1.8rem, 11cqw, 5rem);
+  /* Gothique a longues hampes : marge de securite si le titre passe sur 2 lignes. */
+  line-height: 1.12;
+  letter-spacing: 0.01em;
+  padding: 0.4cqw 0 0.2cqw;
+}
+
+.masthead__tagline {
+  font-family: var(--font-mono);
+  font-size: clamp(0.48rem, 1.7cqw, 0.72rem);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding-bottom: 0.5cqw;
+  border-bottom: var(--rule-thin) solid var(--ink);
+  margin-bottom: 0.4cqw;
+}
+
+/* --- En-tete courant des pages interieures ------------------------------- */
+.running-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2xs);
+  font-family: var(--font-mono);
+  font-size: clamp(0.5rem, 1.6cqw, 0.72rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding-bottom: 0.5cqw;
+  border-bottom: var(--rule-med) solid var(--ink);
+  margin-bottom: 1.4cqw;
+}
+
+.running-head__section {
+  color: var(--orange-deep);
+  font-weight: 700;
+}
+
+.running-head__folio {
+  color: var(--ink-soft);
+}
+
+/* --- Titres -------------------------------------------------------------- */
+.kicker {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(0.55rem, 1.9cqw, 0.8rem);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--paper-50);
+  background: var(--blue);
+  padding: 0.25em 0.7em;
+  margin-bottom: 0.6cqw;
+}
+
+.kicker--orange {
+  background: var(--orange);
+}
+
+.kicker--ghost {
+  color: var(--ink);
+  background: transparent;
+  border: var(--rule-thin) solid var(--ink);
+}
+
+.headline {
+  font-family: var(--font-display);
+  font-weight: 400;
+  /* Anton a de tres grandes capitales : sous 0.95 les lignes se chevauchent. */
+  line-height: 0.98;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  font-size: clamp(1.6rem, 13cqw, 6rem);
+  margin-bottom: 0.6cqw;
+}
+
+.headline--xl {
+  font-size: clamp(2rem, 18cqw, 8rem);
+  line-height: 0.96;
+}
+.headline--md { font-size: clamp(1.2rem, 8.5cqw, 3rem); }
+.headline--sm { font-size: clamp(1rem, 6cqw, 2rem); }
+
+.headline--orange { color: var(--orange); }
+.headline--blue { color: var(--blue-deep); }
+
+.headline--outline {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--ink);
+  paint-order: stroke fill;
+}
+
+.deck {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(0.8rem, 3cqw, 1.15rem);
+  line-height: 1.35;
+  color: var(--ink-soft);
+  max-width: 46ch;
+  margin-bottom: 0.8cqw;
+}
+
+.byline {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: clamp(0.5rem, 1.7cqw, 0.72rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.5cqw 0;
+  border-top: var(--rule-thin) solid var(--ink);
+  border-bottom: var(--rule-thin) solid var(--ink);
+  margin-bottom: 1.2cqw;
+}
+
+.byline__author { font-weight: 700; }
+.byline__sep { color: var(--orange); }
+
+/* --- Filets decoratifs --------------------------------------------------- */
+.rule {
+  border: 0;
+  border-top: var(--rule-med) solid var(--ink);
+  margin: 1.2cqw 0;
+}
+
+.rule--thick { border-top-width: var(--rule-thick); }
+
+.rule--double {
+  border: 0;
+  height: 6px;
+  border-top: var(--rule-thin) solid var(--ink);
+  border-bottom: var(--rule-thin) solid var(--ink);
+}
+
+.rule--orange { border-color: var(--orange); }
+
+/* --- Corps de texte en colonnes ------------------------------------------ */
+.columns {
+  columns: 2;
+  column-gap: 2.5cqw;
+  column-rule: var(--rule-thin) solid var(--rule-hair);
+  font-size: clamp(0.62rem, 2.15cqw, 0.95rem);
+  line-height: 1.5;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.columns--1 { columns: 1; }
+.columns--3 { columns: 3; column-gap: 2cqw; }
+
+.columns p {
+  margin-bottom: 0.6em;
+  text-indent: 1.2em;
+}
+
+.columns p:first-of-type { text-indent: 0; }
+
+.dropcap::first-letter {
+  float: left;
+  font-family: var(--font-display);
+  font-size: 3.4em;
+  line-height: 0.78;
+  padding: 0.06em 0.1em 0 0;
+  color: var(--orange);
+}
+
+/* --- Encarts ------------------------------------------------------------- */
+.pullquote {
+  break-inside: avoid;
+  margin: 1cqw 0;
+  padding: 1cqw 0;
+  border-top: var(--rule-thick) solid var(--orange);
+  border-bottom: var(--rule-thin) solid var(--ink);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-style: italic;
+  font-size: clamp(0.85rem, 3.4cqw, 1.35rem);
+  line-height: 1.2;
+  text-indent: 0;
+  text-align: left;
+}
+
+.pullquote cite {
+  display: block;
+  margin-top: 0.5em;
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: 0.55em;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.box {
+  break-inside: avoid;
+  padding: 1.2cqw;
+  border: var(--rule-med) solid var(--ink);
+  background: color-mix(in srgb, var(--paper-200) 60%, transparent);
+  margin: 1cqw 0;
+}
+
+.box--accent {
+  background: var(--orange);
+  color: var(--paper-50);
+  border-color: var(--ink);
+  box-shadow: 6px 6px 0 0 var(--ink);
+}
+
+.box--blue {
+  background: var(--blue-deep);
+  color: var(--paper-50);
+  box-shadow: 6px 6px 0 0 var(--orange);
+}
+
+.box__title {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(0.6rem, 2.1cqw, 0.85rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 0.6em;
+  padding-bottom: 0.4em;
+  border-bottom: var(--rule-thin) solid currentColor;
+}
+
+.box p {
+  font-size: clamp(0.6rem, 2cqw, 0.88rem);
+  line-height: 1.45;
+}
+
+/* --- Blocs "photo" : aplats + trames, en attendant de vraies images ------ */
+.plate {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: var(--rule-med) solid var(--ink);
+  background: var(--blue-deep);
+  color: var(--paper-50);
+  margin-bottom: 0.6cqw;
+}
+
+.plate--orange { background: var(--orange); color: var(--ink); }
+.plate--paper { background: var(--paper-300); color: var(--ink); }
+.plate--tall { aspect-ratio: 3 / 4; }
+.plate--wide { aspect-ratio: 16 / 7; }
+
+.plate::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--tex-halftone);
+  background-size: 7px 7px;
+  opacity: 0.55;
+  mix-blend-mode: multiply;
+}
+
+.plate__label {
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: clamp(0.5rem, 1.8cqw, 0.75rem);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0.4em 0.8em;
+  border: var(--rule-thin) dashed currentColor;
+}
+
+.caption {
+  font-family: var(--font-mono);
+  font-size: clamp(0.48rem, 1.6cqw, 0.7rem);
+  line-height: 1.4;
+  color: var(--ink-soft);
+  padding-left: 0.6em;
+  border-left: var(--rule-med) solid var(--orange);
+  margin-bottom: 1cqw;
+}
+
+/* --- Grilles de page ----------------------------------------------------- */
+.grid {
+  display: grid;
+  gap: 1.4cqw;
+}
+
+.grid--2 { grid-template-columns: 1fr 1fr; }
+.grid--sidebar { grid-template-columns: 2fr 1fr; }
+.grid--asym { grid-template-columns: 1fr 1.6fr; }
+
+/* --- Tampons ------------------------------------------------------------- */
+.stamp {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(0.55rem, 1.9cqw, 0.8rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--orange-deep);
+  border: var(--rule-med) solid var(--orange-deep);
+  border-radius: 4px;
+  padding: 0.3em 0.7em;
+  transform: rotate(-6deg);
+  opacity: 0.85;
+}
+
+.stamp--blue {
+  color: var(--blue);
+  border-color: var(--blue);
+  transform: rotate(4deg);
+}
+
+/* --- Sommaire ------------------------------------------------------------ */
+.toc {
+  list-style: none;
+  padding: 0;
+}
+
+.toc li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5em;
+  padding: 0.5cqw 0;
+  border-bottom: var(--rule-thin) dotted var(--ink-faint);
+  font-family: var(--font-sans);
+  font-size: clamp(0.62rem, 2.1cqw, 0.9rem);
+}
+
+.toc__num {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--orange);
+  min-width: 2.4em;
+}
+
+.toc__dots {
+  flex: 1;
+  border-bottom: var(--rule-thin) dotted var(--ink-faint);
+}
+
+/* --- Pied de page -------------------------------------------------------- */
+.colophon {
+  margin-top: 1.4cqw;
+  padding-top: 0.6cqw;
+  border-top: var(--rule-med) solid var(--ink);
+  font-family: var(--font-mono);
+  font-size: clamp(0.45rem, 1.5cqw, 0.65rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-2xs);
+}
+
+/* --- Couverture ---------------------------------------------------------- */
+.cover {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.cover__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cover__hero {
+  position: relative;
+  margin: 0.6cqw 0 1cqw;
+}
+
+.subhead {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(0.68rem, 2.4cqw, 1rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 0.8cqw 0 0.3cqw;
+  break-after: avoid;
+}
+
+/* Pages etroites : retour a une seule colonne */
+@container (max-width: 340px) {
+  .columns,
+  .columns--3 { columns: 1; }
+
+  .grid--2,
+  .grid--sidebar,
+  .grid--asym { grid-template-columns: 1fr; }
+}
+
+/* Dans un conteneur flex vertical, ces elements ne doivent pas s'etirer. */
+.kicker,
+.stamp { align-self: flex-start; }
+
+/* Pages tres etroites : les blocs image ne doivent pas devorer la page. */
+@container (max-width: 340px) {
+  .plate--tall { aspect-ratio: 4 / 3; }
+  .plate { max-height: 40vh; }
+}
+
+/* --- Remplissage vertical de la page ------------------------------------- */
+/* La page est une colonne flex : l'ours reste colle en bas du papier. */
+.page {
+  display: flex;
+  flex-direction: column;
+}
+
+.page > * { flex-shrink: 0; }
+.page > .cover { flex: 1 1 auto; }
+
+.colophon { margin-top: auto; }
