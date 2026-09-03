@@ -220,7 +220,8 @@ function construireDefinitions(ctx: Contexte, root: ParentNode): void {
       li.append(document.createTextNode(d.def))
       li.addEventListener('click', () => {
         ctx.sens = sens
-        ctx.cellules[d.r]?.[d.c]?.focus()
+        const cible2 = ctx.cellules[d.r]?.[d.c]
+        if (cible2) poserActif(ctx, d.r, d.c, cible2)
       })
       cible.append(li)
     }
@@ -306,10 +307,24 @@ function aller(ctx: Contexte, r: number, c: number, dr: number, dc: number): voi
   let cc = c
   while (rr >= 0 && cc >= 0 && rr < HAUTEUR && cc < LARGEUR) {
     const cible = ctx.cellules[rr]?.[cc]
-    if (cible) { cible.focus(); cible.select(); return }
+    if (cible) { poserActif(ctx, rr, cc, cible); return }
     rr += dr
     cc += dc
   }
+}
+
+/**
+ * Place le curseur sur une case.
+ *
+ * On met l etat a jour nous-memes au lieu d attendre focusin : cet evenement
+ * ne part pas toujours (case deja active, fenetre sans le focus), et la saisie
+ * restait alors bloquee sur la meme case.
+ */
+function poserActif(ctx: Contexte, r: number, c: number, input: HTMLInputElement): void {
+  ctx.actif = { r, c }
+  input.focus()
+  input.select()
+  surligner(ctx)
 }
 
 function avancer(ctx: Contexte, pas: number): void {
@@ -318,7 +333,7 @@ function avancer(ctx: Contexte, pas: number): void {
   const dr = ctx.sens === 'v' ? pas : 0
   const dc = ctx.sens === 'h' ? pas : 0
   const cible = ctx.cellules[a.r + dr]?.[a.c + dc]
-  if (cible) { cible.focus(); cible.select() }
+  if (cible) poserActif(ctx, a.r + dr, a.c + dc, cible)
 }
 
 function motSuivant(ctx: Contexte, pas: number): void {
@@ -333,7 +348,8 @@ function motSuivant(ctx: Contexte, pas: number): void {
   const suivant = liste[(courant + pas + liste.length) % liste.length]
   if (!suivant) return
   ctx.sens = suivant.sens
-  ctx.cellules[suivant.d.r]?.[suivant.d.c]?.focus()
+  const cible = ctx.cellules[suivant.d.r]?.[suivant.d.c]
+  if (cible) poserActif(ctx, suivant.d.r, suivant.d.c, cible)
 }
 
 // --- Outils ---------------------------------------------------------------
