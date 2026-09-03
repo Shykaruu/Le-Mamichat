@@ -19,6 +19,91 @@
   </head>
 
   <body>
+    <!-- ═══════════ Vignettes gravées ═══════════
+         Dessins au trait, à l'encre, dans l'esprit des vieux almanachs.
+         Utilisation : <svg class="vignette"><use href="#vg-soleil" /></svg>
+    -->
+    <svg class="sprite" aria-hidden="true" focusable="false">
+      <symbol id="vg-soleil" viewBox="0 0 100 100">
+        <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="50" cy="50" r="21" />
+          <path d="M50 6v13M50 81v13M6 50h13M81 50h13M19 19l9 9M72 72l9 9M81 19l-9 9M28 72l-9 9" />
+          <path d="M50 12l4 8h-8zM50 88l4-8h-8zM12 50l8 4v-8zM88 50l-8 4v-8z" fill="currentColor" stroke="none" />
+          <circle cx="43" cy="45" r="2.2" fill="currentColor" stroke="none" />
+          <circle cx="57" cy="45" r="2.2" fill="currentColor" stroke="none" />
+          <path d="M50 48v6M43 58c4 4 10 4 14 0" />
+        </g>
+      </symbol>
+
+      <symbol id="vg-lune" viewBox="0 0 100 100">
+        <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M62 14a38 38 0 100 72 30 30 0 010-72z" />
+          <circle cx="46" cy="42" r="2" fill="currentColor" stroke="none" />
+          <path d="M44 56c4 3 9 3 12-1" />
+          <path d="M78 24l2 6 6 2-6 2-2 6-2-6-6-2 6-2zM74 66l1.5 4.5L80 72l-4.5 1.5L74 78l-1.5-4.5L68 72l4.5-1.5z" fill="currentColor" stroke="none" />
+        </g>
+      </symbol>
+
+      <symbol id="vg-vierge" viewBox="0 0 100 100">
+        <g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M24 34v34M24 42c0-9 12-9 12 0v26M36 42c0-9 12-9 12 0v26M48 42c0-9 13-8 13 5 0 12-5 18-13 22" />
+          <path d="M55 56c9 2 15 9 13 18-1 6-6 9-12 8" />
+        </g>
+      </symbol>
+
+      <symbol id="vg-sagittaire" viewBox="0 0 100 100">
+        <g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M26 74L74 26M56 26h18v18M38 48l14 14" />
+        </g>
+      </symbol>
+
+      <symbol id="vg-boussole" viewBox="0 0 100 100">
+        <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="50" cy="50" r="34" />
+          <circle cx="50" cy="50" r="27" />
+          <path d="M50 16v6M50 78v6M16 50h6M78 50h6" />
+          <path d="M50 27l7 20 20 7-20 7-7 20-7-20-20-7 20-7z" />
+          <circle cx="50" cy="50" r="3" fill="currentColor" stroke="none" />
+        </g>
+      </symbol>
+
+      <symbol id="vg-ancre" viewBox="0 0 100 100">
+        <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="50" cy="21" r="7" />
+          <path d="M50 28v52M33 40h34" />
+          <path d="M22 54c0 17 13 26 28 26s28-9 28-26" />
+          <path d="M16 50l6 5 6-5M84 50l-6 5-6-5" />
+        </g>
+      </symbol>
+
+      <symbol id="vg-barre" viewBox="0 0 100 100">
+        <g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="50" cy="50" r="24" />
+          <circle cx="50" cy="50" r="9" />
+          <path d="M50 26V12M50 74v14M26 50H12M74 50h14M33 33L23 23M67 67l10 10M67 33l10-10M33 67l-10 10" />
+          <path d="M46 12h8M46 88h8M12 46v8M88 46v8M19 19l6 6M75 75l6 6M81 19l-6 6M25 75l-6 6" />
+        </g>
+      </symbol>
+
+      <symbol id="vg-pierre" viewBox="0 0 100 100">
+        <g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M50 12L26 44l24 44 24-44z" />
+          <path d="M26 44h48M50 12v76M38 28l12 16 12-16" />
+        </g>
+      </symbol>
+
+      <symbol id="vg-etoile" viewBox="0 0 100 100">
+        <path d="M50 8l9 33 33 9-33 9-9 33-9-33-33-9 33-9z" fill="currentColor" />
+      </symbol>
+
+      <symbol id="vg-comete" viewBox="0 0 100 100">
+        <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="70" cy="34" r="11" />
+          <path d="M59 42L18 74M62 30L22 44M64 50L30 70" />
+        </g>
+      </symbol>
+    </svg>
+
     <div class="app">
       <header class="toolbar">
         <span class="toolbar__brand">
@@ -49,60 +134,23 @@
                     <p class="masthead__tagline">Journal de bord depuis le 11 septembre 1946</p>
                   </header>
 
-                  <div class="cover__body">
+                  <div class="cover__title">
                     <span class="kicker kicker--orange">Vendredi 11 septembre 2026 &middot; Prix : un câlin</span>
-
                     <h2 class="headline headline--xl headline--orange">
-                      Quatre-vingts<br />ans de<br />grand large
+                      Quatre-vingts<br />ans de grand large
                     </h2>
-
-                    <p class="deck">
-                      De Carthage à l'Antarctique, en passant par les Marquises, La Réunion et
-                      la cuisine de Boussay : la rédaction au grand complet — enfants,
-                      petits-enfants, Pacha et les amies — consacre son numéro à une seule
-                      personne.
-                    </p>
-
-                    <div class="grid grid--asym">
-                      <figure class="photo">
-                        <div class="photo__slot photo__slot--tall">
-                          <span class="photo__hint">Photo de une<br />couverture/</span>
-                        </div>
-                        <figcaption>
-                          Marie-Charlotte, quelque part entre deux escales.
-                        </figcaption>
-                      </figure>
-
-                      <div class="columns columns--1 dropcap">
-                        <p>
-                          Elle est née un 11 septembre à Carthage, entre une mère infirmière
-                          et une grand-mère sicilienne championne de tir à la carabine. Elle
-                          a pris le TGM pour aller au lycée, un paquebot pour aller en France,
-                          puis un voilier pour aller absolument partout ailleurs.
-                        </p>
-                        <p>
-                          Ce journal rassemble ce que quatre-vingts ans ont laissé derrière
-                          eux : des îles, des recettes, des expressions que toute la famille
-                          répète sans même s'en rendre compte, et une quantité déraisonnable
-                          de chantilly.
-                        </p>
-
-                        <div class="ad ad--blue">
-                          <p class="ad__title">Le Papoto-Porteur</p>
-                          <p class="ad__baseline">
-                            Vos amies à l'autre bout du monde, dans votre salon, en un clic.
-                          </p>
-                          <span class="ad__price">Voir page 10</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <ul class="toc">
-                      <li><span class="toc__num">03</span> L'horoscope de naissance <span class="toc__dots"></span> Madame Irmaryse</li>
-                      <li><span class="toc__num">09</span> La grande vente flash <span class="toc__dots"></span> Boutique</li>
-                      <li><span class="toc__num">15</span> Les mots croisés qui lui ressemblent <span class="toc__dots"></span> Jeux</li>
-                    </ul>
                   </div>
+
+                  <div class="cover__frame">
+                    <div class="photo__slot photo__slot--fill">
+                      <span class="photo__hint">Photo de couverture<br />couverture/</span>
+                    </div>
+                  </div>
+
+                  <p class="cover__blurb">
+                    Quatre-vingts ans, quatre bateaux, trois océans et une quantité
+                    déraisonnable de chantilly. Toute la rédaction s'y est mise.
+                  </p>
 
                   <footer class="colophon">
                     <span>Tournez la page &rarr;</span>
@@ -215,6 +263,15 @@
                   <span class="running-head__folio">Page 03</span>
                 </header>
 
+
+                <div class="astro-band" aria-hidden="true">
+                  <svg class="vignette"><use href="#vg-comete" /></svg>
+                  <svg class="vignette vignette--sm"><use href="#vg-etoile" /></svg>
+                  <svg class="vignette vignette--lg"><use href="#vg-soleil" /></svg>
+                  <svg class="vignette vignette--sm"><use href="#vg-etoile" /></svg>
+                  <svg class="vignette"><use href="#vg-lune" /></svg>
+                </div>
+
                 <span class="kicker">Horoscope de naissance</span>
                 <h2 class="headline headline--md">
                   Bienvenue Marie-Charlotte, en ce 11 septembre 1946
@@ -228,23 +285,69 @@
                 <div class="columns columns--2 dropcap">
                   <p>
                     Comme l'Univers décide de t'accueillir, il y met toutes les potions
-                    magiques dont tu auras besoin. En te déposant à Tunis, il te lie déjà à
-                    la Mer, et pas des moindres : la Méditerranée. Cette mer constellée de
+                    magiques dont tu auras besoin. En te déposant à Tunis, il te lie déjà à la
+                    Mer, et pas des moindres : la Méditerranée. Cette mer constellée de
                     navires, annonciatrice de ceux qui te feront voguer toute ta vie.
                     D'ailleurs, sur les armoiries de la Tunisie figure un bateau — beau signe
-                    précurseur.
+                    précurseur pour toi.
                   </p>
                   <p>
-                    Il choisit le 11 septembre afin de te doter de la Vierge : vivre d'une
-                    allure libre, être voyageuse et optimiste, voir grand, avoir foi en
-                    l'avenir, être une inspiratrice pour les autres.
+                    Il choisit le 11 septembre afin de te doter d'un signe zodiacal : la
+                    Vierge <svg class="vignette vignette--inline"><use href="#vg-vierge" /></svg>, symbole de tes futures énergies et actions. Vivre d'une allure
+                    libre, être voyageuse et optimiste, voir grand, avoir foi en l'avenir,
+                    être une inspiratrice pour les autres. Quand tu réaliseras tes atouts,
+                    rien ne t'arrêtera, et ton entourage en sera grandement bénéficiaire.
+                  </p>
+                  <p>
+                    D'ailleurs, ta pierre fétiche est le lapis-lazuli <svg class="vignette vignette--inline"><use href="#vg-pierre" /></svg>, nommée la pierre bleue.
+                    Elle est reconnue pour ses vertus apaisantes, son aide à la communication —
+                    ce qui ne manquera pas, tu verras plus tard — et sa stimulation de
+                    l'esprit : elles seront trois de tes grandes qualités. En naissant vers
+                    midi, ton ascendant zodiacal est le Sagittaire <svg class="vignette vignette--inline"><use href="#vg-sagittaire" /></svg>, qui te dote d'une belle
+                    générosité, d'une honnêteté loyale, d'un dévouement qu'aucune ni aucun ne
+                    pourra nier.
                   </p>
 
                   <h3 class="subhead">Tes prénoms</h3>
                   <p>
-                    Marie la bien-aimée, la mère que tu seras pour le grand bonheur de tes
-                    enfants. Charlotte — outre le gâteau — te dote d'enthousiasme, de
-                    générosité, de liberté et d'un rayonnement solaire, comme les lieux où tu
+                    Les choix qui sont faits pour tes prénoms ne manquent pas de parfaire ton
+                    caractère. Marie la bien-aimée, la Mère que tu seras pour le grand bonheur
+                    de tes futurs enfants : tu seras une mère comblée.
+                  </p>
+                </div>
+
+                <footer class="colophon">
+                  <span>Suite page 04 &rarr;</span>
+                  <span>Page 03</span>
+                </footer>
+              </article>
+            </div>
+
+            <!-- ─────── PAGE 4 · HOROSCOPE, SUITE ─────── -->
+            <div class="face face--back">
+              <article class="page">
+                <header class="running-head">
+                  <span class="running-head__section">Les astres &middot; suite</span>
+                  <span class="running-head__folio">Page 04</span>
+                </header>
+
+                <div class="columns columns--2">
+                  <p>
+                    L'association de tes deux prénoms, Marie-Charlotte, conjugue l'amour et la
+                    mer, la pureté et la force. L'Univers dépose tous ces bonheurs dans ton
+                    berceau : « Emprofite mon Tifille ».
+                  </p>
+                  <p>
+                    Se cache un troisième prénom, Suzanne, dont la fleur totem est le lys.
+                    Comme lui, tu auras une élégance naturelle et une lumière en toute
+                    discrétion.
+                  </p>
+
+
+                  <p>
+                    Charlotte — outre le dit gâteau, tu deviendras une pâtissière renommée. Ce
+                    prénom te dote de ces traits : enthousiasme, générosité (cf. la Vierge),
+                    ta liberté (cf. le Sagittaire), rayonnement solaire comme les lieux où tu
                     iras vivre, je peux te l'assurer.
                   </p>
 
@@ -255,10 +358,38 @@
                     <cite>Madame Irmaryse</cite>
                   </blockquote>
 
+                  <h3 class="subhead">Tes nombres</h3>
                   <p>
-                    Se cache un troisième prénom : Suzanne, dont la fleur totem est le lys.
-                    Comme lui, tu auras une élégance naturelle et une lumière en toute
-                    discrétion.
+                    Le nombre 11 concentre l'éveil spirituel, l'intuition, la sensibilité
+                    créatrice. Ce nombre palindrome renvoie au deuxième signe de la Tunisie, la
+                    Balance, et à ton attention au bien-être des autres. Tu auras besoin de cet
+                    équilibre, tant sur Terre que sur Mer.
+                  </p>
+                  <p>
+                    Le chiffre 9 te soutiendra dans ta sagesse, ta compassion et ton altruisme.
+                    Il annonce également tes grossesses futures. La trinité du 9 = 3 × 3, comme
+                    tes trois prénoms et les trois noms que tu porteras — car oui, tu auras
+                    trois noms, telle une reine — ainsi que trois filles pour combler ta
+                    sororité.
+                  </p>
+
+                  <h3 class="subhead">Tes trois symboles</h3>
+                  <ul class="gifts">
+                    <li><svg class="vignette vignette--gift"><use href="#vg-boussole" /></svg><b>La boussole</b>, pour guider tes voyages et les choix que tu devras faire.</li>
+                    <li><svg class="vignette vignette--gift"><use href="#vg-ancre" /></svg><b>L'ancre</b>, pour la stabilité et la sécurité, en mer et sur terre.</li>
+                    <li><svg class="vignette vignette--gift"><use href="#vg-barre" /></svg><b>La barre</b>, que je t'octroie pour diriger ta vie.</li>
+                  </ul>
+
+                  <h3 class="subhead">Tes deux chansons</h3>
+                  <p>
+                    Pour ta naissance, je t'offre deux chansons qui illustreront ta vie,
+                    maintenant et plus tard : <i>La Mer</i> de Charles Trenet, 1946, et
+                    <i>La Vie en rose</i> d'Édith Piaf, 1946.
+                  </p>
+                  <p>
+                    Chère petite Marie-Charlotte, l'Univers t'accompagnera avec bienveillance.
+                    Veille à ne pas oublier de le remercier de temps à autre. Très
+                    affectueusement, depuis les étoiles.
                   </p>
 
                   <div class="coupon" data-coupon="horoscope-seance">
@@ -266,8 +397,7 @@
                       <p class="coupon__kicker">Bon à détacher</p>
                       <p class="coupon__title">Une séance de voyance</p>
                       <p class="coupon__text">
-                        Valable une fois, à réclamer auprès de Madame Irmaryse. L'avenir est
-                        garanti radieux, sinon remboursé.
+                        À réclamer auprès de Madame Irmaryse. Avenir radieux garanti.
                       </p>
                       <button class="coupon__tear" type="button">Détacher ce bon</button>
                     </div>
@@ -276,84 +406,6 @@
                       <span data-stub-date></span>
                     </div>
                   </div>
-
-                  <h3 class="subhead">Tes nombres</h3>
-                  <p>
-                    Le nombre 11 concentre l'éveil spirituel, l'intuition, la sensibilité
-                    créatrice. Le chiffre 9 te soutiendra dans ta sagesse et ton altruisme —
-                    et annonce tes grossesses futures. La trinité du 9 = 3 × 3, comme tes
-                    trois prénoms, les trois noms que tu porteras telle une reine, et tes
-                    trois filles.
-                  </p>
-                </div>
-
-                <footer class="colophon">
-                  <span>Les astres</span>
-                  <span>Page 03</span>
-                </footer>
-              </article>
-            </div>
-
-            <!-- ─────── PAGE 4 · SYMBOLES + CHIFFRES DE PACHA ─────── -->
-            <div class="face face--back">
-              <article class="page">
-                <header class="running-head">
-                  <span class="running-head__section">Les astres &middot; suite</span>
-                  <span class="running-head__folio">Page 04</span>
-                </header>
-
-                <div class="grid grid--sidebar">
-                  <section>
-                    <h2 class="headline headline--md headline--blue">Les trois symboles</h2>
-                    <hr class="rule rule--orange" />
-
-                    <div class="columns columns--1">
-                      <p>
-                        Les symboles que je t'offre et qui guideront ta vie seront la
-                        <b>boussole</b>, pour guider tes voyages et les choix que tu devras
-                        faire ; l'<b>ancre</b>, pour la stabilité et la sécurité, en mer
-                        comme sur terre ; et la <b>barre</b>, que je t'octroie pour diriger
-                        ta vie.
-                      </p>
-                      <p>
-                        Ta pierre fétiche est le lapis-lazuli, la pierre bleue, reconnue pour
-                        ses vertus apaisantes et son aide à la communication — ce qui ne
-                        manquera pas, tu verras plus tard.
-                      </p>
-                      <p>
-                        Pour ta naissance, je t'offre deux chansons qui illustreront ta vie :
-                        <i>La Mer</i> de Charles Trenet et <i>La Vie en rose</i> d'Édith Piaf.
-                        Toutes deux de 1946, comme toi.
-                      </p>
-                    </div>
-
-                    <figure class="photo">
-                      <div class="photo__slot photo__slot--wide">
-                        <span class="photo__hint">Photo de bébé ou de famille<br />famille/</span>
-                      </div>
-                      <figcaption>Marie-Charlotte, première année.</figcaption>
-                    </figure>
-                  </section>
-
-                  <aside>
-                    <div class="box box--accent">
-                      <h3 class="box__title">Les chiffres de la rédaction</h3>
-                      <p><b>80</b> — années au compteur.</p>
-                      <p><b>4</b> — bateaux : Jandira, La Souris-Blanche, Farewell, Golden Fleece.</p>
-                      <p><b>3</b> — filles, plus un fils.</p>
-                      <p><b>1</b> — chienne, Zumba.</p>
-                      <p><b>∞</b> — bombes de chantilly.</p>
-                      <p style="margin-top: 0.6em"><i>Relevé par Pacha</i></p>
-                    </div>
-
-                    <div class="ad ad--orange">
-                      <p class="ad__title">L'Air de la Méditerranée</p>
-                      <p class="ad__baseline">
-                        Un bocal, un couvercle, et toute la Tunisie qui remonte d'un coup.
-                      </p>
-                      <span class="ad__price">Vente flash &middot; page 09</span>
-                    </div>
-                  </aside>
                 </div>
 
                 <footer class="colophon">
@@ -413,19 +465,7 @@
                     le cartable, et on descendait se baigner à la plage d'Hamilcar.
                   </p>
 
-                  <div class="classifieds">
-                    <p class="classifieds__head">Avis de recherche</p>
-                    <p class="classified">
-                      <b>Recherche témoins</b> — Toute personne ayant emprunté le TGM entre
-                      1953 et 1961 est priée de se manifester auprès de la rédaction.
-                      <span class="classified__ref">Réf. TGM-1953</span>
-                    </p>
-                    <p class="classified">
-                      <b>Perdu</b> — Un flacon de Shalimar, cassé à l'adolescence. Le parfum,
-                      lui, n'a jamais vraiment disparu.
-                      <span class="classified__ref">Réf. SHAL-60</span>
-                    </p>
-                  </div>
+
                 </div>
 
                 <footer class="colophon">
@@ -636,16 +676,19 @@
                   <li><time>2014</time><span>L'Antarctique, cheffe cuisinière à bord du <b>Golden Fleece</b>.</span></li>
                 </ul>
 
+
                 <div class="grid grid--2">
+                  <div class="box box--accent">
+                    <h3 class="box__title">Les chiffres de la rédaction</h3>
+                    <p><b>80</b> — années au compteur. <b>4</b> — bateaux : Jandira, La
+                    Souris-Blanche, Farewell, Golden Fleece. <b>3</b> — filles, plus un fils.
+                    <b>1</b> — chienne, Zumba. <b>∞</b> — bombes de chantilly.</p>
+                    <p style="margin-top: 0.5em"><i>Relevé par Pacha</i></p>
+                  </div>
+
                   <figure class="photo">
                     <div class="photo__slot">
                       <span class="photo__hint">La Souris-Blanche<br />bateaux/</span>
-                    </div>
-                    <figcaption>À légender.</figcaption>
-                  </figure>
-                  <figure class="photo">
-                    <div class="photo__slot">
-                      <span class="photo__hint">Jandira<br />bateaux/</span>
                     </div>
                     <figcaption>À légender.</figcaption>
                   </figure>
@@ -681,16 +724,15 @@
                   <div class="flash">
                     <div class="flash__media">
                       <span class="flash__badge">Édition WWF</span>
-                      <div class="photo__slot photo__slot--square">
+                      <div class="photo__slot photo__slot--wide">
                         <span class="photo__hint">vente-flash/</span>
                       </div>
                     </div>
                     <div class="flash__body">
                       <h3 class="flash__title">Le Garou de la Paix</h3>
                       <p class="flash__text">
-                        Oubliez les dévorations nocturnes. Ici, l'objectif est d'apprivoiser
-                        tout le monde : à la fin de la partie, humains et créatures de la
-                        forêt finissent autour d'une grande table, meilleurs amis du monde.
+                        Ici, l'objectif est d'apprivoiser tout le monde : à la fin de la partie,
+                        humains et créatures de la forêt finissent autour de la même table.
                       </p>
                     </div>
                     <p class="flash__price">
@@ -701,16 +743,15 @@
                   <div class="flash">
                     <div class="flash__media">
                       <span class="flash__badge">Édition limitée</span>
-                      <div class="photo__slot photo__slot--square">
+                      <div class="photo__slot photo__slot--wide">
                         <span class="photo__hint">vente-flash/</span>
                       </div>
                     </div>
                     <div class="flash__body">
                       <h3 class="flash__title">L'Air de la Méditerranée</h3>
                       <p class="flash__text">
-                        Fermez les yeux, dévissez le couvercle du bocal, et retrouvez
-                        instantanément la Tunisie. Fleur d'oranger et brise marine, qui
-                        embaument la pièce et réveillent vos plus beaux souvenirs.
+                        Dévissez le couvercle et retrouvez la Tunisie : fleur d'oranger et brise
+                        marine, en un instant.
                       </p>
                     </div>
                     <p class="flash__price">
@@ -721,16 +762,15 @@
                   <div class="flash">
                     <div class="flash__media">
                       <span class="flash__badge">Nouveauté</span>
-                      <div class="photo__slot photo__slot--square">
+                      <div class="photo__slot photo__slot--wide">
                         <span class="photo__hint">vente-flash/</span>
                       </div>
                     </div>
                     <div class="flash__body">
                       <h3 class="flash__title">Le Zurator 3000</h3>
                       <p class="flash__text">
-                        L'aspirateur ultra-silencieux calibré pour les poils de Zumba. Grâce à
-                        l'aspiration quantique, les poils partent directement matelasser un
-                        coussin moelleux. Il ne reste que le plaisir de jouer avec elle.
+                        L'aspirateur silencieux calibré pour les poils de Zumba, qui partent
+                        directement matelasser un coussin moelleux.
                       </p>
                     </div>
                     <p class="flash__price">
@@ -741,16 +781,15 @@
                   <div class="flash">
                     <div class="flash__media">
                       <span class="flash__badge">Sans entretien</span>
-                      <div class="photo__slot photo__slot--square">
+                      <div class="photo__slot photo__slot--wide">
                         <span class="photo__hint">vente-flash/</span>
                       </div>
                     </div>
                     <div class="flash__body">
                       <h3 class="flash__title">L'Éternelle Hortense</h3>
                       <p class="flash__text">
-                        Un hortensia d'un bleu éclatant qui traverse les décennies sans perdre
-                        un seul pétale. Tellement resplendissant qu'il fera verdir de jalousie
-                        tous les voisins paysagistes du quartier.
+                        Un bleu éclatant qui traverse les décennies sans perdre un pétale. De quoi
+                        faire verdir tous les voisins paysagistes.
                       </p>
                     </div>
                     <p class="flash__price">
@@ -778,16 +817,15 @@
                   <div class="flash">
                     <div class="flash__media">
                       <span class="flash__badge">Magique</span>
-                      <div class="photo__slot photo__slot--square">
+                      <div class="photo__slot photo__slot--wide">
                         <span class="photo__hint">vente-flash/</span>
                       </div>
                     </div>
                     <div class="flash__body">
                       <h3 class="flash__title">Le Grimoire des Chefs-d'Œuvre</h3>
                       <p class="flash__text">
-                        Un livre qui rassemble automatiquement toutes les recettes mythiques de
-                        Mamichat. Le petit plus : il suffit de regarder la photo d'un plat pour
-                        en ressentir immédiatement le goût en bouche.
+                        Toutes les recettes mythiques de Mamichat, réunies toutes seules. Regardez
+                        la photo d'un plat : vous en avez le goût en bouche.
                       </p>
                     </div>
                     <p class="flash__price">
@@ -798,16 +836,15 @@
                   <div class="flash">
                     <div class="flash__media">
                       <span class="flash__badge">Sans frontières</span>
-                      <div class="photo__slot photo__slot--square">
+                      <div class="photo__slot photo__slot--wide">
                         <span class="photo__hint">vente-flash/</span>
                       </div>
                     </div>
                     <div class="flash__body">
                       <h3 class="flash__title">Le Papoto-Porteur</h3>
                       <p class="flash__text">
-                        Que vos amies soient à l'autre bout de la région ou du monde, l'appareil
-                        abat les frontières en un clin d'œil. Un clic, un souffle de magie, et
-                        vous voilà réunies dans le salon, prêtes à papoter autour du thé.
+                        Un clic, et vos amies sont dans le salon, où qu'elles vivent. Prêtes à
+                        papoter autour du thé.
                       </p>
                     </div>
                     <p class="flash__price">
@@ -818,17 +855,15 @@
                   <div class="flash">
                     <div class="flash__media">
                       <span class="flash__badge">Pliable</span>
-                      <div class="photo__slot photo__slot--square">
+                      <div class="photo__slot photo__slot--wide">
                         <span class="photo__hint">vente-flash/</span>
                       </div>
                     </div>
                     <div class="flash__body">
                       <h3 class="flash__title">Le Voilier de Poche</h3>
                       <p class="flash__text">
-                        Un authentique voilier de voyage miniature qui se glisse dans un sac à
-                        main. Pensé pour les navigatrices chevronnées, il se déplie en un
-                        instant : le parfum du large, le bercement des vagues, la griserie des
-                        grandes traversées.
+                        Un vrai voilier de voyage, glissé dans un sac à main. Il se déplie en un
+                        instant : le large, les vagues, les grandes traversées.
                       </p>
                     </div>
                     <p class="flash__price">
@@ -839,16 +874,15 @@
                   <div class="flash">
                     <div class="flash__media">
                       <span class="flash__badge">Interdimensionnel</span>
-                      <div class="photo__slot photo__slot--square">
+                      <div class="photo__slot photo__slot--wide">
                         <span class="photo__hint">vente-flash/</span>
                       </div>
                     </div>
                     <div class="flash__body">
                       <h3 class="flash__title">La Boîte à Rembobiner</h3>
                       <p class="flash__text">
-                        Posée sur la table, elle projette vos plus beaux souvenirs en relief
-                        tout autour de vous. L'outil ultime pour revivre chaque grand moment du
-                        passé avec la même émotion qu'au premier jour.
+                        Posée sur la table, elle projette vos souvenirs en relief autour de vous,
+                        avec l'émotion du premier jour.
                       </p>
                     </div>
                     <p class="flash__price">
@@ -859,11 +893,10 @@
 
                 <div class="coupon" data-coupon="vente-flash-livraison">
                   <div class="coupon__sheet">
-                    <p class="coupon__kicker">Bon à détacher &middot; vente flash</p>
-                    <p class="coupon__title">Livraison à domicile offerte</p>
+                    <p class="coupon__kicker">Bon à détacher</p>
+                    <p class="coupon__title">Livraison offerte</p>
                     <p class="coupon__text">
-                      Valable sur l'ensemble de la boutique, sans minimum d'achat. Le livreur
-                      reste boire le café.
+                      Sur toute la boutique. Le livreur reste boire le café.
                     </p>
                     <button class="coupon__tear" type="button">Détacher ce bon</button>
                   </div>
@@ -908,10 +941,17 @@
                 </p>
 
                 <figure class="photo">
-                  <div class="photo__slot photo__slot--wide">
-                    <span class="photo__hint">Le Golden Fleece / l'Antarctique<br />bateaux/</span>
-                  </div>
-                  <figcaption>Embarquée comme cheffe cuistot sur un voilier d'exception.</figcaption>
+                  <video
+                    class="player"
+                    controls
+                    preload="metadata"
+                    playsinline
+                    src="/images/videos/antarctic-2014.mp4"
+                  ></video>
+                  <figcaption>
+                    Antarctique, 2014. Embarquée comme cheffe cuistot sur un voilier
+                    d'exception. Film de Didi, copie fournie par Erick.
+                  </figcaption>
                 </figure>
 
                 <div class="columns columns--2">
@@ -919,10 +959,6 @@
                     Alors, chers lecteurs, ouvrez grand les yeux, montez à bord du Golden
                     Fleece et laissez-vous embarquer. Archive exceptionnelle, à regarder quand
                     vous voulez, où vous voulez.
-                  </p>
-                  <p>
-                    <i>Emplacement réservé au lien de la vidéo.</i> Dès que le fichier est
-                    prêt, je l'intègre ici pour qu'il se lance directement dans le journal.
                   </p>
 
                   <div class="ad ad--blue">
@@ -1043,6 +1079,20 @@
                     qui ne l'a jamais rencontrée ?
                   </p>
 
+                  <div class="classifieds">
+                    <p class="classifieds__head">Avis de recherche</p>
+                    <p class="classified">
+                      <b>Recherche témoins</b> — Toute personne ayant emprunté le TGM entre
+                      1953 et 1961 est priée de se manifester auprès de la rédaction.
+                      <span class="classified__ref">Réf. TGM-1953</span>
+                    </p>
+                    <p class="classified">
+                      <b>Perdu</b> — Un flacon de Shalimar, cassé à l'adolescence. Le parfum,
+                      lui, n'a jamais vraiment disparu.
+                      <span class="classified__ref">Réf. SHAL-60</span>
+                    </p>
+                  </div>
+
                   <div class="coupon coupon--paper" data-coupon="interview-cafe">
                     <div class="coupon__sheet">
                       <p class="coupon__kicker">Bon à détacher</p>
@@ -1089,7 +1139,7 @@
                       <span class="testimony__author">— Prénom</span>
                     </p>
                     <figure class="photo">
-                      <div class="photo__slot photo__slot--square">
+                      <div class="photo__slot photo__slot--wide">
                         <span class="photo__hint">Dessin scanné<br />temoignages/</span>
                       </div>
                       <figcaption>À légender.</figcaption>
@@ -1135,10 +1185,10 @@
             </div>
           </div>
 
-          <!-- ══════════════ FEUILLET 8 ══════════════ -->
+          <!-- ══════════════ FEUILLET 8 · MOTS CROISÉS ══════════════ -->
           <div class="sheet">
 
-            <!-- ─────── PAGE 15 · MOTS CROISÉS ─────── -->
+            <!-- ─────── PAGE 15 · LA GRILLE ─────── -->
             <div class="face face--front">
               <article class="page">
                 <header class="running-head">
@@ -1146,74 +1196,99 @@
                   <span class="running-head__folio">Page 15</span>
                 </header>
 
+                <span class="kicker kicker--orange">Mots croisés</span>
                 <h2 class="headline headline--md">Les mots croisés qui lui ressemblent</h2>
                 <p class="deck">
-                  Retrouvez les mots de sa vie, de ses voyages, de sa famille et de ses petites
-                  expressions. Puis reportez les lettres des six cases marquées d'un cercle :
-                  elles révèlent le mot final.
+                  Les mots de sa vie, de ses voyages, de sa famille et de ses expressions.
+                  Les six cases entourées livrent le mot final.
                 </p>
 
-                <div class="photo">
-                  <div class="photo__slot photo__slot--wide">
-                    <span class="photo__hint">Grille interactive<br />à construire</span>
+                <div class="crossword" data-crossword>
+                  <div class="crossword__grid" data-crossword-grid>
+                    <span class="photo__hint">Grille interactive<br />prochaine étape</span>
                   </div>
                 </div>
 
-                <div class="columns columns--3">
-                  <h3 class="subhead">Horizontalement</h3>
-                  <p>1. Huile parfumée des îles, synonyme de vacances et de douceur.</p>
-                  <p>2. Fleur blanche au parfum délicat.</p>
-                  <p>4. Village d'Indre-et-Loire, cœur géographique de la famille.</p>
-                  <p>5. Son « soleil »… et la fille qui signe ce journal.</p>
-                  <p>7. Immense étendue bleue qui a accompagné tant de voyages.</p>
-                  <p>12. Cité tunisienne chargée d'histoire et de souvenirs.</p>
-                  <p>13. Frère né en Guyane, explorateur des étoiles et consultant au GEIPAN.</p>
-                  <p>16. Gâteau tunisien aux dattes, à déguster sans modération.</p>
-                  <p>22. Sœur née à Nuku Hiva.</p>
-
-                  <h3 class="subhead">Verticalement</h3>
-                  <p>3. Lieu où Maman a vécu à La Réunion.</p>
-                  <p>6. Le petit comprimé qui peut parfois tout arranger.</p>
-                  <p>8. Petite chienne adorable, fidèle compagne de tous leurs périples.</p>
-                  <p>9. Parfum précieux… et souvenir d'un flacon cassé à l'adolescence.</p>
-                  <p>10. Sœur née à Moorea, le 1<sup>er</sup> septembre 1979.</p>
-                  <p>11. Ce que Karine est pour sa Maman.</p>
-                  <p>14. « Je vais appeler les… » quand personne ne répond.</p>
-                  <p>15. Premier bateau avec lequel l'aventure a commencé en famille.</p>
-                  <p>17. Surnom de Fabien à bord du grand voyage.</p>
-                  <p>18. Crème célèbre… et mot qui lui ressemble forcément.</p>
-                  <p>19. Île des Marquises où Maman a repris le métier de professeure.</p>
-                  <p>20. Expression favorite, prononcée avec conviction.</p>
-                  <p>21. Façon de voyager sans bouger de son fauteuil.</p>
-                </div>
-
                 <footer class="colophon">
-                  <span>Jeux</span>
+                  <span>Définitions page 16 &rarr;</span>
                   <span>Page 15</span>
                 </footer>
               </article>
             </div>
 
-            <!-- ─────── PAGE 16 · LE DOS ─────── -->
+            <!-- ─────── PAGE 16 · LES DÉFINITIONS ─────── -->
             <div class="face face--back">
               <article class="page">
-                <div class="cover">
-                  <header class="running-head">
-                    <span class="running-head__section">Dernière</span>
-                    <span class="running-head__folio">Page 16</span>
-                  </header>
+                <header class="running-head">
+                  <span class="running-head__section">Jeux &middot; définitions</span>
+                  <span class="running-head__folio">Page 16</span>
+                </header>
 
-                  <div class="cover__body">
+                <div class="columns columns--2 clues">
+                  <h3 class="subhead">Horizontalement</h3>
+                  <p><b>1.</b> Huile parfumée des îles, synonyme de vacances et de douceur.</p>
+                  <p><b>2.</b> Fleur blanche au parfum délicat.</p>
+                  <p><b>4.</b> Village d'Indre-et-Loire, cœur géographique de la famille.</p>
+                  <p><b>5.</b> Son « soleil »… et la fille qui signe ce journal.</p>
+                  <p><b>7.</b> Immense étendue bleue qui a accompagné tant de voyages.</p>
+                  <p><b>12.</b> Cité tunisienne chargée d'histoire et de souvenirs.</p>
+                  <p><b>13.</b> Frère né en Guyane, explorateur des étoiles, consultant au GEIPAN.</p>
+                  <p><b>16.</b> Gâteau tunisien aux dattes, à déguster sans modération.</p>
+                  <p><b>22.</b> Sœur née à Nuku Hiva.</p>
+
+                  <h3 class="subhead">Verticalement</h3>
+                  <p><b>3.</b> Lieu où Maman a vécu à La Réunion.</p>
+                  <p><b>6.</b> Le petit comprimé qui peut parfois tout arranger.</p>
+                  <p><b>8.</b> Petite chienne adorable, fidèle compagne de tous leurs périples.</p>
+                  <p><b>9.</b> Parfum précieux… et souvenir d'un flacon cassé à l'adolescence.</p>
+                  <p><b>10.</b> Sœur née à Moorea, le 1<sup>er</sup> septembre 1979.</p>
+                  <p><b>11.</b> Ce que Karine est pour sa Maman.</p>
+                  <p><b>14.</b> « Je vais appeler les… » quand personne ne répond.</p>
+                  <p><b>15.</b> Premier bateau avec lequel l'aventure a commencé en famille.</p>
+                  <p><b>17.</b> Surnom de Fabien à bord du grand voyage.</p>
+                  <p><b>18.</b> Crème célèbre… et mot qui lui ressemble forcément.</p>
+                  <p><b>19.</b> Île des Marquises où Maman a repris le métier de professeure.</p>
+                  <p><b>20.</b> Expression favorite, prononcée avec conviction.</p>
+                  <p><b>21.</b> Façon de voyager sans bouger de son fauteuil.</p>
+                </div>
+
+                <div class="box box--accent">
+                  <h3 class="box__title">Le mot final</h3>
+                  <p>
+                    Six cases entourées, six lettres, un mot que l'on se dit en famille.
+                    Réponse à réclamer auprès de la rédaction.
+                  </p>
+                </div>
+
+                <footer class="colophon">
+                  <span>Jeux</span>
+                  <span>Page 16</span>
+                </footer>
+              </article>
+            </div>
+          </div>
+
+          <!-- ══════════════ FEUILLET 9 ══════════════ -->
+          <div class="sheet">
+
+            <!-- ─────── PAGE 17 · DERNIÈRE PAGE ─────── -->
+            <div class="face face--front">
+              <article class="page">
+                <header class="running-head">
+                  <span class="running-head__section">Dernière</span>
+                  <span class="running-head__folio">Page 17</span>
+                </header>
+
+                <div class="grid grid--sidebar">
+                  <section>
                     <h2 class="headline headline--md headline--orange">974 représente</h2>
-
                     <div class="columns columns--1">
                       <p>
-                        Fin du numéro. Il aura fallu quatre-vingts ans, quatre bateaux, une
-                        chienne et beaucoup de chantilly pour le remplir.
+                        Il aura fallu quatre-vingts ans, quatre bateaux, une chienne et
+                        beaucoup de chantilly pour remplir ce numéro. Merci à toute la
+                        rédaction, qui n'a jamais rendu une copie en retard.
                       </p>
                     </div>
-
-                    <hr class="rule rule--double" />
 
                     <div class="coupon" data-coupon="dernier-bon">
                       <div class="coupon__sheet">
@@ -1230,20 +1305,56 @@
                         <span data-stub-date></span>
                       </div>
                     </div>
+                  </section>
 
-                    <p class="stamp stamp--blue">Joyeux anniversaire</p>
+                  <aside>
+                    <div class="classifieds">
+                      <p class="classifieds__head">Remerciements</p>
+                      <p class="classified">
+                        À celles et ceux qui ont fouillé les albums, retrouvé les dates,
+                        scanné les photos et raconté les histoires.
+                      </p>
+                    </div>
+
+                    <p class="stamp stamp--blue">Bon pour archive</p>
+                  </aside>
+                </div>
+
+                <footer class="colophon">
+                  <span>Le Mamichat</span>
+                  <span>Page 17</span>
+                </footer>
+              </article>
+            </div>
+
+            <!-- ─────── PAGE 18 · QUATRIÈME DE COUVERTURE ─────── -->
+            <div class="face face--back">
+              <article class="page">
+                <div class="cover">
+                  <div class="cover__title">
+                    <h2 class="headline headline--xl headline--orange">
+                      Joyeux<br />anniversaire
+                    </h2>
                   </div>
+
+                  <div class="cover__frame">
+                    <div class="photo__slot photo__slot--fill">
+                      <span class="photo__hint">Photo de dos<br />couverture/</span>
+                    </div>
+                  </div>
+
+                  <p class="cover__blurb">
+                    De la part de toute la famille, sur terre comme sur mer.
+                  </p>
 
                   <footer class="colophon">
                     <span>Le Mamichat &middot; 11 septembre 2026</span>
-                    <span>Page 16</span>
+                    <span>Page 18</span>
                   </footer>
                 </div>
               </article>
             </div>
-          </div>
-
-        </div>
+          </div>        </div>
       </main>
 
       <footer class="controls">
@@ -1253,7 +1364,7 @@
 
         <span class="pager" data-pager aria-label="Aller à un feuillet"></span>
 
-        <span class="counter" data-counter aria-live="polite">01 / 16</span>
+        <span class="counter" data-counter aria-live="polite">01 / 18</span>
 
         <div class="progress" role="presentation">
           <span class="progress__bar" data-progress></span>

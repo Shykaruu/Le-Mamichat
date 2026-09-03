@@ -167,7 +167,7 @@
   column-gap: 2.5cqw;
   column-rule: var(--rule-thin) solid var(--rule-hair);
   font-size: clamp(0.62rem, 2.15cqw, 0.95rem);
-  line-height: 1.5;
+  line-height: 1.45;
   text-align: justify;
   hyphens: auto;
 }
@@ -176,7 +176,7 @@
 .columns--3 { columns: 3; column-gap: 2cqw; }
 
 .columns p {
-  margin-bottom: 0.6em;
+  margin-bottom: 0.5em;
   text-indent: 1.2em;
 }
 
@@ -307,7 +307,7 @@
 /* --- Grilles de page ----------------------------------------------------- */
 .grid {
   display: grid;
-  gap: 1.4cqw;
+  gap: 1.2cqw;
 }
 
 .grid--2 { grid-template-columns: 1fr 1fr; }
@@ -439,3 +439,110 @@
 .page > .cover { flex: 1 1 auto; }
 
 .colophon { margin-top: auto; }
+
+/* --- Couverture magazine -------------------------------------------------
+   La photo absorbe la place restante : la une ne peut donc jamais deborder.
+   ------------------------------------------------------------------------- */
+.cover__title {
+  padding: 0.6cqw 0 0.8cqw;
+}
+
+/* Sur la une, le titre prend toute la largeur disponible. */
+.cover__title .headline { margin-bottom: 0; }
+
+.cover__frame {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+}
+
+.photo__slot--fill {
+  aspect-ratio: auto;
+  flex: 1;
+  height: 100%;
+}
+
+/* Une phrase sous la photo, pas un sommaire : celui-ci est page 2. */
+.cover__blurb {
+  padding: 0.9cqw 0 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(0.6rem, 2.3cqw, 1rem);
+  line-height: 1.35;
+  text-align: center;
+  color: var(--ink-soft);
+}
+
+/* Liste des dons de l'horoscope : puces discretes dans une colonne. */
+.gifts {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.6em;
+  text-indent: 0;
+}
+
+.gifts li {
+  padding-left: 0.9em;
+  text-indent: -0.9em;
+  margin-bottom: 0.3em;
+}
+
+.gifts li::before {
+  content: "\2014\00a0";
+  color: var(--orange);
+}
+
+/* --- Vignettes gravées ----------------------------------------------------
+   Dessins au trait heritant de la couleur du texte : ils passent donc en
+   orange dans un titre orange, en blanc sur un aplat bleu, et s'impriment.
+   ------------------------------------------------------------------------- */
+.sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.vignette {
+  display: block;
+  width: 6cqw;
+  height: 6cqw;
+  color: var(--ink);
+}
+
+.vignette--sm { width: 3cqw; height: 3cqw; }
+.vignette--lg { width: 9.5cqw; height: 9.5cqw; color: var(--orange); }
+
+/* Dans le fil du texte : cale sur la ligne de base. */
+.vignette--inline {
+  display: inline-block;
+  width: 1.15em;
+  height: 1.15em;
+  vertical-align: -0.22em;
+  color: var(--orange-deep);
+}
+
+/* Devant les trois symboles offerts. */
+.vignette--gift {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: -0.42em;
+  margin-right: 0.35em;
+  color: var(--blue);
+}
+
+/* Bandeau astral : la frise du haut de rubrique. */
+.astro-band {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3.2cqw;
+  padding: 0.2cqw 0 0.5cqw;
+  margin-bottom: 0.6cqw;
+  border-bottom: var(--rule-thin) solid var(--ink);
+  color: var(--ink-soft);
+}
+
+.gifts li { display: block; }
+.gifts li::before { content: none; }

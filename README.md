@@ -55,6 +55,33 @@ Au-dessus de 900 px, le journal s'affiche en **double page** avec rotation 3D
 autour de la reliure. En dessous, il bascule automatiquement en **page unique**
 avec transition latérale.
 
+
+## La règle des pages : rien ne défile
+
+Une page de journal a une hauteur fixe. Ce qui ne rentre pas doit être **coupé,
+raccourci ou déplacé sur une autre page** — jamais mis derrière une barre de
+défilement. Les pages sont donc en `overflow: hidden`.
+
+Pour ne pas juger ça à l’œil, `npm run dev` active un détecteur : toute page
+trop pleine est cerclée de rouge et affiche son dépassement en pixels, et la
+console résume l’état des 18 pages. Voir [src/fit.ts](src/fit.ts).
+
+Tout est dimensionné en `cqw` (pourcentage de la largeur de page) et la page
+garde le même rapport 0,74 partout — écran large, téléphone, papier. Une mise en
+page qui tient à une taille tient donc à toutes.
+
+## Version imprimée
+
+`Ctrl` + `P` : le livre se déplie, une page du journal par feuille, dans
+l’ordre. Pas de 3D, pas de commandes, pas de grain, et les aplats de couleur
+sortent bien à l’impression. Voir [src/styles/print.css](src/styles/print.css).
+
+## Photos et vidéos
+
+Tout se dépose dans [public/images/](public/images/LISEZMOI.md), un sous-dossier
+par thème. Les vidéos vont dans `public/images/videos/` : elles sont exclues
+de git (limite de 100 Mo par fichier sur GitHub) mais partent bien avec le site.
+
 ## Structure
 
 ```

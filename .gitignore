@@ -6,3 +6,7 @@ dist/
 Thumbs.db
 .env
 .env.*
+
+# Les videos sont trop lourdes pour git (limite GitHub : 100 Mo par fichier).
+# Elles restent dans public/images/videos/ et partent avec le site.
+public/images/videos/

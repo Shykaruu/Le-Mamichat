@@ -3,9 +3,11 @@ import './styles/base.css'
 import './styles/book.css'
 import './styles/newspaper.css'
 import './styles/rubriques.css'
+import './styles/print.css'
 
 import { Flipbook, type FlipbookState } from './flipbook'
 import { setupCoupons } from './coupons'
+import { watchFit } from './fit'
 
 const book = document.querySelector<HTMLElement>('.book')
 const prevBtn = document.querySelector<HTMLButtonElement>('[data-action="prev"]')
@@ -86,6 +88,9 @@ declare global {
 window.flipbook = flipbook
 
 setupCoupons()
+
+// Controle de mise en page : signale les pages trop pleines pendant le dev.
+if (import.meta.env.DEV) watchFit()
 
 // Les pastilles sont creees apres coup : on resynchronise l'interface.
 update(flipbook.state)

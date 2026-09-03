@@ -1,0 +1,98 @@
+/* =========================================================
+   Version imprimee.
+   Une page du journal = une feuille. Pas de 3D, pas de
+   commandes, pas de grain : de l'encre sur du papier.
+   ========================================================= */
+
+@media print {
+  @page {
+    size: 210mm 284mm; /* meme proportion 0.74 que la page a l'ecran */
+    margin: 0;
+  }
+
+  html,
+  body {
+    background: var(--paper-100);
+    overflow: visible;
+  }
+
+  /* Les aplats orange et bleus doivent sortir a l'impression. */
+  *,
+  *::before,
+  *::after {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Le grain a l'ecran devient de la bouillie en offset. */
+  body::after { display: none; }
+
+  /* Chrome de lecture : hors sujet sur du papier. */
+  .toolbar,
+  .controls { display: none !important; }
+
+  .app {
+    display: block;
+    min-height: 0;
+    padding: 0;
+    gap: 0;
+  }
+
+  .stage {
+    display: block;
+    perspective: none;
+    container-type: normal;
+  }
+
+  /* On deplie le livre : les feuillets se posent les uns sous les autres. */
+  .book,
+  .book.is-single {
+    position: static;
+    width: 100%;
+    height: auto;
+    aspect-ratio: auto;
+    transform: none !important;
+    transform-style: flat;
+  }
+
+  .book::after { display: none; }
+
+  .sheet {
+    position: static;
+    width: 100%;
+    height: auto;
+    transform: none !important;
+    transform-style: flat;
+    transition: none;
+  }
+
+  /* Chaque face devient une feuille, dans l'ordre recto/verso. */
+  .face {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    aspect-ratio: 0.74 / 1;
+    transform: none !important;
+    visibility: visible !important;
+    backface-visibility: visible;
+    box-shadow: none;
+    background-image: none;
+    background: var(--paper-50);
+    break-after: page;
+    break-inside: avoid;
+  }
+
+  .face:last-child { break-after: auto; }
+
+  /* Pas de creux de reliure sur une feuille a plat. */
+  .face::after { display: none; }
+
+  .page {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  /* Un bon deja detache reste detache sur le papier. */
+  .coupon__tear { display: none; }
+}

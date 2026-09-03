@@ -144,19 +144,36 @@
   );
 }
 
-/* Contenu scrollable a l'interieur d'une page */
+/* Une page de journal ne defile pas : ce qui ne rentre pas doit etre coupe
+   ou deplace ailleurs. Le detecteur de debordement (src/fit.ts) signale les
+   pages trop pleines pendant le developpement. */
 .page {
   position: absolute;
   inset: 0;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  padding: clamp(1rem, 2.4cqw, 2.4rem);
+  overflow: hidden;
+  padding: 3cqw;
   container-type: inline-size;
-  scrollbar-width: thin;
 }
 
-.page::-webkit-scrollbar { width: 6px; }
-.page::-webkit-scrollbar-thumb { background: var(--paper-400); }
+/* Page trop pleine : visible uniquement en developpement. */
+.page.is-overflowing {
+  outline: 3px solid #d40000;
+  outline-offset: -3px;
+}
+
+.page.is-overflowing::after {
+  content: attr(data-overflow);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  padding: 0.25em 0.6em;
+  background: #d40000;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
 
 /* --- Commandes ----------------------------------------------------------- */
 .controls {
@@ -253,10 +270,12 @@
 
 /* --- Mode page unique (mobile / ecrans etroits) -------------------------- */
 /* Sur mobile la page occupe toute la scene : l'ecran est deja au bon format. */
+/* Meme format de page qu'en double page : c'est ce qui garantit qu'une mise en
+   page qui tient sur un ecran tient sur tous les autres, et a l'impression. */
 .book.is-single {
-  width: min(100cqw, 560px);
-  height: 100cqh;
-  aspect-ratio: auto;
+  width: min(100cqw, calc(100cqh * 0.74));
+  aspect-ratio: 0.74 / 1;
+  height: auto;
 }
 .book.is-single::after { display: none; }
 
