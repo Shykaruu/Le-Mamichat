@@ -115,7 +115,13 @@
 .headline--orange { color: var(--orange); }
 .headline--blue { color: var(--blue-deep); }
 
+/* Le contour exige un trace net : sur les bords ronges de Rubik Dirt, le filet
+   bouche les encoches et le titre vire au pate. Cette variante garde la
+   condensee. */
 .headline--outline {
+  font-family: var(--font-display-alt);
+  /* Capitales accentuees (E accent grave) : il leur faut de la place au-dessus. */
+  line-height: 1.12;
   color: transparent;
   -webkit-text-stroke: 2px var(--ink);
   paint-order: stroke fill;
