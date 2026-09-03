@@ -15,10 +15,22 @@ maquette : palette, typographie, grille et moteur de tourne-page.
 | Accent primaire | `#F0692F` | `--orange` |
 | Accent secondaire (complémentaire) | `#1F6FA8` | `--blue` |
 
-Typographie : `UnifrakturCook` (bandeau de titre), `Anton` (gros titres),
+Typographie : `UnifrakturCook` (bandeau de titre), **`Rubik Dirt`** (gros titres),
 `Archivo` (intertitres, boutons), `Source Serif 4` (labeur), `Space Mono`
 (mentions, folios). Un grain SVG en `mix-blend-mode: multiply` donne le rendu
 « imprimé ».
+
+Le titrage est volontairement **imparfait** : Rubik Dirt est une grasse large aux
+bords rongés, façon tampon encré. Pour repasser à une condensée nette, il suffit
+d'inverser deux tokens dans `tokens.css` :
+
+```css
+--font-display: var(--font-display-alt); /* Anton */
+```
+
+Attention si vous changez de police de titrage : le `line-height` des `.headline`
+est réglé à `1.05` parce que les bords rongés débordent du cadran. Une condensée
+comme Anton supporte `0.98`, pas moins — en dessous les lignes se chevauchent.
 
 ## Démarrer
 

@@ -38,7 +38,10 @@
 
   /* --- Typographie --- */
   --font-masthead: 'UnifrakturCook', 'Times New Roman', serif;
-  --font-display:  'Anton', 'Haettenschweiler', 'Arial Narrow', sans-serif;
+  /* Titrage volontairement imparfait : lettres larges aux bords ronges.
+     Pour revenir a une grasse condensee nette, basculer sur --font-display-alt. */
+  --font-display:     'Rubik Dirt', 'Anton', Impact, sans-serif;
+  --font-display-alt: 'Anton', 'Haettenschweiler', 'Arial Narrow', sans-serif;
   --font-sans:     'Archivo', 'Helvetica Neue', Arial, sans-serif;
   --font-serif:    'Source Serif 4', Georgia, 'Times New Roman', serif;
   --font-mono:     'Space Mono', 'Courier New', monospace;
