@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Le Canard Orange — Journal rétro interactif</title>
+    <title>Le Mamichat — Édition spéciale 80 ans</title>
     <meta
       name="description"
-      content="Maquette de journal rétro interactif : papier beige, orange vif et bleu complémentaire."
+      content="Journal de famille pour les 80 ans de Marie-Charlotte, le 11 septembre 2026."
     />
     <meta name="theme-color" content="#EDE5D7" />
 
@@ -20,73 +20,88 @@
 
   <body>
     <div class="app">
-      <!-- ================= Barre supérieure ================= -->
       <header class="toolbar">
         <span class="toolbar__brand">
           <span class="toolbar__dot" aria-hidden="true"></span>
-          Le Canard Orange
+          Le Mamichat
         </span>
         <span class="toolbar__meta">
-          Édition du <b>3 septembre</b> &middot; Numéro <b>58</b> &middot; 2,50 €
+          Édition spéciale <b>80 ans</b> &middot; Vendredi <b>11 septembre 2026</b>
         </span>
       </header>
 
-      <!-- ================= Le journal ================= -->
       <main class="stage">
-        <div class="book" aria-label="Journal interactif">
-          <!-- ---------- Feuillet 1 ---------- -->
+        <div class="book" aria-label="Le Mamichat, journal des 80 ans">
+
+          <!-- ══════════════ FEUILLET 1 ══════════════ -->
           <div class="sheet">
-            <!-- Page 1 : couverture -->
+
+            <!-- ─────── PAGE 1 · LA UNE ─────── -->
             <div class="face face--front">
               <article class="page">
                 <div class="cover">
                   <header class="masthead">
                     <div class="masthead__top">
-                      <span>Maquette &middot; V0.1</span>
-                      <span>N&deg; 58</span>
+                      <span>Édition spéciale</span>
+                      <span>N&deg; 80</span>
                     </div>
-                    <h1 class="masthead__title">Le Canard Orange</h1>
-                    <p class="masthead__tagline">Encre fraîche &middot; Papier libre</p>
+                    <h1 class="masthead__title">Le Mamichat</h1>
+                    <p class="masthead__tagline">Journal de bord depuis le 11 septembre 1946</p>
                   </header>
 
                   <div class="cover__body">
-                    <span class="kicker kicker--orange">À la une</span>
-                    <div class="cover__hero">
-                      <h2 class="headline headline--xl headline--orange">
-                        Le papier<br />reprend<br />la parole
-                      </h2>
-                    </div>
+                    <span class="kicker kicker--orange">Vendredi 11 septembre 2026 &middot; Prix : un câlin</span>
+
+                    <h2 class="headline headline--xl headline--orange">
+                      Quatre-vingts<br />ans de<br />grand large
+                    </h2>
+
                     <p class="deck">
-                      Une maquette de journal pensée pour l’écran : mêmes colonnes, mêmes
-                      filets, mêmes gros titres — mais on tourne les pages du bout des doigts.
+                      De Carthage à l'Antarctique, en passant par les Marquises, La Réunion et
+                      la cuisine de Boussay : la rédaction au grand complet — enfants,
+                      petits-enfants, Pacha et les amies — consacre son numéro à une seule
+                      personne.
                     </p>
 
                     <div class="grid grid--asym">
-                      <figure>
-                        <div class="plate plate--tall">
-                          <span class="plate__label">Image<br />à venir</span>
+                      <figure class="photo">
+                        <div class="photo__slot photo__slot--tall">
+                          <span class="photo__hint">Photo de une<br />couverture/</span>
                         </div>
-                        <figcaption class="caption">
-                          Emplacement photo — remplacer par une vraie image.
+                        <figcaption>
+                          Marie-Charlotte, quelque part entre deux escales.
                         </figcaption>
                       </figure>
 
                       <div class="columns columns--1 dropcap">
                         <p>
-                          Ce gabarit sert de terrain d’essai typographique. Les titres sont
-                          taillés dans une grasse condensée, le corps de texte reste en labeur
-                          sérif, et la couleur ne sert qu’à guider l’œil.
+                          Elle est née un 11 septembre à Carthage, entre une mère infirmière
+                          et une grand-mère sicilienne championne de tir à la carabine. Elle
+                          a pris le TGM pour aller au lycée, un paquebot pour aller en France,
+                          puis un voilier pour aller absolument partout ailleurs.
                         </p>
                         <p>
-                          Tout le contenu ci-dessous est provisoire : il attend la vraie
-                          rédaction. La structure, elle, est déjà celle d’un quotidien.
+                          Ce journal rassemble ce que quatre-vingts ans ont laissé derrière
+                          eux : des îles, des recettes, des expressions que toute la famille
+                          répète sans même s'en rendre compte, et une quantité déraisonnable
+                          de chantilly.
                         </p>
-                        <blockquote class="pullquote">
-                          « On lit d’abord avec les yeux, ensuite seulement avec la tête. »
-                          <cite>Atelier de maquette</cite>
-                        </blockquote>
+
+                        <div class="ad ad--blue">
+                          <p class="ad__title">Le Papoto-Porteur</p>
+                          <p class="ad__baseline">
+                            Vos amies à l'autre bout du monde, dans votre salon, en un clic.
+                          </p>
+                          <span class="ad__price">Voir page 10</span>
+                        </div>
                       </div>
                     </div>
+
+                    <ul class="toc">
+                      <li><span class="toc__num">03</span> L'horoscope de naissance <span class="toc__dots"></span> Madame Irmaryse</li>
+                      <li><span class="toc__num">09</span> La grande vente flash <span class="toc__dots"></span> Boutique</li>
+                      <li><span class="toc__num">15</span> Les mots croisés qui lui ressemblent <span class="toc__dots"></span> Jeux</li>
+                    </ul>
                   </div>
 
                   <footer class="colophon">
@@ -97,7 +112,7 @@
               </article>
             </div>
 
-            <!-- Page 2 : sommaire + édito -->
+            <!-- ─────── PAGE 2 · SOMMAIRE, OURS, MÉTÉO ─────── -->
             <div class="face face--back">
               <article class="page">
                 <header class="running-head">
@@ -110,334 +125,1127 @@
                     <h2 class="headline headline--md">Dans ce numéro</h2>
                     <hr class="rule rule--orange" />
                     <ol class="toc">
-                      <li><span class="toc__num">03</span> Le grand format <span class="toc__dots"></span> Enquête</li>
-                      <li><span class="toc__num">04</span> Portfolio en trame <span class="toc__dots"></span> Images</li>
-                      <li><span class="toc__num">05</span> Les chiffres du jour <span class="toc__dots"></span> Données</li>
-                      <li><span class="toc__num">06</span> Entretien <span class="toc__dots"></span> Culture</li>
-                      <li><span class="toc__num">07</span> Brèves &amp; agenda <span class="toc__dots"></span> Ville</li>
-                      <li><span class="toc__num">08</span> Ours &amp; mentions <span class="toc__dots"></span> Maison</li>
+                      <li><span class="toc__num">03</span> L'horoscope de naissance <span class="toc__dots"></span> Irmaryse</li>
+                      <li><span class="toc__num">04</span> Les chiffres de la rédaction <span class="toc__dots"></span> Pacha</li>
+                      <li><span class="toc__num">05</span> Rétrospective : la photo de classe <span class="toc__dots"></span> Archives</li>
+                      <li><span class="toc__num">06</span> Les dimanches de Salammbô <span class="toc__dots"></span> Tunisie</li>
+                      <li><span class="toc__num">07</span> Reporter sans frontières <span class="toc__dots"></span> Monique</li>
+                      <li><span class="toc__num">08</span> Le tour du monde en 80 ans <span class="toc__dots"></span> Bateaux</li>
+                      <li><span class="toc__num">09</span> La grande vente flash <span class="toc__dots"></span> Boutique</li>
+                      <li><span class="toc__num">11</span> Antartica, en Didimension <span class="toc__dots"></span> Cinéma</li>
+                      <li><span class="toc__num">12</span> Pénurie de chantilly <span class="toc__dots"></span> Enquête</li>
+                      <li><span class="toc__num">13</span> Interview de Véronique Palomar <span class="toc__dots"></span> Portrait</li>
+                      <li><span class="toc__num">14</span> Témoignages &amp; tube de l'été <span class="toc__dots"></span> Famille</li>
+                      <li><span class="toc__num">15</span> Les mots croisés <span class="toc__dots"></span> Jeux</li>
                     </ol>
+
+                    <div class="weather">
+                      <div class="weather__head">
+                        <span>La météo du jour</span>
+                        <span>11.09.2026</span>
+                      </div>
+                      <div class="weather__grid">
+                        <div class="weather__cell">
+                          <p class="weather__place">Carthage</p>
+                          <p class="weather__temp">27°</p>
+                          <p class="weather__note">Ciel clair, léger parfum de jasmin</p>
+                        </div>
+                        <div class="weather__cell">
+                          <p class="weather__place">Le Tampon</p>
+                          <p class="weather__temp">21°</p>
+                          <p class="weather__note">Alizé faible, mer belle</p>
+                        </div>
+                        <div class="weather__cell">
+                          <p class="weather__place">Boussay</p>
+                          <p class="weather__temp">18°</p>
+                          <p class="weather__note">Brume le matin, marrons l'après-midi</p>
+                        </div>
+                      </div>
+                    </div>
                   </section>
 
                   <aside>
                     <div class="box box--blue">
-                      <h3 class="box__title">L’édito</h3>
+                      <h3 class="box__title">L'édito</h3>
                       <p>
-                        Une page se tourne, littéralement. Ce numéro teste la grille, les
-                        couleurs et le geste : tout le reste viendra ensuite.
+                        Un journal se lit, se plie, se garde. Celui-ci ne raconte qu'une seule
+                        histoire, mais elle a fait trois fois le tour du monde.
                       </p>
                     </div>
-                    <p class="stamp">Épreuve</p>
+
+                    <p class="stamp">Ne pas jeter</p>
+
+                    <div class="ad">
+                      <p class="ad__title">L'Éternelle Hortense</p>
+                      <p class="ad__baseline">
+                        L'hortensia bleu qui ne perd jamais un pétale.
+                      </p>
+                      <span class="ad__price">Page 10</span>
+                    </div>
+
+                    <div class="classifieds">
+                      <p class="classifieds__head">L'ours</p>
+                      <p class="classified">
+                        <b>Directrice de la publication</b> : Karine.<br />
+                        <b>Rédaction</b> : Michaël, Marine, Elsa, Didi, Julien, Maryse,
+                        Véronique, Monique, Erick, et tous les petits-enfants.<br />
+                        <b>Chef de bord</b> : Pacha.<br />
+                        <span class="classified__ref">Tirage : un exemplaire. Diffusion : familiale.</span>
+                      </p>
+                    </div>
                   </aside>
                 </div>
 
-                <hr class="rule rule--double" />
-
-                <div class="columns">
-                  <p>
-                    Le gabarit repose sur une palette réduite : un beige de papier, un orange
-                    vif pour l’accroche, un bleu pour l’équilibre. Rien d’autre.
-                  </p>
-                  <p>
-                    Les blocs colorés servent de repères de lecture. Ils marquent les entrées,
-                    les encadrés, les chiffres — jamais le texte courant.
-                  </p>
-                  <p>
-                    Chaque page est un conteneur autonome : la typographie s’adapte à sa
-                    largeur, pas à celle de la fenêtre.
-                  </p>
-                  <p>
-                    Ce principe permet de garder exactement la même maquette sur un grand
-                    écran et sur un téléphone.
-                  </p>
-                </div>
-
                 <footer class="colophon">
-                  <span>Le Canard Orange</span>
+                  <span>Le Mamichat</span>
                   <span>Page 02</span>
                 </footer>
               </article>
             </div>
           </div>
 
-          <!-- ---------- Feuillet 2 ---------- -->
+          <!-- ══════════════ FEUILLET 2 ══════════════ -->
           <div class="sheet">
-            <!-- Page 3 : grand format -->
+
+            <!-- ─────── PAGE 3 · HOROSCOPE DE NAISSANCE ─────── -->
             <div class="face face--front">
               <article class="page">
                 <header class="running-head">
-                  <span class="running-head__section">Enquête</span>
+                  <span class="running-head__section">Les astres</span>
                   <span class="running-head__folio">Page 03</span>
                 </header>
 
-                <span class="kicker">Grand format</span>
+                <span class="kicker">Horoscope de naissance</span>
                 <h2 class="headline headline--md">
-                  Ce que la grille raconte avant même les mots
+                  Bienvenue Marie-Charlotte, en ce 11 septembre 1946
                 </h2>
-                <p class="deck">
-                  Filets, colonnes, blancs tournants : la mise en page dit déjà quoi lire,
-                  dans quel ordre, et à quelle vitesse.
-                </p>
                 <p class="byline">
-                  <span class="byline__author">Par la rédaction</span>
+                  <span class="byline__author">Par Madame Irmaryse</span>
                   <span class="byline__sep">&bull;</span>
-                  <span>Lecture 6 min</span>
+                  <span>Depuis les étoiles</span>
                 </p>
 
                 <div class="columns columns--2 dropcap">
                   <p>
-                    Avant d’écrire une ligne, un journal choisit sa respiration. La largeur des
-                    colonnes fixe la longueur des phrases, l’interligne fixe le rythme.
+                    Comme l'Univers décide de t'accueillir, il y met toutes les potions
+                    magiques dont tu auras besoin. En te déposant à Tunis, il te lie déjà à
+                    la Mer, et pas des moindres : la Méditerranée. Cette mer constellée de
+                    navires, annonciatrice de ceux qui te feront voguer toute ta vie.
+                    D'ailleurs, sur les armoiries de la Tunisie figure un bateau — beau signe
+                    précurseur.
                   </p>
                   <p>
-                    Ici, deux colonnes justifiées avec césures : suffisamment étroites pour être
-                    lues d’un trait, suffisamment larges pour éviter les trous.
+                    Il choisit le 11 septembre afin de te doter de la Vierge : vivre d'une
+                    allure libre, être voyageuse et optimiste, voir grand, avoir foi en
+                    l'avenir, être une inspiratrice pour les autres.
                   </p>
-                  <h3 class="subhead">Le rôle de la couleur</h3>
+
+                  <h3 class="subhead">Tes prénoms</h3>
                   <p>
-                    L’orange n’apparaît que sur les points d’entrée : lettrine, filets hauts,
-                    tampons. Le bleu vient équilibrer, jamais concurrencer.
+                    Marie la bien-aimée, la mère que tu seras pour le grand bonheur de tes
+                    enfants. Charlotte — outre le gâteau — te dote d'enthousiasme, de
+                    générosité, de liberté et d'un rayonnement solaire, comme les lieux où tu
+                    iras vivre, je peux te l'assurer.
                   </p>
+
                   <blockquote class="pullquote">
-                    « Un titre bien posé fait la moitié du travail de l’article. »
-                    <cite>Note d’atelier</cite>
+                    « L'Univers est taquin, Charlotte, avec ce diminutif “Cha” qui deviendra
+                    dans quelques décennies Mamicha(t). Mais c'est une autre longue
+                    histoire ! »
+                    <cite>Madame Irmaryse</cite>
                   </blockquote>
+
                   <p>
-                    Le reste du texte reste en encre sombre sur beige, avec un léger grain qui
-                    rappelle l’impression offset.
+                    Se cache un troisième prénom : Suzanne, dont la fleur totem est le lys.
+                    Comme lui, tu auras une élégance naturelle et une lumière en toute
+                    discrétion.
                   </p>
-                  <h3 class="subhead">Ce qui reste à écrire</h3>
+
+                  <div class="coupon" data-coupon="horoscope-seance">
+                    <div class="coupon__sheet">
+                      <p class="coupon__kicker">Bon à détacher</p>
+                      <p class="coupon__title">Une séance de voyance</p>
+                      <p class="coupon__text">
+                        Valable une fois, à réclamer auprès de Madame Irmaryse. L'avenir est
+                        garanti radieux, sinon remboursé.
+                      </p>
+                      <button class="coupon__tear" type="button">Détacher ce bon</button>
+                    </div>
+                    <div class="coupon__stub">
+                      Bon détaché<br />
+                      <span data-stub-date></span>
+                    </div>
+                  </div>
+
+                  <h3 class="subhead">Tes nombres</h3>
                   <p>
-                    Le contenu définitif remplacera ce faux texte sans toucher au style : les
-                    classes portent la mise en forme, pas les paragraphes.
-                  </p>
-                  <p>
-                    C’est le principe même d’une maquette : on la remplit, on ne la refait pas.
+                    Le nombre 11 concentre l'éveil spirituel, l'intuition, la sensibilité
+                    créatrice. Le chiffre 9 te soutiendra dans ta sagesse et ton altruisme —
+                    et annonce tes grossesses futures. La trinité du 9 = 3 × 3, comme tes
+                    trois prénoms, les trois noms que tu porteras telle une reine, et tes
+                    trois filles.
                   </p>
                 </div>
 
                 <footer class="colophon">
-                  <span>Enquête</span>
+                  <span>Les astres</span>
                   <span>Page 03</span>
                 </footer>
               </article>
             </div>
 
-            <!-- Page 4 : portfolio -->
+            <!-- ─────── PAGE 4 · SYMBOLES + CHIFFRES DE PACHA ─────── -->
             <div class="face face--back">
               <article class="page">
                 <header class="running-head">
-                  <span class="running-head__section">Images</span>
+                  <span class="running-head__section">Les astres &middot; suite</span>
                   <span class="running-head__folio">Page 04</span>
                 </header>
 
-                <span class="kicker kicker--orange">Portfolio</span>
-                <h2 class="headline headline--md headline--blue">En trame</h2>
+                <div class="grid grid--sidebar">
+                  <section>
+                    <h2 class="headline headline--md headline--blue">Les trois symboles</h2>
+                    <hr class="rule rule--orange" />
 
-                <figure>
-                  <div class="plate plate--wide plate--orange">
-                    <span class="plate__label">Photo pleine largeur</span>
-                  </div>
-                  <figcaption class="caption">
-                    Les aplats tramés tiennent lieu d’images tant que la banque photo n’est pas prête.
-                  </figcaption>
-                </figure>
+                    <div class="columns columns--1">
+                      <p>
+                        Les symboles que je t'offre et qui guideront ta vie seront la
+                        <b>boussole</b>, pour guider tes voyages et les choix que tu devras
+                        faire ; l'<b>ancre</b>, pour la stabilité et la sécurité, en mer
+                        comme sur terre ; et la <b>barre</b>, que je t'octroie pour diriger
+                        ta vie.
+                      </p>
+                      <p>
+                        Ta pierre fétiche est le lapis-lazuli, la pierre bleue, reconnue pour
+                        ses vertus apaisantes et son aide à la communication — ce qui ne
+                        manquera pas, tu verras plus tard.
+                      </p>
+                      <p>
+                        Pour ta naissance, je t'offre deux chansons qui illustreront ta vie :
+                        <i>La Mer</i> de Charles Trenet et <i>La Vie en rose</i> d'Édith Piaf.
+                        Toutes deux de 1946, comme toi.
+                      </p>
+                    </div>
 
-                <div class="grid grid--2">
-                  <figure>
-                    <div class="plate"><span class="plate__label">Vignette</span></div>
-                    <figcaption class="caption">Légende courte.</figcaption>
-                  </figure>
-                  <figure>
-                    <div class="plate plate--paper"><span class="plate__label">Vignette</span></div>
-                    <figcaption class="caption">Légende courte.</figcaption>
-                  </figure>
-                </div>
+                    <figure class="photo">
+                      <div class="photo__slot photo__slot--wide">
+                        <span class="photo__hint">Photo de bébé ou de famille<br />famille/</span>
+                      </div>
+                      <figcaption>Marie-Charlotte, première année.</figcaption>
+                    </figure>
+                  </section>
 
-                <div class="box box--accent">
-                  <h3 class="box__title">Note de fabrication</h3>
-                  <p>
-                    La trame est une simple répétition de points en CSS : elle s’imprime bien et
-                    ne coûte aucune image.
-                  </p>
+                  <aside>
+                    <div class="box box--accent">
+                      <h3 class="box__title">Les chiffres de la rédaction</h3>
+                      <p><b>80</b> — années au compteur.</p>
+                      <p><b>4</b> — bateaux : Jandira, La Souris-Blanche, Farewell, Golden Fleece.</p>
+                      <p><b>3</b> — filles, plus un fils.</p>
+                      <p><b>1</b> — chienne, Zumba.</p>
+                      <p><b>∞</b> — bombes de chantilly.</p>
+                      <p style="margin-top: 0.6em"><i>Relevé par Pacha</i></p>
+                    </div>
+
+                    <div class="ad ad--orange">
+                      <p class="ad__title">L'Air de la Méditerranée</p>
+                      <p class="ad__baseline">
+                        Un bocal, un couvercle, et toute la Tunisie qui remonte d'un coup.
+                      </p>
+                      <span class="ad__price">Vente flash &middot; page 09</span>
+                    </div>
+                  </aside>
                 </div>
 
                 <footer class="colophon">
-                  <span>Portfolio</span>
+                  <span>Les astres</span>
                   <span>Page 04</span>
                 </footer>
               </article>
             </div>
           </div>
 
-          <!-- ---------- Feuillet 3 ---------- -->
+          <!-- ══════════════ FEUILLET 3 ══════════════ -->
           <div class="sheet">
-            <!-- Page 5 : données -->
+
+            <!-- ─────── PAGE 5 · RÉTROSPECTIVE PHOTO DE CLASSE ─────── -->
             <div class="face face--front">
               <article class="page">
                 <header class="running-head">
-                  <span class="running-head__section">Données</span>
+                  <span class="running-head__section">Archives</span>
                   <span class="running-head__folio">Page 05</span>
                 </header>
 
-                <span class="kicker">Les chiffres</span>
-                <h2 class="headline headline--md">Trois nombres, une tendance</h2>
-                <hr class="rule" />
+                <span class="kicker kicker--orange">Rétrospective</span>
+                <h2 class="headline headline--md">Une vie à travers une photo de classe</h2>
+                <p class="deck">
+                  Lycée de Carthage, colline Sainte-Monique. Un lycée mixte, ce qui à
+                  l'époque n'était pas courant, et si cosmopolite qu'on l'avait surnommé le
+                  « lycée Papillon ».
+                </p>
 
-                <div class="grid grid--2">
-                  <div class="box">
-                    <h3 class="box__title">Tirage</h3>
-                    <p class="headline headline--sm headline--orange">12 400</p>
-                    <p>exemplaires par édition.</p>
+                <figure class="photo">
+                  <div class="photo__slot photo__slot--wide">
+                    <span class="photo__hint">La photo de classe<br />tunisie/</span>
                   </div>
-                  <div class="box">
-                    <h3 class="box__title">Colonnes</h3>
-                    <p class="headline headline--sm headline--blue">2 à 3</p>
-                    <p>selon la largeur de la page.</p>
-                  </div>
-                </div>
+                  <figcaption>
+                    À légender ensemble : qui est où, et qui est devenu quoi.
+                  </figcaption>
+                </figure>
 
-                <div class="columns columns--1">
+                <div class="columns columns--2">
                   <p>
-                    Les encadrés chiffrés reprennent la même grasse condensée que les titres :
-                    la donnée devient un élément graphique à part entière.
+                    Tous les matins, le TGM déversait des centaines d'écoliers, collégiens et
+                    lycéens venus de la Goulette jusqu'à La Marsa. Juifs de la Goulette,
+                    enfants de diplomates de toutes nationalités, Tunisiens de La Marsa, et
+                    nous, les pieds-noirs.
                   </p>
                   <p>
-                    Ils se placent indifféremment en pied de colonne ou en tête de page, sans
-                    casser le flux du texte.
+                    Sauveur Bismuth, Clément Setbon, Perla Teshuba, Mirjana Lallović,
+                    Charles Coolidge, Eva la Hollandaise, Christine Kogler, Anne-Marie
+                    Bumbalo, Nicole et Monique Cassan… et tant d'autres.
                   </p>
-                </div>
+                  <p>
+                    « J'y ai fait mes classes du CP jusqu'en troisième sans histoire. Ni bonne,
+                    ni mauvaise élève, sauf en maths, où c'était la cata. Lycée bonheur. »
+                  </p>
+                  <p>
+                    Début juin, c'était l'appel de la plage : maillot de bain et serviette dans
+                    le cartable, et on descendait se baigner à la plage d'Hamilcar.
+                  </p>
 
-                <p class="stamp stamp--blue">Provisoire</p>
+                  <div class="classifieds">
+                    <p class="classifieds__head">Avis de recherche</p>
+                    <p class="classified">
+                      <b>Recherche témoins</b> — Toute personne ayant emprunté le TGM entre
+                      1953 et 1961 est priée de se manifester auprès de la rédaction.
+                      <span class="classified__ref">Réf. TGM-1953</span>
+                    </p>
+                    <p class="classified">
+                      <b>Perdu</b> — Un flacon de Shalimar, cassé à l'adolescence. Le parfum,
+                      lui, n'a jamais vraiment disparu.
+                      <span class="classified__ref">Réf. SHAL-60</span>
+                    </p>
+                  </div>
+                </div>
 
                 <footer class="colophon">
-                  <span>Données</span>
+                  <span>Archives</span>
                   <span>Page 05</span>
                 </footer>
               </article>
             </div>
 
-            <!-- Page 6 : entretien -->
+            <!-- ─────── PAGE 6 · TUNISIE + RECETTE ─────── -->
             <div class="face face--back">
               <article class="page">
                 <header class="running-head">
-                  <span class="running-head__section">Culture</span>
+                  <span class="running-head__section">Tunisie</span>
                   <span class="running-head__folio">Page 06</span>
                 </header>
 
-                <span class="kicker kicker--ghost">Entretien</span>
-                <h2 class="headline headline--md">
-                  « Le rétro, c’est de la contrainte assumée »
-                </h2>
+                <h2 class="headline headline--md headline--orange">Les dimanches de Salammbô</h2>
                 <p class="byline">
-                  <span class="byline__author">Propos recueillis</span>
+                  <span class="byline__author">Archives de la rédaction</span>
                   <span class="byline__sep">&bull;</span>
-                  <span>Studio</span>
+                  <span>1951 — 1961</span>
                 </p>
 
-                <div class="columns">
+                <div class="columns columns--2 dropcap">
                   <p>
-                    <strong>Pourquoi partir d’un journal papier ?</strong> Parce que la
-                    contrainte est claire : une grille, deux couleurs, un format fixe.
+                    Dimanches en famille chez la grand-mère Charlotte. Le meneur de jeux est
+                    Marc, l'aîné, vénéré pour ses imitations de Charlot, son inventivité, son
+                    humour. On joue dans le grenier de Tchicho, où tout le matériel de classe
+                    de la grand-mère permet de jouer à la maîtresse.
                   </p>
                   <p>
-                    <strong>Et l’écran ?</strong> Il apporte le geste. On tourne la page, on
-                    revient en arrière, on garde le plaisir de la manipulation.
+                    C'est l'époque des campings sauvages sur les plages du Cap Bon, ou même de
+                    Djerba, vierge de tout hôtel. La tente plantée sur le sable, le Primus
+                    pour la cuisine, l'eau de mer pour se laver. Tout le matériel tenait dans
+                    le coffre de la Frégate, qui avait succédé à la 203 Peugeot.
                   </p>
+
                   <blockquote class="pullquote">
-                    « On ne copie pas le papier, on en garde les réflexes. »
-                    <cite>Entretien</cite>
+                    « Elle était célèbre dans tout le village pour ses pâtisseries fameuses,
+                    qui lui ont permis de survivre et d'élever son dernier fils. »
+                    <cite>Sur Marietta Cascio, la grand-mère de Gafour</cite>
                   </blockquote>
+
                   <p>
-                    <strong>Le prochain chantier ?</strong> Le contenu réel, et une vraie
-                    hiérarchie d’articles page après page.
+                    À Gafour, chez la grand-mère Marietta, la petite maison n'était éclairée
+                    qu'à la lampe à pétrole. On y trouvait la fameuse vitrine remplie des
+                    trophées gagnés dans des concours de tir à la carabine, et le souvenir de
+                    brioches superbes, brillantes, recouvertes de fruits confits.
                   </p>
+
+                  <div class="recipe">
+                    <div class="recipe__head">
+                      <h3 class="recipe__title">La brioche de Marietta</h3>
+                      <span class="recipe__meta">Sicile &rarr; Gafour &middot; à compléter</span>
+                    </div>
+                    <div class="recipe__grid">
+                      <div>
+                        <h4>Ingrédients</h4>
+                        <ul>
+                          <li>À remplir en famille</li>
+                          <li>Fruits confits</li>
+                          <li>Praliné pour la couronne</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4>Préparation</h4>
+                        <ol>
+                          <li>
+                            Emplacement réservé : c'est la recette que quelqu'un doit aller
+                            chercher auprès de Mamichat elle-même.
+                          </li>
+                        </ol>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="coupon coupon--blue" data-coupon="recette-brioche">
+                    <div class="coupon__sheet">
+                      <p class="coupon__kicker">Bon à détacher</p>
+                      <p class="coupon__title">Un après-midi pâtisserie</p>
+                      <p class="coupon__text">
+                        Le porteur de ce bon a droit à une séance de cuisine à quatre mains,
+                        tablier fourni, dégustation obligatoire.
+                      </p>
+                      <button class="coupon__tear" type="button">Détacher ce bon</button>
+                    </div>
+                    <div class="coupon__stub">
+                      Bon détaché<br />
+                      <span data-stub-date></span>
+                    </div>
+                  </div>
                 </div>
 
                 <footer class="colophon">
-                  <span>Culture</span>
+                  <span>Tunisie</span>
                   <span>Page 06</span>
                 </footer>
               </article>
             </div>
           </div>
 
-          <!-- ---------- Feuillet 4 ---------- -->
+          <!-- ══════════════ FEUILLET 4 ══════════════ -->
           <div class="sheet">
-            <!-- Page 7 : brèves -->
+
+            <!-- ─────── PAGE 7 · REPORTER SANS FRONTIÈRES + AGENDA ─────── -->
             <div class="face face--front">
               <article class="page">
                 <header class="running-head">
-                  <span class="running-head__section">Ville</span>
+                  <span class="running-head__section">Reporter sans frontières</span>
                   <span class="running-head__folio">Page 07</span>
                 </header>
 
-                <h2 class="headline headline--md">Brèves</h2>
-                <hr class="rule rule--thick" />
+                <span class="kicker">Envoyée spéciale</span>
+                <h2 class="headline headline--md">Merci Monique</h2>
 
-                <div class="columns columns--3">
-                  <h3 class="subhead">Marché</h3>
-                  <p>Texte provisoire pour une brève de quelques lignes seulement.</p>
-                  <h3 class="subhead">Travaux</h3>
-                  <p>Texte provisoire, deuxième brève, même longueur approximative.</p>
-                  <h3 class="subhead">Agenda</h3>
-                  <p>Texte provisoire, troisième brève pour équilibrer la colonne.</p>
-                  <h3 class="subhead">Météo</h3>
-                  <p>Beau et sec sur toute la maquette, vent d’orange faible.</p>
-                </div>
+                <div class="grid grid--sidebar">
+                  <section>
+                    <figure class="photo">
+                      <div class="photo__slot">
+                        <span class="photo__hint">Photo de Monique<br />famille/</span>
+                      </div>
+                      <figcaption>À légender.</figcaption>
+                    </figure>
 
-                <div class="box">
-                  <h3 class="box__title">Petites annonces</h3>
-                  <p>
-                    Cherche rédacteur pour remplir huit pages. Écrire au journal, colonne de
-                    droite.
-                  </p>
+                    <p class="testimony">
+                      Emplacement réservé au texte de Monique. Le sujet est déjà posé : la
+                      Tunisie, et ce qu'il en reste soixante-dix ans plus tard.
+                      <span class="testimony__author">— Monique</span>
+                    </p>
+
+                    <div class="columns columns--1">
+                      <p>
+                        <i>À compléter.</i> Dites-moi quand le texte est prêt, je le mets en
+                        page avec les photos correspondantes.
+                      </p>
+                    </div>
+                  </section>
+
+                  <aside>
+                    <div class="agenda">
+                      <p class="agenda__head">L'agenda de la semaine</p>
+                      <div class="agenda__day">
+                        <span class="agenda__when">Vendredi</span>
+                        <span>80 ans. Grande édition spéciale. Chantilly à volonté.</span>
+                      </div>
+                      <div class="agenda__day">
+                        <span class="agenda__when">Samedi</span>
+                        <span>Repos du capitaine. Lecture au fauteuil.</span>
+                      </div>
+                      <div class="agenda__day">
+                        <span class="agenda__when">Dimanche</span>
+                        <span>Appel groupé de toute la famille. Prévoir large.</span>
+                      </div>
+                      <div class="agenda__day">
+                        <span class="agenda__when">Lundi</span>
+                        <span>Sortie de Zumba. Météo favorable.</span>
+                      </div>
+                      <div class="agenda__day">
+                        <span class="agenda__when">Toute la semaine</span>
+                        <span>Ouverture de la vente flash, page 09.</span>
+                      </div>
+                    </div>
+
+                    <div class="ad">
+                      <p class="ad__title">Le Voilier de Poche</p>
+                      <p class="ad__baseline">
+                        Se déplie en un instant, tient dans un sac à main.
+                      </p>
+                      <span class="ad__price">Page 10</span>
+                    </div>
+                  </aside>
                 </div>
 
                 <footer class="colophon">
-                  <span>Ville</span>
+                  <span>Reporter sans frontières</span>
                   <span>Page 07</span>
                 </footer>
               </article>
             </div>
 
-            <!-- Page 8 : ours -->
+            <!-- ─────── PAGE 8 · LE TOUR DU MONDE ─────── -->
             <div class="face face--back">
               <article class="page">
                 <header class="running-head">
-                  <span class="running-head__section">Ours</span>
+                  <span class="running-head__section">Grand format</span>
                   <span class="running-head__folio">Page 08</span>
                 </header>
 
-                <div class="cover">
-                  <div class="cover__body">
-                    <h2 class="headline headline--md headline--orange">Fin du numéro</h2>
-                    <p class="deck">
-                      Retournez à la couverture avec la touche <kbd>Début</kbd>, ou revenez
-                      page à page.
+                <span class="kicker kicker--orange">Le tour du monde</span>
+                <h2 class="headline headline--md">En quatre-vingts ans</h2>
+                <p class="deck">
+                  Quatre bateaux, trois océans, et une manière très personnelle de considérer
+                  qu'un déménagement de dix mille kilomètres n'est pas un événement.
+                </p>
+
+                <ul class="timeline">
+                  <li><time>1946</time><span>Naissance à Carthage. La Méditerranée pour premier horizon.</span></li>
+                  <li><time>1961</time><span>La guerre de Bizerte. Rapatriement en France, à contrecœur.</span></li>
+                  <li><time>1972</time><span>Kourou, Saint-Laurent-du-Maroni. La Guyane, et Fabien.</span></li>
+                  <li><time>1977</time><span>Départ sur <b>Jandira</b> : Antilles, Venezuela, Panama, Galápagos.</span></li>
+                  <li><time>1979</time><span>Moorea, puis Ua Pou aux Marquises. Naissance de Marine.</span></li>
+                  <li><time>1981</time><span>Nuku-Hiva : naissance d'Elsa. Puis Boussay, pour souffler.</span></li>
+                  <li><time>1982</time><span>L'Alaska sur Jandira, puis Le Tampon, à La Réunion.</span></li>
+                  <li><time>1985</time><span><b>La Souris-Blanche</b>, huit années durant.</span></li>
+                  <li><time>1993</time><span><b>Farewell</b>. Le nom était prémonitoire, pas définitif.</span></li>
+                  <li><time>1998</time><span>Mayotte, puis la Mauritanie, l'Afrique du Sud, la Polynésie.</span></li>
+                  <li><time>2014</time><span>L'Antarctique, cheffe cuisinière à bord du <b>Golden Fleece</b>.</span></li>
+                </ul>
+
+                <div class="grid grid--2">
+                  <figure class="photo">
+                    <div class="photo__slot">
+                      <span class="photo__hint">La Souris-Blanche<br />bateaux/</span>
+                    </div>
+                    <figcaption>À légender.</figcaption>
+                  </figure>
+                  <figure class="photo">
+                    <div class="photo__slot">
+                      <span class="photo__hint">Jandira<br />bateaux/</span>
+                    </div>
+                    <figcaption>À légender.</figcaption>
+                  </figure>
+                </div>
+
+                <footer class="colophon">
+                  <span>Grand format</span>
+                  <span>Page 08</span>
+                </footer>
+              </article>
+            </div>
+          </div>
+
+          <!-- ══════════════ FEUILLET 5 · VENTE FLASH ══════════════ -->
+          <div class="sheet">
+
+            <!-- ─────── PAGE 9 · VENTE FLASH 1/2 ─────── -->
+            <div class="face face--front">
+              <article class="page">
+                <header class="running-head">
+                  <span class="running-head__section">Vente flash</span>
+                  <span class="running-head__folio">Page 09</span>
+                </header>
+
+                <h2 class="headline headline--md headline--orange">La grande vente flash</h2>
+                <p class="deck">
+                  Huit articles introuvables ailleurs, sélectionnés pour une seule cliente.
+                  Paiement accepté en câlins, en dattes et en coupures de presse d'époque.
+                </p>
+                <hr class="rule rule--thick" />
+
+                <div class="grid grid--2">
+                  <div class="flash">
+                    <div class="flash__media">
+                      <span class="flash__badge">Édition WWF</span>
+                      <div class="photo__slot photo__slot--square">
+                        <span class="photo__hint">vente-flash/</span>
+                      </div>
+                    </div>
+                    <div class="flash__body">
+                      <h3 class="flash__title">Le Garou de la Paix</h3>
+                      <p class="flash__text">
+                        Oubliez les dévorations nocturnes. Ici, l'objectif est d'apprivoiser
+                        tout le monde : à la fin de la partie, humains et créatures de la
+                        forêt finissent autour d'une grande table, meilleurs amis du monde.
+                      </p>
+                    </div>
+                    <p class="flash__price">
+                      <b>Prix</b> Un câlin sans morsure et une boîte de croquettes
                     </p>
-                    <hr class="rule rule--double" />
+                  </div>
+
+                  <div class="flash">
+                    <div class="flash__media">
+                      <span class="flash__badge">Édition limitée</span>
+                      <div class="photo__slot photo__slot--square">
+                        <span class="photo__hint">vente-flash/</span>
+                      </div>
+                    </div>
+                    <div class="flash__body">
+                      <h3 class="flash__title">L'Air de la Méditerranée</h3>
+                      <p class="flash__text">
+                        Fermez les yeux, dévissez le couvercle du bocal, et retrouvez
+                        instantanément la Tunisie. Fleur d'oranger et brise marine, qui
+                        embaument la pièce et réveillent vos plus beaux souvenirs.
+                      </p>
+                    </div>
+                    <p class="flash__price">
+                      <b>Prix</b> 3 coupures de presse d'époque et une datte bien fraîche
+                    </p>
+                  </div>
+
+                  <div class="flash">
+                    <div class="flash__media">
+                      <span class="flash__badge">Nouveauté</span>
+                      <div class="photo__slot photo__slot--square">
+                        <span class="photo__hint">vente-flash/</span>
+                      </div>
+                    </div>
+                    <div class="flash__body">
+                      <h3 class="flash__title">Le Zurator 3000</h3>
+                      <p class="flash__text">
+                        L'aspirateur ultra-silencieux calibré pour les poils de Zumba. Grâce à
+                        l'aspiration quantique, les poils partent directement matelasser un
+                        coussin moelleux. Il ne reste que le plaisir de jouer avec elle.
+                      </p>
+                    </div>
+                    <p class="flash__price">
+                      <b>Prix</b> Une friandise pour la chienne et un brossage de moustache
+                    </p>
+                  </div>
+
+                  <div class="flash">
+                    <div class="flash__media">
+                      <span class="flash__badge">Sans entretien</span>
+                      <div class="photo__slot photo__slot--square">
+                        <span class="photo__hint">vente-flash/</span>
+                      </div>
+                    </div>
+                    <div class="flash__body">
+                      <h3 class="flash__title">L'Éternelle Hortense</h3>
+                      <p class="flash__text">
+                        Un hortensia d'un bleu éclatant qui traverse les décennies sans perdre
+                        un seul pétale. Tellement resplendissant qu'il fera verdir de jalousie
+                        tous les voisins paysagistes du quartier.
+                      </p>
+                    </div>
+                    <p class="flash__price">
+                      <b>Prix</b> Une goutte d'eau par an (et la jalousie du voisin)
+                    </p>
+                  </div>
+                </div>
+
+                <footer class="colophon">
+                  <span>Vente flash &middot; 1/2</span>
+                  <span>Page 09</span>
+                </footer>
+              </article>
+            </div>
+
+            <!-- ─────── PAGE 10 · VENTE FLASH 2/2 ─────── -->
+            <div class="face face--back">
+              <article class="page">
+                <header class="running-head">
+                  <span class="running-head__section">Vente flash</span>
+                  <span class="running-head__folio">Page 10</span>
+                </header>
+
+                <div class="grid grid--2">
+                  <div class="flash">
+                    <div class="flash__media">
+                      <span class="flash__badge">Magique</span>
+                      <div class="photo__slot photo__slot--square">
+                        <span class="photo__hint">vente-flash/</span>
+                      </div>
+                    </div>
+                    <div class="flash__body">
+                      <h3 class="flash__title">Le Grimoire des Chefs-d'Œuvre</h3>
+                      <p class="flash__text">
+                        Un livre qui rassemble automatiquement toutes les recettes mythiques de
+                        Mamichat. Le petit plus : il suffit de regarder la photo d'un plat pour
+                        en ressentir immédiatement le goût en bouche.
+                      </p>
+                    </div>
+                    <p class="flash__price">
+                      <b>Prix</b> Une pincée de sel et un compliment du chef
+                    </p>
+                  </div>
+
+                  <div class="flash">
+                    <div class="flash__media">
+                      <span class="flash__badge">Sans frontières</span>
+                      <div class="photo__slot photo__slot--square">
+                        <span class="photo__hint">vente-flash/</span>
+                      </div>
+                    </div>
+                    <div class="flash__body">
+                      <h3 class="flash__title">Le Papoto-Porteur</h3>
+                      <p class="flash__text">
+                        Que vos amies soient à l'autre bout de la région ou du monde, l'appareil
+                        abat les frontières en un clin d'œil. Un clic, un souffle de magie, et
+                        vous voilà réunies dans le salon, prêtes à papoter autour du thé.
+                      </p>
+                    </div>
+                    <p class="flash__price">
+                      <b>Prix</b> Trois jetons de cabine téléphonique
+                    </p>
+                  </div>
+
+                  <div class="flash">
+                    <div class="flash__media">
+                      <span class="flash__badge">Pliable</span>
+                      <div class="photo__slot photo__slot--square">
+                        <span class="photo__hint">vente-flash/</span>
+                      </div>
+                    </div>
+                    <div class="flash__body">
+                      <h3 class="flash__title">Le Voilier de Poche</h3>
+                      <p class="flash__text">
+                        Un authentique voilier de voyage miniature qui se glisse dans un sac à
+                        main. Pensé pour les navigatrices chevronnées, il se déplie en un
+                        instant : le parfum du large, le bercement des vagues, la griserie des
+                        grandes traversées.
+                      </p>
+                    </div>
+                    <p class="flash__price">
+                      <b>Prix</b> Une poignée de coquillages et un brin de marée basse
+                    </p>
+                  </div>
+
+                  <div class="flash">
+                    <div class="flash__media">
+                      <span class="flash__badge">Interdimensionnel</span>
+                      <div class="photo__slot photo__slot--square">
+                        <span class="photo__hint">vente-flash/</span>
+                      </div>
+                    </div>
+                    <div class="flash__body">
+                      <h3 class="flash__title">La Boîte à Rembobiner</h3>
+                      <p class="flash__text">
+                        Posée sur la table, elle projette vos plus beaux souvenirs en relief
+                        tout autour de vous. L'outil ultime pour revivre chaque grand moment du
+                        passé avec la même émotion qu'au premier jour.
+                      </p>
+                    </div>
+                    <p class="flash__price">
+                      <b>Prix</b> 100 g de bonbons à l'ancienne
+                    </p>
+                  </div>
+                </div>
+
+                <div class="coupon" data-coupon="vente-flash-livraison">
+                  <div class="coupon__sheet">
+                    <p class="coupon__kicker">Bon à détacher &middot; vente flash</p>
+                    <p class="coupon__title">Livraison à domicile offerte</p>
+                    <p class="coupon__text">
+                      Valable sur l'ensemble de la boutique, sans minimum d'achat. Le livreur
+                      reste boire le café.
+                    </p>
+                    <button class="coupon__tear" type="button">Détacher ce bon</button>
+                  </div>
+                  <div class="coupon__stub">
+                    Bon détaché<br />
+                    <span data-stub-date></span>
+                  </div>
+                </div>
+
+                <footer class="colophon">
+                  <span>Vente flash &middot; 2/2</span>
+                  <span>Page 10</span>
+                </footer>
+              </article>
+            </div>
+          </div>
+
+          <!-- ══════════════ FEUILLET 6 ══════════════ -->
+          <div class="sheet">
+
+            <!-- ─────── PAGE 11 · ANTARTICA ─────── -->
+            <div class="face face--front">
+              <article class="page">
+                <header class="running-head">
+                  <span class="running-head__section">Cinéma</span>
+                  <span class="running-head__folio">Page 11</span>
+                </header>
+
+                <span class="kicker">Une aventure givrée</span>
+                <h2 class="headline headline--md headline--blue">Antartica</h2>
+                <p class="deck">
+                  Un film en Didimension. Pendant que la plupart d'entre nous poursuivaient
+                  tranquillement leur quotidien, notre mère, elle, est partie cuisiner en
+                  Antarctique.
+                </p>
+                <p class="byline">
+                  <span class="byline__author">Un film de Didi</span>
+                  <span class="byline__sep">&bull;</span>
+                  <span>Sortie 2014</span>
+                  <span class="byline__sep">&bull;</span>
+                  <span>Copie fournie par Erick</span>
+                </p>
+
+                <figure class="photo">
+                  <div class="photo__slot photo__slot--wide">
+                    <span class="photo__hint">Le Golden Fleece / l'Antarctique<br />bateaux/</span>
+                  </div>
+                  <figcaption>Embarquée comme cheffe cuistot sur un voilier d'exception.</figcaption>
+                </figure>
+
+                <div class="columns columns--2">
+                  <p>
+                    Alors, chers lecteurs, ouvrez grand les yeux, montez à bord du Golden
+                    Fleece et laissez-vous embarquer. Archive exceptionnelle, à regarder quand
+                    vous voulez, où vous voulez.
+                  </p>
+                  <p>
+                    <i>Emplacement réservé au lien de la vidéo.</i> Dès que le fichier est
+                    prêt, je l'intègre ici pour qu'il se lance directement dans le journal.
+                  </p>
+
+                  <div class="ad ad--blue">
+                    <p class="ad__title">Le sentiment océanique</p>
+                    <p class="ad__baseline">
+                      Cette sensation d'être minuscule et parfaitement à sa place. Sans
+                      ordonnance.
+                    </p>
+                    <span class="ad__price">Effet immédiat</span>
+                  </div>
+                </div>
+
+                <footer class="colophon">
+                  <span>Cinéma</span>
+                  <span>Page 11</span>
+                </footer>
+              </article>
+            </div>
+
+            <!-- ─────── PAGE 12 · CHANTILLY + MÉDECINE ─────── -->
+            <div class="face face--back">
+              <article class="page">
+                <header class="running-head">
+                  <span class="running-head__section">Enquête</span>
+                  <span class="running-head__folio">Page 12</span>
+                </header>
+
+                <span class="kicker kicker--orange">Urgent</span>
+                <h2 class="headline headline--md">
+                  Une pénurie de chantilly menace les pâtisseries locales
+                </h2>
+                <p class="byline">
+                  <span class="byline__author">Un article de Didi</span>
+                  <span class="byline__sep">&bull;</span>
+                  <span>Photographie de Julien</span>
+                </p>
+
+                <div class="columns columns--2 dropcap">
+                  <p>
+                    Les pâtissiers de la région confirment une hausse spectaculaire de la
+                    consommation de chantilly à l'approche de l'anniversaire de notre invitée
+                    d'honneur. Les stocks auraient mystérieusement disparu.
+                  </p>
+                  <p>
+                    Le grand scientifique Michaël Vaillant, consultant des Phénomènes Aériens
+                    Non identifiés, évoque la piste d'une abduction des stocks par une
+                    gourmande parfaitement assumée. Les enquêteurs privilégient cette
+                    hypothèse.
+                  </p>
+
+                  <figure class="photo">
+                    <div class="photo__slot">
+                      <span class="photo__hint">La scène de crime<br />divers/</span>
+                    </div>
+                    <figcaption>Photographie de Julien.</figcaption>
+                  </figure>
+
+                  <h3 class="subhead">Médecine &amp; psycho</h3>
+                  <p>
+                    Notre rubrique santé revient cette semaine sur les deux piliers de la
+                    pharmacopée familiale : <b>le doliprane</b>, ce petit comprimé qui peut
+                    parfois tout arranger, et <b>le charbon</b>, invoqué pour à peu près tout
+                    le reste.
+                  </p>
+
+                  <div class="classifieds">
+                    <p class="classifieds__head">Offres d'emploi</p>
+                    <p class="classified">
+                      <b>Cherche goûteur</b> — Poste à pourvoir immédiatement. Aucune
+                      qualification requise, appétit exigé. Rémunération en parts.
+                      <span class="classified__ref">Réf. CHANT-80</span>
+                    </p>
+                    <p class="classified">
+                      <b>Recherche équipier</b> — Pour prochaine traversée, destination non
+                      communiquée. Savoir tenir une barre et ne pas avoir le mal de mer.
+                      <span class="classified__ref">Réf. LARGE-26</span>
+                    </p>
+                  </div>
+                </div>
+
+                <footer class="colophon">
+                  <span>Enquête</span>
+                  <span>Page 12</span>
+                </footer>
+              </article>
+            </div>
+          </div>
+
+          <!-- ══════════════ FEUILLET 7 ══════════════ -->
+          <div class="sheet">
+
+            <!-- ─────── PAGE 13 · INTERVIEW ─────── -->
+            <div class="face face--front">
+              <article class="page">
+                <header class="running-head">
+                  <span class="running-head__section">Portrait</span>
+                  <span class="running-head__folio">Page 13</span>
+                </header>
+
+                <span class="kicker kicker--ghost">Interview exclusive</span>
+                <h2 class="headline headline--md">Véronique Palomar</h2>
+
+                <figure class="photo">
+                  <div class="photo__slot photo__slot--wide">
+                    <span class="photo__hint">Photo de Véronique<br />famille/</span>
+                  </div>
+                  <figcaption>À légender.</figcaption>
+                </figure>
+
+                <div class="columns columns--2">
+                  <p>
+                    <b>Emplacement réservé à l'interview.</b> La forme est prête : questions en
+                    gras, réponses au fil du texte. Envoyez-moi les questions-réponses telles
+                    quelles, je m'occupe de la mise en page.
+                  </p>
+                  <p>
+                    <i>Question type —</i> Comment décririez-vous Marie-Charlotte à quelqu'un
+                    qui ne l'a jamais rencontrée ?
+                  </p>
+
+                  <div class="coupon coupon--paper" data-coupon="interview-cafe">
+                    <div class="coupon__sheet">
+                      <p class="coupon__kicker">Bon à détacher</p>
+                      <p class="coupon__title">Un café, une longue discussion</p>
+                      <p class="coupon__text">
+                        À échanger contre un après-midi entier, sans regarder l'heure.
+                      </p>
+                      <button class="coupon__tear" type="button">Détacher ce bon</button>
+                    </div>
+                    <div class="coupon__stub">
+                      Bon détaché<br />
+                      <span data-stub-date></span>
+                    </div>
+                  </div>
+                </div>
+
+                <footer class="colophon">
+                  <span>Portrait</span>
+                  <span>Page 13</span>
+                </footer>
+              </article>
+            </div>
+
+            <!-- ─────── PAGE 14 · TÉMOIGNAGES + TUBE DE L'ÉTÉ ─────── -->
+            <div class="face face--back">
+              <article class="page">
+                <header class="running-head">
+                  <span class="running-head__section">La famille</span>
+                  <span class="running-head__folio">Page 14</span>
+                </header>
+
+                <h2 class="headline headline--md headline--orange">Le courrier des petits-enfants</h2>
+                <hr class="rule rule--orange" />
+
+                <div class="grid grid--2">
+                  <div>
+                    <p class="testimony">
+                      Emplacement réservé. Un mot, une anecdote, un dessin, une photo — chacun
+                      met ce qu'il veut.
+                      <span class="testimony__author">— Prénom</span>
+                    </p>
+                    <p class="testimony">
+                      Emplacement réservé.
+                      <span class="testimony__author">— Prénom</span>
+                    </p>
+                    <figure class="photo">
+                      <div class="photo__slot photo__slot--square">
+                        <span class="photo__hint">Dessin scanné<br />temoignages/</span>
+                      </div>
+                      <figcaption>À légender.</figcaption>
+                    </figure>
+                  </div>
+
+                  <div>
+                    <p class="testimony">
+                      Emplacement réservé.
+                      <span class="testimony__author">— Prénom</span>
+                    </p>
+
+                    <div class="box box--accent">
+                      <h3 class="box__title">Le tube de l'été</h3>
+                      <p>
+                        Sélection d'Elsa. Emplacement réservé au titre et au lien d'écoute.
+                      </p>
+                    </div>
+
+                    <div class="classifieds">
+                      <p class="classifieds__head">Le dictionnaire maison</p>
+                      <p class="classified">
+                        <b>« C'est incroyable ! »</b> — Se prononce avec conviction. S'applique
+                        à tout, du coucher de soleil au prix des tomates.
+                      </p>
+                      <p class="classified">
+                        <b>« Je vais appeler les pompiers »</b> — Employé lorsque personne ne
+                        répond au téléphone. N'a jamais été suivi d'effet.
+                      </p>
+                      <p class="classified">
+                        <b>« Emprofite mon Tifille »</b> — Formule héritée, intraduisible,
+                        transmise de génération en génération.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <footer class="colophon">
+                  <span>La famille</span>
+                  <span>Page 14</span>
+                </footer>
+              </article>
+            </div>
+          </div>
+
+          <!-- ══════════════ FEUILLET 8 ══════════════ -->
+          <div class="sheet">
+
+            <!-- ─────── PAGE 15 · MOTS CROISÉS ─────── -->
+            <div class="face face--front">
+              <article class="page">
+                <header class="running-head">
+                  <span class="running-head__section">Jeux</span>
+                  <span class="running-head__folio">Page 15</span>
+                </header>
+
+                <h2 class="headline headline--md">Les mots croisés qui lui ressemblent</h2>
+                <p class="deck">
+                  Retrouvez les mots de sa vie, de ses voyages, de sa famille et de ses petites
+                  expressions. Puis reportez les lettres des six cases marquées d'un cercle :
+                  elles révèlent le mot final.
+                </p>
+
+                <div class="photo">
+                  <div class="photo__slot photo__slot--wide">
+                    <span class="photo__hint">Grille interactive<br />à construire</span>
+                  </div>
+                </div>
+
+                <div class="columns columns--3">
+                  <h3 class="subhead">Horizontalement</h3>
+                  <p>1. Huile parfumée des îles, synonyme de vacances et de douceur.</p>
+                  <p>2. Fleur blanche au parfum délicat.</p>
+                  <p>4. Village d'Indre-et-Loire, cœur géographique de la famille.</p>
+                  <p>5. Son « soleil »… et la fille qui signe ce journal.</p>
+                  <p>7. Immense étendue bleue qui a accompagné tant de voyages.</p>
+                  <p>12. Cité tunisienne chargée d'histoire et de souvenirs.</p>
+                  <p>13. Frère né en Guyane, explorateur des étoiles et consultant au GEIPAN.</p>
+                  <p>16. Gâteau tunisien aux dattes, à déguster sans modération.</p>
+                  <p>22. Sœur née à Nuku Hiva.</p>
+
+                  <h3 class="subhead">Verticalement</h3>
+                  <p>3. Lieu où Maman a vécu à La Réunion.</p>
+                  <p>6. Le petit comprimé qui peut parfois tout arranger.</p>
+                  <p>8. Petite chienne adorable, fidèle compagne de tous leurs périples.</p>
+                  <p>9. Parfum précieux… et souvenir d'un flacon cassé à l'adolescence.</p>
+                  <p>10. Sœur née à Moorea, le 1<sup>er</sup> septembre 1979.</p>
+                  <p>11. Ce que Karine est pour sa Maman.</p>
+                  <p>14. « Je vais appeler les… » quand personne ne répond.</p>
+                  <p>15. Premier bateau avec lequel l'aventure a commencé en famille.</p>
+                  <p>17. Surnom de Fabien à bord du grand voyage.</p>
+                  <p>18. Crème célèbre… et mot qui lui ressemble forcément.</p>
+                  <p>19. Île des Marquises où Maman a repris le métier de professeure.</p>
+                  <p>20. Expression favorite, prononcée avec conviction.</p>
+                  <p>21. Façon de voyager sans bouger de son fauteuil.</p>
+                </div>
+
+                <footer class="colophon">
+                  <span>Jeux</span>
+                  <span>Page 15</span>
+                </footer>
+              </article>
+            </div>
+
+            <!-- ─────── PAGE 16 · LE DOS ─────── -->
+            <div class="face face--back">
+              <article class="page">
+                <div class="cover">
+                  <header class="running-head">
+                    <span class="running-head__section">Dernière</span>
+                    <span class="running-head__folio">Page 16</span>
+                  </header>
+
+                  <div class="cover__body">
+                    <h2 class="headline headline--md headline--orange">974 représente</h2>
+
                     <div class="columns columns--1">
                       <p>
-                        Maquette réalisée en HTML, CSS et TypeScript. Aucune dépendance
-                        d’exécution : le tourne-page est écrit à la main.
+                        Fin du numéro. Il aura fallu quatre-vingts ans, quatre bateaux, une
+                        chienne et beaucoup de chantilly pour le remplir.
                       </p>
-                      <p>Palette : beige papier, orange vif, bleu complémentaire.</p>
                     </div>
+
+                    <hr class="rule rule--double" />
+
+                    <div class="coupon" data-coupon="dernier-bon">
+                      <div class="coupon__sheet">
+                        <p class="coupon__kicker">Le dernier bon</p>
+                        <p class="coupon__title">Bon pour tout ce que tu veux</p>
+                        <p class="coupon__text">
+                          Sans limite de validité, sans conditions, sans petites lignes.
+                          Il suffit de demander.
+                        </p>
+                        <button class="coupon__tear" type="button">Détacher ce bon</button>
+                      </div>
+                      <div class="coupon__stub">
+                        Bon détaché<br />
+                        <span data-stub-date></span>
+                      </div>
+                    </div>
+
+                    <p class="stamp stamp--blue">Joyeux anniversaire</p>
                   </div>
 
                   <footer class="colophon">
-                    <span>Le Canard Orange &mdash; maquette</span>
-                    <span>Page 08</span>
+                    <span>Le Mamichat &middot; 11 septembre 2026</span>
+                    <span>Page 16</span>
                   </footer>
                 </div>
               </article>
             </div>
           </div>
+
         </div>
       </main>
 
-      <!-- ================= Commandes ================= -->
       <footer class="controls">
         <button class="btn" type="button" data-action="prev">
           <span class="btn__arrow" aria-hidden="true">&larr;</span> Précédent
@@ -445,7 +1253,7 @@
 
         <span class="pager" data-pager aria-label="Aller à un feuillet"></span>
 
-        <span class="counter" data-counter aria-live="polite">01 / 08</span>
+        <span class="counter" data-counter aria-live="polite">01 / 16</span>
 
         <div class="progress" role="presentation">
           <span class="progress__bar" data-progress></span>

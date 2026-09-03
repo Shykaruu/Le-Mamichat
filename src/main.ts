@@ -2,8 +2,10 @@ import './styles/tokens.css'
 import './styles/base.css'
 import './styles/book.css'
 import './styles/newspaper.css'
+import './styles/rubriques.css'
 
 import { Flipbook, type FlipbookState } from './flipbook'
+import { setupCoupons } from './coupons'
 
 const book = document.querySelector<HTMLElement>('.book')
 const prevBtn = document.querySelector<HTMLButtonElement>('[data-action="prev"]')
@@ -82,6 +84,8 @@ declare global {
 }
 
 window.flipbook = flipbook
+
+setupCoupons()
 
 // Les pastilles sont creees apres coup : on resynchronise l'interface.
 update(flipbook.state)

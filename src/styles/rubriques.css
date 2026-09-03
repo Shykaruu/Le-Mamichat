@@ -1,0 +1,561 @@
+/* =========================================================
+   Rubriques du journal : publicites, bons a detacher, recettes,
+   petites annonces, meteo, agenda, vente flash, temoignages.
+   Ces blocs sont concus pour s'inserer AU MILIEU des articles,
+   pas pour occuper une page entiere.
+   ========================================================= */
+
+/* --- Emplacement photo ---------------------------------------------------
+   Tant qu'une vraie image n'est pas deposee dans public/images/, on affiche
+   un cadre trame. Remplacer <div class="photo__slot"> par <img> le moment venu.
+   ------------------------------------------------------------------------- */
+.photo {
+  margin: 0 0 1cqw;
+  break-inside: avoid;
+}
+
+.photo__slot {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: var(--rule-med) solid var(--ink);
+  background: var(--paper-300);
+  color: var(--ink-soft);
+}
+
+.photo__slot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--tex-halftone);
+  background-size: 6px 6px;
+  opacity: 0.4;
+  mix-blend-mode: multiply;
+}
+
+.photo__slot--tall { aspect-ratio: 3 / 4; }
+.photo__slot--wide { aspect-ratio: 16 / 7; }
+.photo__slot--square { aspect-ratio: 1 / 1; }
+
+.photo__hint {
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: clamp(0.45rem, 1.6cqw, 0.68rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.5;
+  padding: 0.5em 0.9em;
+  border: var(--rule-thin) dashed currentColor;
+  max-width: 88%;
+}
+
+.photo img {
+  display: block;
+  width: 100%;
+  border: var(--rule-med) solid var(--ink);
+  filter: contrast(1.06) saturate(0.92);
+}
+
+.photo figcaption {
+  font-family: var(--font-mono);
+  font-size: clamp(0.45rem, 1.55cqw, 0.68rem);
+  line-height: 1.4;
+  color: var(--ink-soft);
+  padding-left: 0.6em;
+  border-left: var(--rule-med) solid var(--orange);
+  margin-top: 0.4cqw;
+}
+
+/* --- Publicite -----------------------------------------------------------
+   Un encart qui se glisse dans une colonne. Le liset "Publicite" est
+   obligatoire : c'est ce qui rend la blague lisible.
+   ------------------------------------------------------------------------- */
+.ad {
+  break-inside: avoid;
+  position: relative;
+  margin: 1cqw 0;
+  padding: 1.1cqw;
+  border: var(--rule-med) solid var(--ink);
+  background: var(--paper-200);
+  text-align: center;
+}
+
+.ad::before {
+  content: "Publicité";
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-family: var(--font-mono);
+  font-size: clamp(0.4rem, 1.35cqw, 0.58rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.2em 0.5em;
+  background: var(--ink);
+  color: var(--paper-50);
+}
+
+.ad--orange { background: var(--orange); color: var(--paper-50); }
+.ad--blue { background: var(--blue-deep); color: var(--paper-50); }
+.ad--orange::before,
+.ad--blue::before { background: var(--paper-50); color: var(--ink); }
+
+.ad__title {
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 5cqw, 1.8rem);
+  line-height: 1.05;
+  text-transform: uppercase;
+  margin: 0.3em 0;
+}
+
+.ad__baseline {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(0.6rem, 2cqw, 0.9rem);
+  line-height: 1.35;
+}
+
+.ad__price {
+  display: inline-block;
+  margin-top: 0.6em;
+  padding: 0.25em 0.7em;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: clamp(0.5rem, 1.7cqw, 0.75rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: var(--rule-med) solid currentColor;
+}
+
+/* --- Bon a detacher ------------------------------------------------------
+   Se dechire pour de vrai : voir src/coupons.ts. Le trait de perforation est
+   en haut, le bon pivote et tombe, un talon reste dans le journal.
+   ------------------------------------------------------------------------- */
+.coupon {
+  break-inside: avoid;
+  position: relative;
+  margin: 1.2cqw 0;
+  /* Reserve la place du bon : le talon prend le relais apres dechirure. */
+  display: grid;
+}
+
+.coupon__sheet,
+.coupon__stub {
+  grid-area: 1 / 1;
+}
+
+.coupon__sheet {
+  position: relative;
+  padding: 1.2cqw 1.1cqw 1.1cqw;
+  background: var(--orange);
+  color: var(--paper-50);
+  border: var(--rule-med) dashed var(--ink);
+  transform-origin: 50% 0;
+  will-change: transform, opacity;
+}
+
+.coupon__sheet::before {
+  /* Ligne de perforation */
+  content: "";
+  position: absolute;
+  top: 0.55cqw;
+  left: 0.6cqw;
+  right: 0.6cqw;
+  border-top: var(--rule-thin) dashed color-mix(in srgb, var(--paper-50) 70%, transparent);
+}
+
+.coupon--blue .coupon__sheet { background: var(--blue-deep); }
+.coupon--paper .coupon__sheet { background: var(--paper-200); color: var(--ink); }
+
+.coupon__kicker {
+  font-family: var(--font-mono);
+  font-size: clamp(0.42rem, 1.45cqw, 0.62rem);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.coupon__title {
+  font-family: var(--font-display);
+  font-size: clamp(0.9rem, 4.6cqw, 1.7rem);
+  line-height: 1.05;
+  text-transform: uppercase;
+  margin: 0.25em 0 0.3em;
+}
+
+.coupon__text {
+  font-family: var(--font-serif);
+  font-size: clamp(0.58rem, 1.95cqw, 0.85rem);
+  line-height: 1.4;
+}
+
+.coupon__tear {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  margin-top: 0.7em;
+  padding: 0.35em 0.9em;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(0.5rem, 1.7cqw, 0.72rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: inherit;
+  border: var(--rule-med) solid currentColor;
+  border-radius: 999px;
+  transition: background-color 150ms var(--ui-ease), color 150ms var(--ui-ease);
+}
+
+.coupon__tear:hover {
+  background: var(--paper-50);
+  color: var(--ink);
+}
+
+/* Le talon : ce qui reste dans le journal une fois le bon arrache. */
+.coupon__stub {
+  display: none;
+  place-content: center;
+  text-align: center;
+  padding: 1.2cqw;
+  border: var(--rule-thin) dashed var(--ink-faint);
+  color: var(--ink-faint);
+  font-family: var(--font-mono);
+  font-size: clamp(0.48rem, 1.6cqw, 0.7rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.6;
+}
+
+.coupon.is-tearing .coupon__sheet {
+  animation: coupon-tear 850ms var(--flip-ease) forwards;
+  /* Bord dechire : dents irregulieres le long de la perforation. */
+  clip-path: polygon(
+    0% 3%, 6% 0%, 13% 4%, 21% 1%, 29% 5%, 37% 1%, 45% 4%, 53% 0%,
+    61% 5%, 69% 1%, 77% 4%, 85% 0%, 93% 4%, 100% 1%,
+    100% 100%, 0% 100%
+  );
+}
+
+.coupon.is-torn .coupon__sheet { display: none; }
+.coupon.is-torn .coupon__stub { display: grid; }
+
+@keyframes coupon-tear {
+  0% { transform: none; opacity: 1; }
+  18% { transform: rotate(-1.5deg) translateY(0.5%); }
+  100% { transform: rotate(-11deg) translateY(135%); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .coupon.is-tearing .coupon__sheet { animation-duration: 1ms; }
+}
+
+/* --- Recette -------------------------------------------------------------- */
+.recipe {
+  break-inside: avoid;
+  margin: 1cqw 0;
+  padding: 1.1cqw;
+  border-top: var(--rule-thick) solid var(--ink);
+  border-bottom: var(--rule-thick) solid var(--ink);
+  background: color-mix(in srgb, var(--paper-200) 55%, transparent);
+}
+
+.recipe__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6em;
+  flex-wrap: wrap;
+  margin-bottom: 0.5cqw;
+}
+
+.recipe__title {
+  font-family: var(--font-display);
+  font-size: clamp(0.9rem, 4.4cqw, 1.6rem);
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.recipe__meta {
+  font-family: var(--font-mono);
+  font-size: clamp(0.45rem, 1.55cqw, 0.66rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--orange-deep);
+}
+
+.recipe__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.7fr;
+  gap: 1.2cqw;
+  font-size: clamp(0.58rem, 1.95cqw, 0.85rem);
+  line-height: 1.45;
+}
+
+.recipe h4 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(0.5rem, 1.7cqw, 0.72rem);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 0.4em;
+  padding-bottom: 0.25em;
+  border-bottom: var(--rule-thin) solid var(--ink);
+}
+
+.recipe ul,
+.recipe ol { margin: 0; padding-left: 1.1em; }
+.recipe li { margin-bottom: 0.3em; }
+
+/* --- Petites annonces / offres d'emploi ---------------------------------- */
+.classifieds {
+  break-inside: avoid;
+  border: var(--rule-med) solid var(--ink);
+  margin: 1cqw 0;
+}
+
+.classifieds__head {
+  padding: 0.4cqw 0.8cqw;
+  background: var(--ink);
+  color: var(--paper-50);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: clamp(0.48rem, 1.6cqw, 0.7rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.classified {
+  padding: 0.7cqw 0.8cqw;
+  border-bottom: var(--rule-thin) dotted var(--ink-faint);
+  font-size: clamp(0.56rem, 1.9cqw, 0.82rem);
+  line-height: 1.4;
+}
+
+.classified:last-child { border-bottom: 0; }
+
+.classified b {
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.classified__ref {
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+  color: var(--orange-deep);
+}
+
+/* --- Meteo ---------------------------------------------------------------- */
+.weather {
+  break-inside: avoid;
+  border: var(--rule-med) solid var(--ink);
+  background: var(--blue-deep);
+  color: var(--paper-50);
+  margin: 1cqw 0;
+}
+
+.weather__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5em;
+  padding: 0.45cqw 0.8cqw;
+  border-bottom: var(--rule-thin) solid color-mix(in srgb, var(--paper-50) 45%, transparent);
+  font-family: var(--font-mono);
+  font-size: clamp(0.45rem, 1.55cqw, 0.66rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.weather__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.weather__cell {
+  padding: 0.8cqw 0.6cqw;
+  text-align: center;
+  border-right: var(--rule-thin) solid color-mix(in srgb, var(--paper-50) 30%, transparent);
+}
+
+.weather__cell:last-child { border-right: 0; }
+
+.weather__place {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(0.48rem, 1.6cqw, 0.7rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.weather__temp {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 5cqw, 1.9rem);
+  line-height: 1.1;
+  color: var(--orange-soft);
+}
+
+.weather__note {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(0.5rem, 1.7cqw, 0.75rem);
+  line-height: 1.3;
+  opacity: 0.9;
+}
+
+/* --- Agenda de la semaine ------------------------------------------------- */
+.agenda {
+  break-inside: avoid;
+  margin: 1cqw 0;
+  border: var(--rule-med) solid var(--ink);
+}
+
+.agenda__head {
+  padding: 0.45cqw 0.8cqw;
+  background: var(--orange);
+  color: var(--paper-50);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: clamp(0.48rem, 1.6cqw, 0.7rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.agenda__day {
+  display: grid;
+  grid-template-columns: 5.5em 1fr;
+  gap: 0.6em;
+  padding: 0.55cqw 0.8cqw;
+  border-bottom: var(--rule-thin) dotted var(--ink-faint);
+  font-size: clamp(0.55rem, 1.85cqw, 0.8rem);
+  line-height: 1.35;
+}
+
+.agenda__day:last-child { border-bottom: 0; }
+
+.agenda__when {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.85em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+/* --- Vente flash ---------------------------------------------------------- */
+.flash {
+  break-inside: avoid;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  border: var(--rule-med) solid var(--ink);
+  background: var(--paper-50);
+  box-shadow: 5px 5px 0 0 var(--ink);
+}
+
+.flash__media { position: relative; }
+
+.flash__badge {
+  position: absolute;
+  top: -0.6cqw;
+  left: -0.6cqw;
+  z-index: 2;
+  padding: 0.25em 0.6em;
+  background: var(--orange);
+  color: var(--paper-50);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(0.44rem, 1.5cqw, 0.64rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transform: rotate(-5deg);
+  border: var(--rule-thin) solid var(--ink);
+}
+
+.flash__body { padding: 0.9cqw; }
+
+.flash__title {
+  font-family: var(--font-display);
+  font-size: clamp(0.8rem, 4cqw, 1.4rem);
+  line-height: 1.06;
+  text-transform: uppercase;
+  margin-bottom: 0.35em;
+}
+
+.flash__text {
+  font-size: clamp(0.55rem, 1.85cqw, 0.8rem);
+  line-height: 1.4;
+}
+
+.flash__price {
+  padding: 0.55cqw 0.9cqw;
+  border-top: var(--rule-med) solid var(--ink);
+  background: var(--paper-200);
+  font-family: var(--font-mono);
+  font-size: clamp(0.48rem, 1.6cqw, 0.7rem);
+  line-height: 1.4;
+}
+
+.flash__price b {
+  display: block;
+  font-size: 0.85em;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--orange-deep);
+}
+
+/* --- Temoignages ---------------------------------------------------------- */
+.testimony {
+  break-inside: avoid;
+  margin: 1cqw 0;
+  padding: 0.9cqw 1cqw;
+  border-left: var(--rule-thick) solid var(--blue);
+  background: color-mix(in srgb, var(--paper-200) 45%, transparent);
+  font-size: clamp(0.58rem, 1.95cqw, 0.85rem);
+  line-height: 1.45;
+}
+
+.testimony__author {
+  display: block;
+  margin-top: 0.5em;
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--orange-deep);
+}
+
+/* --- Frise chronologique -------------------------------------------------- */
+.timeline {
+  break-inside: avoid;
+  list-style: none;
+  padding: 0;
+  margin: 1cqw 0;
+  border-top: var(--rule-med) solid var(--ink);
+}
+
+.timeline li {
+  display: grid;
+  grid-template-columns: 6em 1fr;
+  gap: 0.8em;
+  padding: 0.5cqw 0;
+  border-bottom: var(--rule-thin) dotted var(--ink-faint);
+  font-size: clamp(0.55rem, 1.85cqw, 0.8rem);
+  line-height: 1.35;
+}
+
+.timeline time {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.9em;
+  letter-spacing: 0.08em;
+  color: var(--orange-deep);
+}
+
+/* Pages etroites : les blocs a deux colonnes se replient. */
+@container (max-width: 340px) {
+  .recipe__grid { grid-template-columns: 1fr; }
+  .weather__grid { grid-template-columns: 1fr; }
+  .weather__cell { border-right: 0; border-bottom: var(--rule-thin) solid currentColor; }
+}
