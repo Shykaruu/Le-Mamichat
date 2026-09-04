@@ -47,7 +47,24 @@ img, svg, video { display: block; max-width: 100%; }
 .video-print {
   display: none;
 }
+.video-screen {
+  width: 92%;
+  max-width: 92%;
+  min-width: 0;
+  box-sizing: border-box;
+}
 
+.video-screen .player {
+  display: block;
+
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
+  height: auto;
+
+  box-sizing: border-box;
+}
 @media print {
   .video-screen {
     display: none !important;
