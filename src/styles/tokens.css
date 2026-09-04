@@ -1,6 +1,17 @@
 /* =========================================================
-   Design tokens — palette retro : beige papier + orange vif
-   + bleu (complementaire de l'orange)
+   Design tokens
+
+   DIRECTION ARTISTIQUE : "GRAND LARGE"
+   Un almanach de bord imprime en trois encres seulement --
+   orange, bleu, encre noire -- sur du papier beige. Rien n'est
+   gris : ce qui n'est pas de l'encre est une couleur franche.
+
+   Trois registres typographiques, jamais melanges :
+     - le GOTHIQUE dit le journal (bandeau de titre, une fois)
+     - la CONDENSEE (Anton) dit les titres : capitales hautes et
+       droites, en aplat de couleur, l'encre un peu mangee
+     - la GROTESQUE (Archivo) dit les etiquettes : rubriques, prix,
+       intertitres -- et le MONO (Space Mono) les mentions techniques
    ========================================================= */
 
 :root {
@@ -20,11 +31,14 @@
   --orange:      #F0692F;
   --orange-deep: #D24C17;
   --orange-soft: #F9A272;
+  --orange-pale: #FBDCC8;
 
   /* --- Bleu (couleur secondaire / complementaire) --- */
   --blue:      #1F6FA8;
   --blue-deep: #123A5C;
+  --blue-night:#0C2439; /* fond de page pour la rubrique des astres */
   --blue-soft: #7CB0D2;
+  --blue-pale: #CFE1EC;
 
   /* --- Roles semantiques --- */
   --bg:            var(--paper-100);
@@ -37,15 +51,25 @@
   --selection-bg:  var(--orange);
   --selection-fg:  var(--paper-50);
 
+  /* --- Rubrique courante -------------------------------------------------
+     Chaque page redefinit ces quatre variables (voir sections.css). Tout ce
+     qui est colore dans une page -- lettrine, filets, etiquettes, onglet --
+     s'y branche : changer la rubrique repeint la page entiere. */
+  --sec:       var(--orange);
+  --sec-deep:  var(--orange-deep);
+  --sec-pale:  var(--orange-pale);
+  --sec-on:    var(--paper-50);
+
   /* --- Typographie --- */
   --font-masthead: 'UnifrakturCook', 'Times New Roman', serif;
-  /* Titrage volontairement imparfait : lettres larges aux bords ronges.
-     Pour revenir a une grasse condensee nette, basculer sur --font-display-alt. */
-  --font-display:     'Rubik Dirt', 'Anton', Impact, sans-serif;
-  --font-display-alt: 'Anton', 'Haettenschweiler', 'Arial Narrow', sans-serif;
+  /* Anton : condensee haute, droite, capitales pleines. Tous les titres du
+     journal sont dedans -- masquee par un grain, l'encre a l'air mangee. */
+  --font-display:  'Anton', 'Haettenschweiler', 'Arial Narrow', sans-serif;
+  --font-shout:    var(--font-display);
   --font-sans:     'Archivo', 'Helvetica Neue', Arial, sans-serif;
   --font-serif:    'Source Serif 4', Georgia, 'Times New Roman', serif;
   --font-mono:     'Space Mono', 'Courier New', monospace;
+
 
   --step--2: clamp(0.62rem, 0.58rem + 0.2vw, 0.72rem);
   --step--1: clamp(0.74rem, 0.70rem + 0.2vw, 0.84rem);
@@ -64,8 +88,12 @@
   --space-l:   2.25rem;
   --space-xl:  3.5rem;
 
-  /* --- Filets --- */
+  /* --- Filets ---
+     --rule-box est le trait qui entoure un bloc (cadre photo, encadre,
+     recette, bon a detacher). Il est volontairement fin : a 2 px, vingt
+     encadres sur une double page font une grille de barreaux. */
   --rule-thin:  1px;
+  --rule-box:   1px;
   --rule-med:   2px;
   --rule-thick: 6px;
 
@@ -81,7 +109,9 @@
   color-scheme: light;
 }
 
-/* Textures reutilisables ------------------------------------------------- */
+/* Textures reutilisables -------------------------------------------------
+   Toutes en currentColor impossible (ce sont des images) : elles utilisent
+   donc l'encre, et on les teinte par opacite au-dessus d'un aplat. */
 :root {
   --tex-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
   --tex-halftone: radial-gradient(

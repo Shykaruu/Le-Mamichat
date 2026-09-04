@@ -1,0 +1,379 @@
+/* =========================================================
+   IDENTITE DE RUBRIQUE
+
+   Le lecteur doit savoir ou il est sans lire un mot. Trois
+   signaux, tous derives d'une seule variable :
+
+     1. LA COULEUR   --sec repeint lettrines, filets, etiquettes
+     2. LE BANDEAU   .flag : un aplat + une trame propre a la rubrique
+     3. L'ONGLET     .thumb : languette en bord de page, calee a une
+                     hauteur differente selon la rubrique. Journal
+                     ferme, les onglets dessinent un escalier -- on
+                     ouvre a la bonne rubrique du pouce, comme dans
+                     un dictionnaire.
+
+   Une page declare sa rubrique, et rien d'autre :
+     <article class="page" data-rub="astres">
+   ========================================================= */
+
+/* --- Palettes de rubrique ------------------------------------------------ */
+.page[data-rub='une'],
+.page[data-rub='famille'] {
+  --sec: var(--orange);
+  --sec-deep: var(--orange-deep);
+  --sec-pale: var(--orange-pale);
+  --sec-on: var(--paper-50);
+  --sec-i: 0;
+}
+
+.page[data-rub='astres'] {
+  --sec: var(--blue-night);
+  --sec-deep: var(--blue-deep);
+  --sec-pale: var(--blue-pale);
+  --sec-on: var(--paper-50);
+  --sec-i: 1;
+}
+
+/* Les archives sont la seule rubrique sans couleur : de l'encre sur un papier
+   plus jauni que les autres, comme un tirage argentique qui a vieilli. */
+.page[data-rub='archives'] {
+  --sec: var(--ink);
+  --sec-deep: var(--orange-deep);
+  --sec-pale: #E0CDAB;
+  --sec-on: var(--paper-50);
+  --sec-i: 2;
+}
+
+.page[data-rub='terroir'] {
+  --sec: var(--orange-deep);
+  --sec-deep: #9E340C;
+  --sec-pale: var(--orange-pale);
+  --sec-on: var(--paper-50);
+  --sec-i: 3;
+}
+
+.page[data-rub='large'] {
+  --sec: var(--blue);
+  --sec-deep: var(--blue-deep);
+  --sec-pale: var(--blue-pale);
+  --sec-on: var(--paper-50);
+  --sec-i: 4;
+}
+
+.page[data-rub='boutique'] {
+  --sec: var(--orange);
+  --sec-deep: var(--orange-deep);
+  --sec-pale: var(--orange-pale);
+  --sec-on: var(--paper-50);
+  --sec-i: 5;
+}
+
+.page[data-rub='jeux'] {
+  --sec: var(--blue-deep);
+  --sec-deep: var(--blue-night);
+  --sec-pale: var(--blue-pale);
+  --sec-on: var(--paper-50);
+  --sec-i: 6;
+}
+
+/* --- Trames de rubrique --------------------------------------------------
+   Chaque rubrique a sa maille : etoiles pour les astres, trame de
+   similigravure pour les archives, zellige pour la Tunisie, houle pour le
+   grand large, rayures de promo pour la boutique, damier pour les jeux. */
+.page { --sec-tex: none; --sec-tex-size: auto; }
+
+.page[data-rub='astres'] {
+  --sec-tex:
+    radial-gradient(circle, currentColor 0 1.1px, transparent 1.4px),
+    radial-gradient(circle, currentColor 0 0.7px, transparent 1px);
+  --sec-tex-size: 22px 22px, 13px 15px;
+}
+
+.page[data-rub='archives'] {
+  --sec-tex: radial-gradient(circle, currentColor 0 1.6px, transparent 2px);
+  --sec-tex-size: 8px 8px;
+}
+
+.page[data-rub='terroir'] {
+  --sec-tex: repeating-linear-gradient(45deg, currentColor 0 2px, transparent 2px 7px);
+}
+
+.page[data-rub='large'] {
+  --sec-tex: repeating-linear-gradient(0deg, currentColor 0 1.5px, transparent 1.5px 9px);
+}
+
+.page[data-rub='boutique'] {
+  --sec-tex: repeating-linear-gradient(-45deg, currentColor 0 5px, transparent 5px 12px);
+}
+
+.page[data-rub='jeux'] {
+  --sec-tex:
+    linear-gradient(45deg, currentColor 25%, transparent 25% 75%, currentColor 75%),
+    linear-gradient(45deg, currentColor 25%, transparent 25% 75%, currentColor 75%);
+  --sec-tex-size: 12px 12px;
+}
+
+/* =========================================================
+   LE BANDEAU DE RUBRIQUE
+   Remplace l'ancien filet mono, qui ne disait rien.
+   ========================================================= */
+.flag {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: stretch;
+  margin-bottom: 1.3cqw;
+  border-bottom: 3px solid var(--sec);
+}
+
+.flag__badge {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  padding: 0.5cqw 1.1cqw 0.6cqw;
+  background: var(--sec);
+  color: var(--sec-on);
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: 1.8cqw;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.flag__mark {
+  width: 1.7em;
+  height: 1.7em;
+  flex: none;
+}
+
+/* La trame : elle porte la couleur de la rubrique et s'arrete net. */
+.flag__strip {
+  color: var(--sec);
+  background-image: var(--sec-tex);
+  background-size: var(--sec-tex-size);
+  background-position: 0 0, 6px 6px;
+  opacity: 0.45;
+  margin-left: 0.8cqw;
+}
+
+.flag__folio {
+  display: flex;
+  align-items: center;
+  padding-left: 0.9cqw;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1.65cqw;
+  letter-spacing: 0.14em;
+  color: var(--ink-soft);
+}
+
+.flag__folio b { color: var(--sec); }
+
+/* Variante « suite » : le bandeau se fait creux pour ne pas reannoncer la
+   rubrique a chaque page d'un meme article. */
+.flag--cont .flag__badge {
+  background: transparent;
+  color: var(--sec);
+  box-shadow: inset 0 0 0 var(--rule-med) var(--sec);
+}
+
+/* =========================================================
+   L'ONGLET DE TRANCHE
+   ========================================================= */
+.thumb {
+  position: absolute;
+  top: calc(8cqw + var(--sec-i, 0) * 11.5cqw);
+  z-index: 4;
+  padding: 1.5cqw 0.62cqw 1.5cqw 0.75cqw;
+  background: var(--sec);
+  color: var(--sec-on);
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: 1.38cqw;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  writing-mode: vertical-rl;
+}
+
+/* Page de droite (recto) : l'onglet sort par la tranche de droite. */
+.face--front .thumb {
+  right: 0;
+  box-shadow: -2px 2px 0 0 rgba(31, 27, 22, 0.25);
+}
+
+/* Page de gauche (verso) : il sort a gauche, et le mot se lit de bas en haut. */
+.face--back .thumb {
+  left: 0;
+  rotate: 180deg;
+  box-shadow: -2px 2px 0 0 rgba(31, 27, 22, 0.25);
+}
+
+/* =========================================================
+   PAGE DE NUIT
+   Une rubrique peut prendre la page entiere. On inverse alors
+   le papier et l'encre, et tout le reste suit.
+   ========================================================= */
+.page.page--night {
+  /* Contexte d'empilement propre : la trame etoilee peut passer en z-index -1
+     sans repasser derriere le fond de la page. */
+  isolation: isolate;
+  --ink: #F6F1E7;
+  --ink-soft: #B9C6D2;
+  --ink-faint: #6E8397;
+  --paper-50: #0C2439;
+  --paper-100: #102C43;
+  --paper-200: #16374F;
+  --paper-300: #1E4560;
+  --rule: #F6F1E7;
+  --rule-hair: rgba(207, 225, 236, 0.35);
+  --sec: var(--orange);
+  --sec-deep: var(--orange-deep);
+  --sec-pale: var(--orange-pale);
+  --sec-on: #0C2439;
+  color: #F6F1E7;
+  background-color: #0C2439;
+  background-image:
+    radial-gradient(circle at 18% 12%, rgba(124, 176, 210, 0.18), transparent 45%),
+    radial-gradient(circle at 84% 80%, rgba(240, 105, 47, 0.14), transparent 42%);
+}
+
+/* Le ciel etoile : trois trames de pas premiers entre eux, pour qu'aucune
+   grille ne se lise. */
+.page.page--night::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image:
+    radial-gradient(circle, #F6F1E7 0 1.1px, transparent 1.6px),
+    radial-gradient(circle, #7CB0D2 0 0.8px, transparent 1.2px),
+    radial-gradient(circle, #F9A272 0 0.7px, transparent 1.1px);
+  background-size: 63px 71px, 41px 37px, 97px 89px;
+  background-position: 11px 19px, 5px 3px, 33px 47px;
+}
+
+.page.page--night .flag__folio { color: var(--ink-soft); }
+
+/* =========================================================
+   PAGE EN APLAT
+   Meme principe que la page de nuit, mais dans la couleur de
+   la rubrique : la page entiere devient une affiche.
+   ========================================================= */
+.page.page--field {
+  isolation: isolate;
+  --ink: var(--paper-50);
+  --ink-soft: color-mix(in srgb, var(--paper-50) 82%, transparent);
+  --ink-faint: color-mix(in srgb, var(--paper-50) 62%, transparent);
+  --rule: var(--paper-50);
+  --rule-hair: color-mix(in srgb, var(--paper-50) 40%, transparent);
+  --sec-on: var(--sec);
+  color: var(--paper-50);
+  background-color: var(--sec);
+}
+
+/* La trame de rubrique, en filigrane sur toute la page. */
+.page.page--field::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  color: var(--paper-50);
+  background-image: var(--sec-tex);
+  background-size: var(--sec-tex-size);
+  opacity: 0.12;
+}
+
+.page.page--field .colophon { border-top-color: var(--rule-hair); }
+
+/* =========================================================
+   OUVERTURE DE RUBRIQUE
+   Un titre pose sur un aplat qui touche les deux bords : on
+   voit d'un coup d'oeil qu'on change de monde.
+   ========================================================= */
+.opener {
+  position: relative;
+  margin: 0 -8cqw 1.2cqw;
+  padding: 1.5cqw 8cqw 1.7cqw;
+  background: var(--sec);
+  color: var(--sec-on);
+  overflow: hidden;
+}
+
+.opener::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  color: var(--sec-on);
+  background-image: var(--sec-tex);
+  background-size: var(--sec-tex-size);
+  opacity: 0.16;
+}
+
+.opener > * { position: relative; }
+
+.opener .headline { color: inherit; margin-bottom: 0.3cqw; }
+.opener .deck { color: inherit; opacity: 0.92; }
+.opener .kicker--ghost { color: inherit; border-color: currentColor; }
+
+/* =========================================================
+   CARTOUCHE DE DONNEES
+   Le registre « releve de bord » du journal : des faits
+   alignes, en chiffres. Herite sa couleur du contexte.
+   ========================================================= */
+.readout {
+  border: var(--rule-box) solid currentColor;
+  font-family: var(--font-mono);
+}
+
+.readout__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5em;
+  padding: 0.45cqw 0.8cqw;
+  background: currentColor;
+  font-size: 1.45cqw;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.readout__head > * { color: var(--paper-50); }
+
+.readout__row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: baseline;
+  gap: 0.7em;
+  padding: 0.55cqw 0.8cqw;
+  border-bottom: var(--rule-thin) dotted currentColor;
+  font-size: 1.5cqw;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.readout__row:last-child { border-bottom: 0; }
+
+.readout__row span { opacity: 0.65; }
+
+.readout__row b {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-align: right;
+}
+
+/* --- Musique --------------------------------------------------------------
+   La rubrique des chansons : bleu, et une trame de barres verticales comme
+   les sillons d'un disque vus de pres. */
+.page[data-rub='musique'] {
+  --sec: var(--blue);
+  --sec-deep: var(--blue-night);
+  --sec-pale: var(--blue-pale);
+  --sec-on: var(--paper-50);
+  --sec-i: 7;
+  --sec-tex: repeating-linear-gradient(90deg, currentColor 0 1.5px, transparent 1.5px 7px);
+  --sec-tex-size: auto;
+}

@@ -47,6 +47,7 @@ export class Flipbook {
   private pageIndex = 0
   private busy = false
   private pointerStartX: number | null = null
+  private pointerStartY: number | null = null
 
   constructor(book: HTMLElement, options: FlipbookOptions = {}) {
     this.book = book
@@ -260,6 +261,10 @@ export class Flipbook {
     const target = event.target as HTMLElement | null
     if (target && /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName)) return
 
+    // Une image ouverte en grand capte le clavier : on ne tourne pas la page
+    // derriere elle.
+    if (document.querySelector('dialog[open]')) return
+
     switch (event.key) {
       case 'ArrowRight':
       case 'PageDown':
@@ -287,19 +292,34 @@ export class Flipbook {
   private handlePointerDown = (event: PointerEvent): void => {
     if (event.pointerType === 'mouse') return
     this.pointerStartX = event.clientX
+    this.pointerStartY = event.clientY
+
+    // Le doigt quitte souvent le livre avant d'etre releve : sans capture, le
+    // pointerup part ailleurs et le balayage est perdu.
+    try {
+      this.book.setPointerCapture(event.pointerId)
+    } catch {
+      /* le navigateur peut refuser : on retombe sur le pointerup classique */
+    }
   }
 
   private handlePointerUp = (event: PointerEvent): void => {
     if (this.pointerStartX === null) return
-    const delta = event.clientX - this.pointerStartX
+
+    const dx = event.clientX - this.pointerStartX
+    const dy = event.clientY - (this.pointerStartY ?? event.clientY)
     this.pointerStartX = null
-    if (Math.abs(delta) < SWIPE_THRESHOLD) return
-    if (delta < 0) this.next()
+    this.pointerStartY = null
+
+    // Un geste plus vertical qu'horizontal, c'est un defilement, pas une page.
+    if (Math.abs(dx) < SWIPE_THRESHOLD || Math.abs(dx) <= Math.abs(dy)) return
+    if (dx < 0) this.next()
     else this.prev()
   }
 
   private handlePointerCancel = (): void => {
     this.pointerStartX = null
+    this.pointerStartY = null
   }
 }
 

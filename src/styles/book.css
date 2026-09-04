@@ -55,6 +55,10 @@
 
 .book {
   position: relative;
+  /* Sans cela, le navigateur revendique le geste horizontal comme un
+     defilement, envoie un pointercancel, et le balayage ne tourne aucune
+     page. On lui laisse le vertical, on garde l'horizontal. */
+  touch-action: pan-y;
   /* Le livre se cale sur la plus contraignante des deux dimensions de la scene. */
   width: min(96cqw, calc(96cqh * 1.48));
   aspect-ratio: 1.48 / 1;
@@ -146,13 +150,27 @@
 
 /* Une page de journal ne defile pas : ce qui ne rentre pas doit etre coupe
    ou deplace ailleurs. Le detecteur de debordement (src/fit.ts) signale les
-   pages trop pleines pendant le developpement. */
+   pages trop pleines pendant le developpement.
+
+   ATTENTION : un element n'est jamais son propre conteneur. Dans les regles
+   ci-dessous, un `cqw` se resoudrait contre la SCENE, pas contre la page --
+   la marge valait 8 % de la page en double page et 3 % sur telephone, et la
+   mise en page se decalait d'un ecran a l'autre. La marge est donc en
+   pourcentage (qui, lui, se mesure a la page) et le corps de base est pose
+   sur les enfants, ou le `cqw` a enfin le bon sens. */
 .page {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  padding: 3cqw;
+  padding: 8%;
   container-type: inline-size;
+}
+
+/* Le corps de base du journal, relatif a la page et jamais au navigateur :
+   c'est ce qui fait qu'une page est le meme objet sur un telephone et sur un
+   grand ecran, seulement plus petite. Tout ce qui herite suit. */
+.page > * {
+  font-size: 3.3cqw;
 }
 
 /* Page trop pleine : visible uniquement en developpement. */
@@ -330,29 +348,45 @@
   border-radius: 3px;
 }
 
-/* --- Ecrans etroits : commandes compactes -------------------------------- */
-@media (max-width: 620px) {
-  .app { gap: var(--space-2xs); padding: 0.5rem; }
-
-  .toolbar { justify-content: center; text-align: center; }
-
-  .controls {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
+/* --- Telephone -----------------------------------------------------------
+   Sur un telephone, la page est deja le sujet : on lui rend toute la hauteur.
+   Les boutons, les pastilles et la barre de progression disparaissent -- on
+   tourne au doigt, et le compteur suffit a savoir ou on en est.
+   ------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .app {
     gap: var(--space-2xs);
-    padding-top: var(--space-2xs);
+    padding: 0.4rem 0.4rem 0.5rem;
   }
 
+  .toolbar {
+    justify-content: center;
+    text-align: center;
+    gap: var(--space-2xs);
+    padding-bottom: 0.35rem;
+  }
+
+  /* La date complete et le bouton PDF prennent deux lignes pour rien. */
+  .toolbar__meta { display: none; }
+
+  .controls {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding-top: 0.4rem;
+  }
+
+  .controls .btn,
+  .controls .pager,
   .controls .progress { display: none; }
 
-  .pager { justify-content: center; }
+  .counter { min-width: 0; }
+}
 
-  .counter { grid-column: 1 / -1; order: 3; }
-
-  .hint { grid-column: 1 / -1; order: 4; }
-
-  .btn { padding: 0.5em 0.8em; }
+/* Le clavier n'existe pas sur un telephone : l'astuce ne parle que du doigt. */
+@media (max-width: 900px) {
+  .hint kbd { display: none; }
+  .hint__keys { display: none; }
 }
 
 /* Bouton d'export PDF : il n'appartient pas au journal, seulement a la barre. */

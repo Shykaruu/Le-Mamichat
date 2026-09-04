@@ -14,58 +14,249 @@
   break-inside: avoid;
 }
 
+/* Un emplacement vide n'est pas un trou gris : c'est un aplat de la rubrique,
+   trame, avec une gravure en filigrane et des reperes de coupe. Le jour ou la
+   photo arrive, elle se pose dessus sans rien changer d'autre. */
 .photo__slot {
   position: relative;
   display: grid;
   place-items: center;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  border: var(--rule-med) solid var(--ink);
-  background: var(--paper-300);
-  color: var(--ink-soft);
+  border: var(--rule-box) solid var(--ink);
+  background: var(--sec-pale);
+  color: var(--sec-deep);
 }
 
 .photo__slot::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: var(--tex-halftone);
-  background-size: 6px 6px;
-  opacity: 0.4;
-  mix-blend-mode: multiply;
+  color: var(--sec);
+  background-image: var(--sec-tex, var(--tex-halftone));
+  background-size: var(--sec-tex-size, 6px 6px);
+  opacity: 0.3;
+}
+
+/* Reperes de coupe, aux quatre coins. */
+.photo__slot::after {
+  content: "";
+  position: absolute;
+  inset: 0.7cqw;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--sec-deep) 0 0) 0 0 / 2.4cqw 1px no-repeat,
+    linear-gradient(var(--sec-deep) 0 0) 0 0 / 1px 2.4cqw no-repeat,
+    linear-gradient(var(--sec-deep) 0 0) 100% 0 / 2.4cqw 1px no-repeat,
+    linear-gradient(var(--sec-deep) 0 0) 100% 0 / 1px 2.4cqw no-repeat,
+    linear-gradient(var(--sec-deep) 0 0) 0 100% / 2.4cqw 1px no-repeat,
+    linear-gradient(var(--sec-deep) 0 0) 0 100% / 1px 2.4cqw no-repeat,
+    linear-gradient(var(--sec-deep) 0 0) 100% 100% / 2.4cqw 1px no-repeat,
+    linear-gradient(var(--sec-deep) 0 0) 100% 100% / 1px 2.4cqw no-repeat;
+  opacity: 0.7;
 }
 
 .photo__slot--tall { aspect-ratio: 3 / 4; }
 .photo__slot--wide { aspect-ratio: 16 / 7; }
 .photo__slot--square { aspect-ratio: 1 / 1; }
 
-.photo__hint {
+/* La gravure en filigrane, au centre de l'emplacement. */
+.photo__mark {
   position: relative;
-  font-family: var(--font-mono);
-  font-size: clamp(0.45rem, 1.6cqw, 0.68rem);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  text-align: center;
-  line-height: 1.5;
-  padding: 0.5em 0.9em;
-  border: var(--rule-thin) dashed currentColor;
-  max-width: 88%;
+  width: 34%;
+  height: auto;
+  aspect-ratio: 1;
+  color: var(--sec);
+  opacity: 0.42;
 }
 
-.photo img {
+.photo__hint {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 0.45em 0.9em 0.5em;
+  background: var(--sec);
+  color: var(--sec-on);
+  font-family: var(--font-mono);
+  font-size: 1.45cqw;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  line-height: 1.35;
+}
+
+/* --- Duotone -------------------------------------------------------------
+   Le journal n'a que trois encres. Une photo de famille en couleurs y ferait
+   tache : on la desature et on la re-encre en bleu (les ombres) et en orange
+   (les lumieres). N'importe quelle photo deposee dans public/images/ entre
+   ainsi dans la palette sans retouche.
+   ------------------------------------------------------------------------- */
+.photo__frame {
+  --duo-dark: var(--blue-deep);
+  --duo-light: var(--paper-100);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: var(--rule-box) solid var(--ink);
+  background: var(--duo-dark);
+}
+
+/* L'image est desaturee puis eclaircie sur l'encre sombre (screen) ; le voile
+   de couleur claire (multiply) vient ensuite teinter les hautes lumieres. */
+.photo__frame img {
+  width: 100%;
+  border: 0;
+  filter: grayscale(1) contrast(1.16) brightness(1.06);
+  mix-blend-mode: screen;
+}
+
+.photo__frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--duo-light);
+  mix-blend-mode: multiply;
+}
+
+/* Duotone chaud : les lumieres virent a l'orange. */
+.photo__frame--warm { --duo-light: var(--orange-soft); }
+
+/* Duotone dans la couleur de la rubrique. */
+.photo__frame--sec { --duo-dark: var(--sec-deep); }
+
+/* Piece d'archive : un carnet, une aquarelle, un document. On ne le re-encre
+   pas -- on le pose sur son papier, a peine calme, comme sous une vitrine. */
+.photo__frame--doc {
+  display: grid;
+  place-items: center;
+  background: var(--paper-200);
+}
+
+.photo__frame--doc img {
+  filter: saturate(0.82) contrast(1.04);
+  mix-blend-mode: normal;
+}
+
+.photo__frame--doc::after {
+  background: var(--orange-pale);
+  mix-blend-mode: multiply;
+  opacity: 0.22;
+}
+
+/* Le cadre remplit son parent : sert dans une scene (.hero) ou une case qui
+   a deja sa hauteur. */
+.photo__frame--fill {
+  position: absolute;
+  inset: 0;
+  border: 0;
+}
+
+.photo__frame--fill img {
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Une photo peut aussi rester nue : trame, encre, sans re-teinte. Le
+   selecteur vise l'enfant DIRECT : sans cela, une image deja posee dans un
+   .photo__frame heritait d'un second filet colle au premier -- et le trait
+   paraissait deux fois trop epais. */
+.photo > img {
   display: block;
   width: 100%;
-  border: var(--rule-med) solid var(--ink);
+  border: var(--rule-box) solid var(--ink);
   filter: contrast(1.06) saturate(0.92);
+}
+
+/* --- L'image qui touche les bords ---------------------------------------
+   Le rectangle sage au milieu du texte, c'est du catalogue. Ici l'image sort
+   du cadre : elle file jusqu'a la coupe et le titre se pose dessus.
+   ------------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin: 0 -8cqw;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--sec-pale);
+  color: var(--sec-on);
+}
+
+/* Le fond de la scene : image ou aplat trame, il remplit tout le bloc. */
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: var(--sec-pale);
+}
+
+.hero__bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  color: var(--sec);
+  background-image: var(--sec-tex);
+  background-size: var(--sec-tex-size);
+  opacity: 0.35;
+}
+
+.hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 0;
+}
+
+/* La gravure en filigrane, quand la photo n'est pas encore la. */
+.hero__mark {
+  position: relative;
+  width: 42%;
+  aspect-ratio: 1;
+  color: var(--sec);
+  opacity: 0.4;
+}
+
+/* Le titre s'assoit dans le bas de l'image, sur un voile d'encre. */
+.hero__caption {
+  position: relative;
+  padding: 1.4cqw 8cqw 1.2cqw;
+  background: linear-gradient(to top, var(--sec) 62%, transparent);
+  color: var(--sec-on);
+}
+
+.hero__caption .headline { color: inherit; margin-bottom: 0.2cqw; }
+
+.hero__meta {
+  font-family: var(--font-mono);
+  font-size: 1.5cqw;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+/* Etiquette de coin, comme une reference de planche. */
+.hero__tag {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  padding: 0.5cqw 1cqw 0.55cqw;
+  background: var(--ink);
+  color: var(--paper-50);
+  font-family: var(--font-mono);
+  font-size: 1.45cqw;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
 }
 
 .photo figcaption {
   font-family: var(--font-mono);
-  font-size: clamp(0.45rem, 1.55cqw, 0.68rem);
+  font-size: 1.55cqw;
   line-height: 1.4;
   color: var(--ink-soft);
   padding-left: 0.6em;
-  border-left: var(--rule-med) solid var(--orange);
+  border-left: 3px solid var(--sec);
   margin-top: 0.3cqw;
 }
 
@@ -78,7 +269,7 @@
   position: relative;
   margin: 1cqw 0;
   padding: 1.1cqw;
-  border: var(--rule-med) solid var(--ink);
+  border: var(--rule-box) solid var(--ink);
   background: var(--paper-200);
   text-align: center;
 }
@@ -89,7 +280,7 @@
   top: 0;
   right: 0;
   font-family: var(--font-mono);
-  font-size: clamp(0.4rem, 1.35cqw, 0.58rem);
+  font-size: 1.35cqw;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   padding: 0.2em 0.5em;
@@ -104,7 +295,7 @@
 
 .ad__title {
   font-family: var(--font-display);
-  font-size: clamp(0.95rem, 5cqw, 1.8rem);
+  font-size: 5cqw;
   line-height: 1.05;
   text-transform: uppercase;
   margin: 0.3em 0;
@@ -113,7 +304,7 @@
 .ad__baseline {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: clamp(0.6rem, 2cqw, 0.9rem);
+  font-size: 2cqw;
   line-height: 1.35;
 }
 
@@ -123,10 +314,10 @@
   padding: 0.25em 0.7em;
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: clamp(0.5rem, 1.7cqw, 0.75rem);
+  font-size: 1.7cqw;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  border: var(--rule-med) solid currentColor;
+  border: var(--rule-box) solid currentColor;
 }
 
 /* --- Bon a detacher ------------------------------------------------------
@@ -171,7 +362,7 @@
 
 .coupon__kicker {
   font-family: var(--font-mono);
-  font-size: clamp(0.42rem, 1.45cqw, 0.62rem);
+  font-size: 1.45cqw;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   opacity: 0.85;
@@ -179,7 +370,7 @@
 
 .coupon__title {
   font-family: var(--font-display);
-  font-size: clamp(0.9rem, 4.6cqw, 1.7rem);
+  font-size: 4.6cqw;
   line-height: 1.05;
   text-transform: uppercase;
   margin: 0.25em 0 0.3em;
@@ -187,7 +378,7 @@
 
 .coupon__text {
   font-family: var(--font-serif);
-  font-size: clamp(0.58rem, 1.95cqw, 0.85rem);
+  font-size: 1.95cqw;
   line-height: 1.4;
 }
 
@@ -199,11 +390,11 @@
   padding: 0.35em 0.9em;
   font-family: var(--font-sans);
   font-weight: 700;
-  font-size: clamp(0.5rem, 1.7cqw, 0.72rem);
+  font-size: 1.7cqw;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: inherit;
-  border: var(--rule-med) solid currentColor;
+  border: var(--rule-box) solid currentColor;
   border-radius: 999px;
   transition: background-color 150ms var(--ui-ease), color 150ms var(--ui-ease);
 }
@@ -222,7 +413,7 @@
   border: var(--rule-thin) dashed var(--ink-faint);
   color: var(--ink-faint);
   font-family: var(--font-mono);
-  font-size: clamp(0.48rem, 1.6cqw, 0.7rem);
+  font-size: 1.6cqw;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   line-height: 1.6;
@@ -272,14 +463,14 @@
 
 .recipe__title {
   font-family: var(--font-display);
-  font-size: clamp(0.9rem, 4.4cqw, 1.6rem);
+  font-size: 4.4cqw;
   line-height: 1.05;
   text-transform: uppercase;
 }
 
 .recipe__meta {
   font-family: var(--font-mono);
-  font-size: clamp(0.45rem, 1.55cqw, 0.66rem);
+  font-size: 1.55cqw;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--orange-deep);
@@ -289,14 +480,14 @@
   display: grid;
   grid-template-columns: 1fr 1.7fr;
   gap: 1.2cqw;
-  font-size: clamp(0.58rem, 1.95cqw, 0.85rem);
+  font-size: 1.95cqw;
   line-height: 1.45;
 }
 
 .recipe h4 {
   font-family: var(--font-sans);
   font-weight: 700;
-  font-size: clamp(0.5rem, 1.7cqw, 0.72rem);
+  font-size: 1.7cqw;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   margin-bottom: 0.4em;
@@ -311,7 +502,7 @@
 /* --- Petites annonces / offres d'emploi ---------------------------------- */
 .classifieds {
   break-inside: avoid;
-  border: var(--rule-med) solid var(--ink);
+  border: var(--rule-box) solid var(--ink);
   margin: 1cqw 0;
 }
 
@@ -321,7 +512,7 @@
   color: var(--paper-50);
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: clamp(0.48rem, 1.6cqw, 0.7rem);
+  font-size: 1.6cqw;
   letter-spacing: 0.2em;
   text-transform: uppercase;
 }
@@ -329,7 +520,7 @@
 .classified {
   padding: 0.7cqw 0.8cqw;
   border-bottom: var(--rule-thin) dotted var(--ink-faint);
-  font-size: clamp(0.56rem, 1.9cqw, 0.82rem);
+  font-size: 1.9cqw;
   line-height: 1.4;
 }
 
@@ -350,7 +541,7 @@
 /* --- Meteo ---------------------------------------------------------------- */
 .weather {
   break-inside: avoid;
-  border: var(--rule-med) solid var(--ink);
+  border: var(--rule-box) solid var(--ink);
   background: var(--blue-deep);
   color: var(--paper-50);
   margin: 1cqw 0;
@@ -364,7 +555,7 @@
   padding: 0.45cqw 0.8cqw;
   border-bottom: var(--rule-thin) solid color-mix(in srgb, var(--paper-50) 45%, transparent);
   font-family: var(--font-mono);
-  font-size: clamp(0.45rem, 1.55cqw, 0.66rem);
+  font-size: 1.55cqw;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
@@ -385,14 +576,14 @@
 .weather__place {
   font-family: var(--font-sans);
   font-weight: 700;
-  font-size: clamp(0.48rem, 1.6cqw, 0.7rem);
+  font-size: 1.6cqw;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .weather__temp {
   font-family: var(--font-display);
-  font-size: clamp(1rem, 5cqw, 1.9rem);
+  font-size: 5cqw;
   line-height: 1.1;
   color: var(--orange-soft);
 }
@@ -400,7 +591,7 @@
 .weather__note {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: clamp(0.5rem, 1.7cqw, 0.75rem);
+  font-size: 1.7cqw;
   line-height: 1.3;
   opacity: 0.9;
 }
@@ -409,7 +600,7 @@
 .agenda {
   break-inside: avoid;
   margin: 1cqw 0;
-  border: var(--rule-med) solid var(--ink);
+  border: var(--rule-box) solid var(--ink);
 }
 
 .agenda__head {
@@ -418,7 +609,7 @@
   color: var(--paper-50);
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: clamp(0.48rem, 1.6cqw, 0.7rem);
+  font-size: 1.6cqw;
   letter-spacing: 0.2em;
   text-transform: uppercase;
 }
@@ -429,7 +620,7 @@
   gap: 0.6em;
   padding: 0.55cqw 0.8cqw;
   border-bottom: var(--rule-thin) dotted var(--ink-faint);
-  font-size: clamp(0.55rem, 1.85cqw, 0.8rem);
+  font-size: 1.85cqw;
   line-height: 1.35;
 }
 
@@ -449,7 +640,7 @@
   break-inside: avoid;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  border: var(--rule-med) solid var(--ink);
+  border: var(--rule-box) solid var(--ink);
   background: var(--paper-50);
   box-shadow: 5px 5px 0 0 var(--ink);
 }
@@ -466,7 +657,7 @@
   color: var(--paper-50);
   font-family: var(--font-sans);
   font-weight: 700;
-  font-size: clamp(0.44rem, 1.5cqw, 0.64rem);
+  font-size: 1.5cqw;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   transform: rotate(-5deg);
@@ -477,14 +668,14 @@
 
 .flash__title {
   font-family: var(--font-display);
-  font-size: clamp(0.8rem, 4cqw, 1.4rem);
+  font-size: 4cqw;
   line-height: 1.06;
   text-transform: uppercase;
   margin-bottom: 0.35em;
 }
 
 .flash__text {
-  font-size: clamp(0.52rem, 1.75cqw, 0.76rem);
+  font-size: 1.75cqw;
   line-height: 1.35;
 }
 
@@ -493,7 +684,7 @@
   border-top: var(--rule-med) solid var(--ink);
   background: var(--paper-200);
   font-family: var(--font-mono);
-  font-size: clamp(0.48rem, 1.6cqw, 0.7rem);
+  font-size: 1.6cqw;
   line-height: 1.4;
 }
 
@@ -512,7 +703,7 @@
   padding: 0.9cqw 1cqw;
   border-left: var(--rule-thick) solid var(--blue);
   background: color-mix(in srgb, var(--paper-200) 45%, transparent);
-  font-size: clamp(0.58rem, 1.95cqw, 0.85rem);
+  font-size: 1.95cqw;
   line-height: 1.45;
 }
 
@@ -541,7 +732,7 @@
   gap: 0.8em;
   padding: 0.5cqw 0;
   border-bottom: var(--rule-thin) dotted var(--ink-faint);
-  font-size: clamp(0.55rem, 1.85cqw, 0.8rem);
+  font-size: 1.85cqw;
   line-height: 1.35;
 }
 
@@ -553,20 +744,13 @@
   color: var(--orange-deep);
 }
 
-/* Pages etroites : les blocs a deux colonnes se replient. */
-@container (max-width: 340px) {
-  .recipe__grid { grid-template-columns: 1fr; }
-  .weather__grid { grid-template-columns: 1fr; }
-  .weather__cell { border-right: 0; border-bottom: var(--rule-thin) solid currentColor; }
-}
-
 /* --- Lecteur vidéo -------------------------------------------------------- */
 .player {
   display: block;
   width: 100%;
   aspect-ratio: 16 / 9;
   background: var(--ink);
-  border: var(--rule-med) solid var(--ink);
+  border: var(--rule-box) solid var(--ink);
   object-fit: cover;
 }
 
@@ -574,3 +758,177 @@
 @media print {
   .player { aspect-ratio: 16 / 9; }
 }
+
+/* Une image peut sortir du bloc de texte et filer jusqu'a la coupe. */
+.photo--bleed {
+  margin-left: -8cqw;
+  margin-right: -8cqw;
+}
+
+.photo--bleed .photo__slot,
+.photo--bleed .photo__frame,
+.photo--bleed img {
+  border-left: 0;
+  border-right: 0;
+}
+
+/* Bleed d'un seul cote : sur une page de droite, vers la tranche exterieure. */
+.face--front .photo--out { margin-right: -8cqw; }
+.face--front .photo--out .photo__slot { border-right: 0; }
+.face--back .photo--out { margin-left: -8cqw; }
+.face--back .photo--out .photo__slot { border-left: 0; }
+
+/* --- La planche de carnet ------------------------------------------------
+   Une piece d'archive en grand, quatre autres en bande dessous. C'est la
+   mise en page d'une planche de musee : une focale, puis l'inventaire.
+   ------------------------------------------------------------------------- */
+.carnet {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8cqw;
+  flex: 1 1 auto;
+  min-height: 0;
+  margin-bottom: 0.9cqw;
+}
+
+.carnet__main {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  margin: 0;
+}
+
+.carnet__main .photo__frame {
+  flex: 0 0 auto;
+}
+
+.carnet__strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.8cqw;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.carnet__strip .photo__frame { aspect-ratio: 1; }
+
+.carnet__strip img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carnet__strip span {
+  display: block;
+  margin-top: 0.25cqw;
+  font-family: var(--font-mono);
+  font-size: 1.28cqw;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* Extrait du carnet : la prose de l'ecoliere, citee telle quelle. */
+.carnet__quote {
+  padding: 0.7cqw 0 0.8cqw;
+  margin-bottom: 0.9cqw;
+  border-top: 3px solid var(--sec);
+  border-bottom: var(--rule-thin) solid var(--rule-hair);
+  font-family: var(--font-serif);
+  font-size: 1.9cqw;
+  line-height: 1.4;
+  text-indent: 0;
+}
+
+.carnet__quote b {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sec);
+}
+
+/* --- La loupe -------------------------------------------------------------
+   Un clic sur une image l'ouvre en grand : les pages du carnet sont ecrites a
+   la main, il faut pouvoir les lire. Voir src/lightbox.ts.
+   ------------------------------------------------------------------------- */
+.is-zoomable { cursor: zoom-in; }
+
+.is-zoomable:focus-visible {
+  outline: var(--rule-med) solid var(--orange);
+  outline-offset: 3px;
+}
+
+/* Le cadre epouse l'image : sinon un document en hauteur flotte au milieu
+   d'un grand rectangle sombre. */
+.loupe {
+  position: fixed;
+  inset: 0;
+  width: fit-content;
+  height: fit-content;
+  max-width: 94vw;
+  max-height: 94vh;
+  margin: auto;
+  padding: clamp(0.75rem, 2vw, 1.5rem);
+  border: 0;
+  background: var(--blue-night);
+  color: var(--paper-50);
+  box-shadow: 0 40px 90px -30px rgba(12, 36, 57, 0.8);
+}
+
+.loupe::backdrop {
+  background: rgba(12, 36, 57, 0.82);
+  backdrop-filter: blur(3px);
+}
+
+.loupe__img {
+  width: auto;
+  height: auto;
+  max-width: min(88vw, 1000px);
+  max-height: 78vh;
+  cursor: zoom-out;
+}
+
+.loupe__legend {
+  max-width: 62ch;
+  margin: 0 auto;
+  padding-top: 0.9rem;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  line-height: 1.5;
+  color: #B9C6D2;
+  text-align: center;
+}
+
+.loupe__close {
+  position: absolute;
+  top: 0.1rem;
+  right: 0.55rem;
+  font-family: var(--font-sans);
+  font-size: 1.9rem;
+  line-height: 1;
+  color: var(--orange);
+}
+
+.loupe__close:hover { color: var(--paper-50); }
+
+@media print {
+  .loupe { display: none !important; }
+}
+
+/* Deux planches cote a cote : meme format, donc meme hauteur, donc les
+   legendes et les citations demarrent sur la meme ligne. */
+.photo__frame--square { aspect-ratio: 1 / 1; }
+
+.photo__frame--square img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Le film absent : l'emplacement remplace le lecteur, il ne s'y ajoute pas. */
+.film__missing { aspect-ratio: 16 / 9; }

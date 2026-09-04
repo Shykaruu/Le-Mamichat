@@ -2,6 +2,8 @@ import './styles/tokens.css'
 import './styles/base.css'
 import './styles/book.css'
 import './styles/newspaper.css'
+import './styles/sections.css'
+import './styles/astres.css'
 import './styles/rubriques.css'
 import './styles/crossword.css'
 import './styles/print.css'
@@ -9,6 +11,8 @@ import './styles/print.css'
 import { Flipbook, type FlipbookState } from './flipbook'
 import { setupCoupons } from './coupons'
 import { setupCrossword } from './crossword'
+import { setupLightbox } from './lightbox'
+import { setupFilm } from './film'
 import { watchFit } from './fit'
 
 const book = document.querySelector<HTMLElement>('.book')
@@ -91,6 +95,8 @@ window.flipbook = flipbook
 
 setupCoupons()
 setupCrossword()
+setupLightbox()
+setupFilm()
 
 // Controle de mise en page : signale les pages trop pleines pendant le dev.
 if (import.meta.env.DEV) watchFit()

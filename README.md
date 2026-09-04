@@ -6,7 +6,11 @@ tournerait celles d'un quotidien papier.
 Le contenu actuel est provisoire — le but de cette première version est la
 maquette : palette, typographie, grille et moteur de tourne-page.
 
-## Direction artistique
+## Direction artistique — « Grand large »
+
+Un almanach de bord imprimé en **trois encres seulement** : orange, bleu, encre
+noire, sur un papier beige. Rien n'est gris — ce qui n'est pas de l'encre est
+une couleur franche.
 
 | Rôle | Couleur | Variable |
 | --- | --- | --- |
@@ -14,23 +18,80 @@ maquette : palette, typographie, grille et moteur de tourne-page.
 | Encre | `#1F1B16` | `--ink` |
 | Accent primaire | `#F0692F` | `--orange` |
 | Accent secondaire (complémentaire) | `#1F6FA8` | `--blue` |
+| Nuit (page des astres) | `#0C2439` | `--blue-night` |
 
-Typographie : `UnifrakturCook` (bandeau de titre), **`Rubik Dirt`** (gros titres),
-`Archivo` (intertitres, boutons), `Source Serif 4` (labeur), `Space Mono`
-(mentions, folios). Un grain SVG en `mix-blend-mode: multiply` donne le rendu
-« imprimé ».
+### Trois voix typographiques, jamais mélangées
 
-Le titrage est volontairement **imparfait** : Rubik Dirt est une grasse large aux
-bords rongés, façon tampon encré. Pour repasser à une condensée nette, il suffit
-d'inverser deux tokens dans `tokens.css` :
+- **`UnifrakturCook`** dit *le journal* : le bandeau de titre, une seule fois.
+- **`Anton`** dit *les titres* : capitales condensées, hautes, droites, serrées
+  jusqu'à se toucher — puis **mangées par un grain** (`--tex-erode`, un masque
+  SVG anisotrope) pour que l'encre ait l'air d'avoir mal pris sur le papier.
+- **`Archivo`** dit *les étiquettes* (rubriques, prix, intertitres) et
+  **`Space Mono`** *les mentions techniques* (folios, légendes, relevés).
 
-```css
---font-display: var(--font-display-alt); /* Anton */
-```
+Le labeur reste en `Source Serif 4`. Un grain SVG en `mix-blend-mode: multiply`
+donne le rendu « imprimé ».
 
-Attention si vous changez de police de titrage : le `line-height` des `.headline`
-est réglé à `1.05` parce que les bords rongés débordent du cadran. Une condensée
-comme Anton supporte `0.98`, pas moins — en dessous les lignes se chevauchent.
+> L'usure des titres est un effet d'écran : elle est désactivée à l'impression,
+> où un masque qui ne se rasterise pas effacerait le titre. Voir
+> [src/styles/print.css](src/styles/print.css).
+
+## Savoir où l'on est : l'identité de rubrique
+
+Le lecteur doit reconnaître sa rubrique sans lire un mot. Une page ne déclare
+qu'une chose — `<article class="page" data-rub="astres">` — et trois signaux en
+découlent, tous branchés sur la même variable `--sec` :
+
+1. **La couleur** repeint lettrines, filets, étiquettes, emplacements photo.
+2. **Le bandeau** (`.flag`) : un aplat, une gravure, et une trame propre à la
+   rubrique — étoiles pour les astres, similigravure pour les archives, zellige
+   pour la Tunisie, houle pour le grand large, rayures de promo pour la
+   boutique, damier pour les jeux.
+3. **L'onglet** (`.thumb`) : une languette en bord de page, calée à une hauteur
+   différente selon la rubrique. Journal fermé, les onglets dessinent un
+   escalier — on ouvre à la bonne rubrique du pouce, comme dans un dictionnaire.
+
+| `data-rub` | Rubriques | Couleur |
+| --- | --- | --- |
+| `une` | couverture, sommaire, dernière | orange |
+| `astres` | horoscope de naissance | bleu nuit |
+| `archives` | photo de classe | encre |
+| `terroir` | Tunisie, enquête chantilly | orange brûlé |
+| `large` | Monique, tour du monde, Antartica, portrait | bleu |
+| `boutique` | vente flash | orange vif |
+| `jeux` | mots croisés | bleu profond |
+| `famille` | courrier des petits-enfants, la lettre de Juliette | orange |
+| `musique` | le tube de l'été | bleu |
+
+Deux pages sortent du cadre et deviennent des affiches : `.page--night`
+(l'horoscope, papier et encre inversés) et `.page--field` (la quatrième de
+couverture, en aplat de rubrique). Voir
+[src/styles/sections.css](src/styles/sections.css).
+
+## Les images
+
+Le journal n'a que trois encres : une photo en couleurs y ferait tache. Toute
+image posée dans `.photo__frame` est **désaturée puis ré-encrée** en bleu (les
+ombres) et en papier ou orange (les lumières, `--warm`) — n'importe quelle
+photo de famille entre dans la palette sans retouche.
+
+Un **document** est traité autrement : un cahier, une aquarelle, une carte
+postale gardent leurs couleurs. `.photo__frame--doc` se contente de les poser
+sur leur papier, à peine calmés — et ne les étire jamais, pour ne pas laisser
+de bandes de papier autour.
+
+Tant qu'une photo n'est pas déposée, l'emplacement n'est pas un trou gris :
+c'est un aplat de la rubrique, tramé, avec une gravure en filigrane et des
+repères de coupe. Les gravures sont dans le sprite SVG en tête de
+[index.html](index.html) (`#vg-navire`, `#vg-appareil`, `#vg-palmier`…).
+
+Trois utilitaires de composition, parce qu'une image sage au milieu du texte
+fait catalogue :
+
+- `.photo--bleed` : l'image file jusqu'aux deux coupes ;
+- `.photo--grow` : elle absorbe la hauteur qui reste, la page est donc toujours
+  pleine (à combiner avec `.fill` sur une grille) ;
+- `.hero` : le titre s'assoit **sur** l'image — c'est la mise en page de la une.
 
 ## Démarrer
 
@@ -46,6 +107,12 @@ Puis `npm run build` (typecheck + bundle dans `dist/`) et `npm run preview`.
 
 ## Naviguer dans le journal
 
+- Sur **téléphone**, les boutons, les pastilles et la barre de progression
+  disparaissent : on tourne au doigt et la page prend toute la hauteur.
+- **Clic sur une image** : elle s'ouvre en grand, avec sa légende. Les pages du
+  carnet de Tunisie sont écrites à la main — à la taille d'une colonne on voit
+  que c'est joli, on ne le lit pas. `Échap` referme. Voir
+  [src/lightbox.ts](src/lightbox.ts).
 - `←` / `→` ou `Page préc.` / `Page suiv.` : tourner une page
 - `Début` / `Fin` : couverture / dernière page
 - Balayage horizontal au doigt sur mobile
@@ -64,17 +131,108 @@ défilement. Les pages sont donc en `overflow: hidden`.
 
 Pour ne pas juger ça à l’œil, `npm run dev` active un détecteur : toute page
 trop pleine est cerclée de rouge et affiche son dépassement en pixels, et la
-console résume l’état des 18 pages. Voir [src/fit.ts](src/fit.ts).
+console résume l’état des 22 pages. Voir [src/fit.ts](src/fit.ts).
 
-Tout est dimensionné en `cqw` (pourcentage de la largeur de page) et la page
-garde le même rapport 0,74 partout — écran large, téléphone, papier. Une mise en
-page qui tient à une taille tient donc à toutes.
+## Une page est le même objet partout
+
+Le contenu d'une page doit apparaître **à l'identique** sur un téléphone, une
+tablette et un écran large — seul le décor change (fond, boutons, une page ou
+deux). La page garde le même rapport 0,74 et tout ce qu'elle contient se mesure
+à elle : `cqw` pour les tailles, `%` pour les marges. Aucune taille de contenu
+n'est en `rem`, en `px` ou en `vw`.
+
+> **Le piège à ne pas retomber dedans.** Un élément n'est *jamais son propre
+> conteneur*. Dans une règle qui vise `.page`, un `cqw` se résout contre la
+> **scène**, pas contre la page — c'est ainsi que la marge a longtemps valu 8 %
+> de la page en double page et 3 % sur téléphone. La marge de `.page` est donc
+> en pourcentage, et le corps de base est posé sur `.page > *`, où le `cqw` a
+> enfin le bon sens. Voir [src/styles/book.css](src/styles/book.css).
+
+Deux corollaires : une page ne se **recompose** jamais (pas de `@container` qui
+replie une grille en une colonne — le contenu doublerait de hauteur et
+déborderait), et une mise en page qui tient à une taille tient à toutes.
+
+Pour le vérifier, comparez le rapport taille/largeur-de-page d'un élément à
+deux tailles d'écran : il ne doit pas bouger.
 
 ## Version imprimée
 
 `Ctrl` + `P` : le livre se déplie, une page du journal par feuille, dans
-l’ordre. Pas de 3D, pas de commandes, pas de grain, et les aplats de couleur
+l’ordre. La feuille d'impression ne touche à **aucune** taille de contenu :
+elle ne fait que déplier le livre, donc le PDF est le même objet que l'écran. Pas de 3D, pas de commandes, pas de grain, et les aplats de couleur
 sortent bien à l’impression. Voir [src/styles/print.css](src/styles/print.css).
+
+## Mettre en ligne
+
+Le journal est un **site statique** : `npm run build` produit un dossier
+`dist/` qu'il suffit de recopier tel quel sur l'hébergement.
+
+`vite.config.ts` fixe `base: './'` : tous les chemins sont relatifs. Le
+journal marche donc à la racine d'un domaine comme au fond d'un sous-dossier,
+et **renommer le dossier ne demande pas de reconstruire**. Ne passez pas
+`base` en absolu sans savoir pourquoi.
+
+### Chez OVH
+
+`skymme.com` tourne sur l'**hébergement gratuit 100 Mo** d'OVH
+(`skymmem.cluster121.hosting.ovh.net`, datacentre `eu-west-gra`). On dépose
+`dist/` dans un sous-dossier de `www/` — `www/le-mamichat/` donnera
+`https://skymme.com/le-mamichat/`.
+
+**À la main**, une fois : avec FileZilla ou l'explorateur de fichiers de
+l'espace client OVH, glissez le *contenu* de `dist/` (pas le dossier) dans
+`www/le-mamichat/`.
+
+**Ensuite**, pour les mises à jour :
+
+```bash
+npm run build && npm run deploy
+```
+
+Le script lit les identifiants dans `.env.deploy`, à créer à la racine — il est
+ignoré par git, les mots de passe ne partent jamais dans le dépôt :
+
+```
+FTP_HOST=ftp.cluster121.hosting.ovh.net
+FTP_USER=votre-login-ftp
+FTP_PASS=votre-mot-de-passe
+FTP_DIR=www/le-mamichat
+```
+
+Le login se lit dans l'espace client OVH, onglet **FTP - SSH** de l'hébergement.
+`npm run deploy -- --dry-run` liste ce qui partirait sans rien envoyer.
+
+### Le cache
+
+L'hébergement ne posait **aucun en-tête de cache sur `index.html`**. Un lecteur
+pouvait donc garder un HTML périmé réclamant une feuille de style publiée
+depuis : 404 sur le CSS, page sans style, fond beige nu. Un
+[public/.htaccess](public/.htaccess) règle ça — le HTML est revalidé à chaque
+visite, les fichiers empreintes (`css`, `js`) sont gardés un an, les images une
+journée. Il part avec `dist/` et n'a rien à faire à la main.
+
+### Le poids, et la vidéo
+
+L'hébergement fait **100 Mo**. Le journal en occupe **11**. La vidéo
+d'Antarctique, elle, en pèse **170** : elle ne rentre pas.
+
+Le script s'en charge tout seul : il met de côté tout fichier de plus de 40 Mo
+(`FTP_MAX_FILE_MB`) et refuse de partir si le total dépasse le quota
+(`FTP_QUOTA_MB`). Il l'annonce à chaque envoi.
+
+Côté journal, un `<video>` dont la source manque n'affiche pas un lecteur
+cassé : [src/film.ts](src/film.ts) le remplace par un emplacement dessiné. Il
+n'y a donc rien à changer dans les pages selon que le film est en ligne ou non.
+
+Pour le mettre en ligne, ré-encodez-le — en 720p on descend en général sous les
+30 Mo, et l'ensemble tient alors dans les 100 Mo :
+
+```bash
+ffmpeg -i public/images/videos/antarctic-2014.mp4 -vf "scale=-2:720" -c:v libx264 -crf 26 -preset slow -c:a aac -b:a 128k -movflags +faststart public/images/videos/antarctic-2014.mp4
+```
+
+Le `-movflags +faststart` compte : sans lui, le navigateur télécharge tout le
+fichier avant de lancer la lecture.
 
 ## Photos et vidéos
 
@@ -91,7 +249,14 @@ src/flipbook.ts         moteur de tourne-page, sans dépendance
 src/styles/tokens.css   couleurs, typo, espacements, textures
 src/styles/base.css     reset et fondations
 src/styles/book.css     mise en scène du livre + commandes
+src/lightbox.ts         la loupe : une image s'ouvre en grand au clic
+src/film.ts             le film absent : un emplacement plutôt qu'un lecteur cassé
+scripts/deploy.mjs      envoi de dist/ sur l'hébergement, en FTPS
 src/styles/newspaper.css composants éditoriaux (titres, colonnes, encarts)
+src/styles/sections.css identité de rubrique (bandeau, onglet, pages en aplat)
+src/styles/astres.css   la double page de l'horoscope (carte du ciel, symboles)
+public/images/          les photos et documents, un sous-dossier par thème
+src/styles/rubriques.css publicités, bons, recette, météo, agenda, photos
 ```
 
 ## Ajouter une page
@@ -110,17 +275,28 @@ progression s'adaptent tout seuls.
 
 ## Boîte à outils éditoriale
 
-Classes disponibles dans `newspaper.css` :
+Classes disponibles dans `newspaper.css`, `sections.css` et `rubriques.css` :
 
-- Titres : `.kicker` (+ `--orange`, `--ghost`), `.headline` (+ `--xl`, `--md`,
-  `--sm`, `--orange`, `--blue`), `.deck`, `.byline`, `.subhead`
+- Rubrique : `.flag` (+ `--cont` pour une suite), `.thumb`, `.opener`,
+  `.page--night`, `.page--field`
+- Titres : `.kicker` (+ `--ghost`, `--orange`, `--blue`), `.headline`
+  (+ `--xl`, `--md`, `--sm`, `--sec`, `--shout`, `--clean`), `.deck`,
+  `.byline`, `.subhead`
 - Texte : `.columns` (+ `--1`, `--3`), `.dropcap`, `.pullquote`
+- Chiffres : `.readout` (relevé de bord), `.tally` (grands nombres),
+  `.credits` (générique)
 - Encadrés : `.box` (+ `--accent`, `--blue`), `.stamp` (+ `--blue`), `.toc`
-- Images : `.plate` (+ `--orange`, `--paper`, `--tall`, `--wide`), `.caption`
-- Filets : `.rule` (+ `--thick`, `--double`, `--orange`)
+- Images : `.photo` (+ `--bleed`, `--out`, `--grow`), `.photo__frame` (duotone),
+  `.hero`
+- Chanson : `.song`, `.spell`, `.lyrics` (+ `__part`, `__chorus`), `.signoff`
+- Archives : `.carnet` (planche), `.carnet__quote` (extrait cité)
+- Filets : `.rule` (+ `--thick`, `--double`, `--orange`, `--sec`). Le trait qui
+  entoure un bloc est `--rule-box` (1 px) : à 2 px, vingt encadrés sur une
+  double page font une grille de barreaux.
+- Mise en page : `.grid` (+ `--2`, `--sidebar`, `--asym`), `.fill`
 
-Chaque page est un *container* CSS : les tailles sont exprimées en `cqw`, donc la
-maquette reste identique quelle que soit la taille de l'écran.
+Chaque page est un *container* CSS : les tailles sont exprimées en `cqw`, donc
+la maquette reste identique quelle que soit la taille de l'écran.
 
 ## Notes techniques
 

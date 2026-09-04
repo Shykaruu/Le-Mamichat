@@ -17,7 +17,7 @@
   justify-content: space-between;
   gap: var(--space-2xs);
   font-family: var(--font-mono);
-  font-size: clamp(0.5rem, 1.5cqw, 0.7rem);
+  font-size: 1.5cqw;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   padding-bottom: 0.5cqw;
@@ -27,16 +27,16 @@
 .masthead__title {
   font-family: var(--font-masthead);
   font-weight: 700;
-  font-size: clamp(1.8rem, 11cqw, 5rem);
+  font-size: 11cqw;
   /* Gothique a longues hampes : marge de securite si le titre passe sur 2 lignes. */
-  line-height: 1.12;
+  line-height: 1.1;
   letter-spacing: 0.01em;
   padding: 0.4cqw 0 0.2cqw;
 }
 
 .masthead__tagline {
   font-family: var(--font-mono);
-  font-size: clamp(0.48rem, 1.7cqw, 0.72rem);
+  font-size: 1.7cqw;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--ink-soft);
@@ -45,84 +45,92 @@
   margin-bottom: 0.4cqw;
 }
 
-/* --- En-tete courant des pages interieures ------------------------------- */
-.running-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-2xs);
-  font-family: var(--font-mono);
-  font-size: clamp(0.5rem, 1.6cqw, 0.72rem);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  padding-bottom: 0.5cqw;
-  border-bottom: var(--rule-med) solid var(--ink);
-  margin-bottom: 1.4cqw;
-}
-
-.running-head__section {
-  color: var(--orange-deep);
-  font-weight: 700;
-}
-
-.running-head__folio {
-  color: var(--ink-soft);
-}
-
 /* --- Titres -------------------------------------------------------------- */
 .kicker {
   display: inline-block;
   font-family: var(--font-sans);
   font-weight: 700;
-  font-size: clamp(0.55rem, 1.9cqw, 0.8rem);
+  font-size: 1.9cqw;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--paper-50);
-  background: var(--blue);
-  padding: 0.25em 0.7em;
+  color: var(--sec-on);
+  background: var(--sec);
+  padding: 0.3em 0.75em 0.34em;
   margin-bottom: 0.6cqw;
 }
 
-.kicker--orange {
-  background: var(--orange);
-}
+.kicker--orange { background: var(--orange); color: var(--paper-50); }
+.kicker--blue { background: var(--blue); color: var(--paper-50); }
 
 .kicker--ghost {
-  color: var(--ink);
+  color: var(--sec);
   background: transparent;
-  border: var(--rule-thin) solid var(--ink);
+  border: var(--rule-box) solid currentColor;
+  padding: calc(0.3em - 2px) calc(0.75em - 2px) calc(0.34em - 2px);
 }
 
+/* Le titrage du journal : une condensee haute, droite, en capitales pleines,
+   serree jusqu'a se toucher. Elle est ensuite MANGEE par un grain (voir plus
+   bas) : l'encre a mal pris sur le papier, comme une affiche serigraphiee. */
 .headline {
   font-family: var(--font-display);
   font-weight: 400;
-  /* Les bords ronges debordent du cadran : sous 1.05 les lignes s'accrochent. */
-  line-height: 1.05;
-  letter-spacing: 0.01em;
+  line-height: 0.9;
+  letter-spacing: 0.002em;
   text-transform: uppercase;
-  /* Rubik Dirt est bien plus large qu'une condensee : corps revu a la baisse. */
-  font-size: clamp(1.3rem, 8.5cqw, 3.6rem);
+  font-size: 10cqw;
   margin-bottom: 0.6cqw;
+  text-wrap: balance;
 }
 
 .headline--xl {
-  font-size: clamp(1.7rem, 12cqw, 5.5rem);
-  line-height: 1.02;
+  font-size: 15cqw;
+  line-height: 0.86;
 }
-.headline--md { font-size: clamp(1.05rem, 6.2cqw, 2.2rem); }
-.headline--sm { font-size: clamp(1rem, 5.6cqw, 2rem); }
+.headline--md { font-size: 7cqw; }
+.headline--sm { font-size: 5.6cqw; line-height: 0.94; }
 
 .headline--orange { color: var(--orange); }
 .headline--blue { color: var(--blue-deep); }
+.headline--sec { color: var(--sec); }
+
+/* --- L'encre mangee ------------------------------------------------------
+   Un masque de bruit anisotrope ronge les capitales : mouchetures fines +
+   rayures horizontales, comme un aplat mal encre. Il ne s'applique qu'aux
+   gros corps -- sous 2 cqw le grain devient de la bouillie. */
+:root {
+  --tex-erode: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='e' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.05 0.7' numOctaves='4' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.34 0.34 0.34 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='14' intercept='-4.35'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='320' height='320' filter='url(%23e)'/%3E%3C/svg%3E");
+}
+
+.headline,
+.masthead__title,
+.headline--shout {
+  -webkit-mask-image: var(--tex-erode);
+  mask-image: var(--tex-erode);
+  -webkit-mask-size: 320px 320px;
+  mask-size: 320px 320px;
+}
+
+/* Titre pose sur une image ou un aplat : l'usure doit rester lisible. */
+.headline--clean {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+/* Deuxieme voix : la meme condensee, mais dans les annonces et les prix. */
+.headline--shout {
+  font-family: var(--font-shout);
+  letter-spacing: 0.005em;
+}
 
 .deck {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: clamp(0.8rem, 3cqw, 1.15rem);
+  font-size: 3cqw;
   line-height: 1.35;
   color: var(--ink-soft);
   max-width: 46ch;
-  margin-bottom: 0.8cqw;
+  margin-bottom: 0.7cqw;
 }
 
 .byline {
@@ -131,7 +139,7 @@
   gap: 0.6em;
   flex-wrap: wrap;
   font-family: var(--font-mono);
-  font-size: clamp(0.5rem, 1.7cqw, 0.72rem);
+  font-size: 1.7cqw;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   padding: 0.5cqw 0;
@@ -141,7 +149,7 @@
 }
 
 .byline__author { font-weight: 700; }
-.byline__sep { color: var(--orange); }
+.byline__sep { color: var(--sec); }
 
 /* --- Filets decoratifs --------------------------------------------------- */
 .rule {
@@ -161,12 +169,22 @@
 
 .rule--orange { border-color: var(--orange); }
 
+/* Le filet de rubrique : epais dessus, mince dessous. Deux encres, une
+   seule ligne -- c'est la signature graphique du journal. */
+.rule--sec {
+  border: 0;
+  height: 5px;
+  border-top: 4px solid var(--sec);
+  border-bottom: var(--rule-thin) solid var(--ink);
+  margin: 0.7cqw 0 0.9cqw;
+}
+
 /* --- Corps de texte en colonnes ------------------------------------------ */
 .columns {
   columns: 2;
   column-gap: 2.5cqw;
   column-rule: var(--rule-thin) solid var(--rule-hair);
-  font-size: clamp(0.62rem, 2.15cqw, 0.95rem);
+  font-size: 2.15cqw;
   line-height: 1.45;
   text-align: justify;
   hyphens: auto;
@@ -182,29 +200,36 @@
 
 .columns p:first-of-type { text-indent: 0; }
 
+/* La lettrine prend la couleur de la rubrique : c'est le premier signal
+   couleur que l'oeil rencontre dans le texte. */
 .dropcap::first-letter {
   float: left;
   font-family: var(--font-display);
-  font-size: 3em;
-  line-height: 0.9;
-  padding: 0.04em 0.12em 0 0;
-  color: var(--orange);
+  font-weight: 400;
+  font-size: 3.4em;
+  line-height: 0.76;
+  padding: 0.08em 0.11em 0 0;
+  color: var(--sec);
 }
 
 /* --- Encarts ------------------------------------------------------------- */
+/* La citation detachee passe en display : c'est une respiration dans la
+   colonne, pas un paragraphe en gras. */
 .pullquote {
   break-inside: avoid;
   margin: 1cqw 0;
   padding: 1cqw 0;
-  border-top: var(--rule-thick) solid var(--orange);
+  border-top: var(--rule-thick) solid var(--sec);
   border-bottom: var(--rule-thin) solid var(--ink);
   font-family: var(--font-sans);
-  font-weight: 600;
+  font-weight: 700;
   font-style: italic;
-  font-size: clamp(0.85rem, 3.4cqw, 1.35rem);
-  line-height: 1.2;
+  font-size: 3.3cqw;
+  line-height: 1.18;
+  letter-spacing: -0.005em;
   text-indent: 0;
   text-align: left;
+  hyphens: none;
 }
 
 .pullquote cite {
@@ -221,7 +246,7 @@
 .box {
   break-inside: avoid;
   padding: 1.2cqw;
-  border: var(--rule-med) solid var(--ink);
+  border: var(--rule-box) solid var(--ink);
   background: color-mix(in srgb, var(--paper-200) 60%, transparent);
   margin: 1cqw 0;
 }
@@ -242,7 +267,7 @@
 .box__title {
   font-family: var(--font-sans);
   font-weight: 700;
-  font-size: clamp(0.6rem, 2.1cqw, 0.85rem);
+  font-size: 2.1cqw;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   margin-bottom: 0.6em;
@@ -251,56 +276,17 @@
 }
 
 .box p {
-  font-size: clamp(0.6rem, 2cqw, 0.88rem);
+  font-size: 2cqw;
   line-height: 1.45;
-}
-
-/* --- Blocs "photo" : aplats + trames, en attendant de vraies images ------ */
-.plate {
-  position: relative;
-  display: grid;
-  place-items: center;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  border: var(--rule-med) solid var(--ink);
-  background: var(--blue-deep);
-  color: var(--paper-50);
-  margin-bottom: 0.6cqw;
-}
-
-.plate--orange { background: var(--orange); color: var(--ink); }
-.plate--paper { background: var(--paper-300); color: var(--ink); }
-.plate--tall { aspect-ratio: 3 / 4; }
-.plate--wide { aspect-ratio: 16 / 7; }
-
-.plate::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: var(--tex-halftone);
-  background-size: 7px 7px;
-  opacity: 0.55;
-  mix-blend-mode: multiply;
-}
-
-.plate__label {
-  position: relative;
-  font-family: var(--font-mono);
-  font-size: clamp(0.5rem, 1.8cqw, 0.75rem);
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  text-align: center;
-  padding: 0.4em 0.8em;
-  border: var(--rule-thin) dashed currentColor;
 }
 
 .caption {
   font-family: var(--font-mono);
-  font-size: clamp(0.48rem, 1.6cqw, 0.7rem);
+  font-size: 1.6cqw;
   line-height: 1.4;
   color: var(--ink-soft);
   padding-left: 0.6em;
-  border-left: var(--rule-med) solid var(--orange);
+  border-left: 3px solid var(--sec);
   margin-bottom: 1cqw;
 }
 
@@ -319,7 +305,7 @@
   display: inline-block;
   font-family: var(--font-sans);
   font-weight: 700;
-  font-size: clamp(0.55rem, 1.9cqw, 0.8rem);
+  font-size: 1.9cqw;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--orange-deep);
@@ -349,13 +335,13 @@
   padding: 0.5cqw 0;
   border-bottom: var(--rule-thin) dotted var(--ink-faint);
   font-family: var(--font-sans);
-  font-size: clamp(0.62rem, 2.1cqw, 0.9rem);
+  font-size: 2.1cqw;
 }
 
 .toc__num {
   font-family: var(--font-mono);
   font-weight: 700;
-  color: var(--orange);
+  color: var(--sec);
   min-width: 2.4em;
 }
 
@@ -370,7 +356,7 @@
   padding-top: 0.6cqw;
   border-top: var(--rule-med) solid var(--ink);
   font-family: var(--font-mono);
-  font-size: clamp(0.45rem, 1.5cqw, 0.65rem);
+  font-size: 1.5cqw;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-faint);
@@ -401,32 +387,16 @@
 .subhead {
   font-family: var(--font-sans);
   font-weight: 700;
-  font-size: clamp(0.68rem, 2.4cqw, 1rem);
+  font-size: 2.4cqw;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   margin: 0.8cqw 0 0.3cqw;
   break-after: avoid;
 }
 
-/* Pages etroites : retour a une seule colonne */
-@container (max-width: 340px) {
-  .columns,
-  .columns--3 { columns: 1; }
-
-  .grid--2,
-  .grid--sidebar,
-  .grid--asym { grid-template-columns: 1fr; }
-}
-
 /* Dans un conteneur flex vertical, ces elements ne doivent pas s'etirer. */
 .kicker,
 .stamp { align-self: flex-start; }
-
-/* Pages tres etroites : les blocs image ne doivent pas devorer la page. */
-@container (max-width: 340px) {
-  .plate--tall { aspect-ratio: 4 / 3; }
-  .plate { max-height: 40vh; }
-}
 
 /* --- Remplissage vertical de la page ------------------------------------- */
 /* La page est une colonne flex : l'ours reste colle en bas du papier. */
@@ -441,14 +411,127 @@
 .colophon { margin-top: auto; }
 
 /* --- Couverture magazine -------------------------------------------------
-   La photo absorbe la place restante : la une ne peut donc jamais deborder.
+   Le titre se lit sur le papier, la photo occupe tout le bas et touche les
+   trois coupes, l'aplat orange fait le sol. La scene absorbe la place qui
+   reste : la une ne peut donc jamais deborder.
    ------------------------------------------------------------------------- */
-.cover__title {
-  padding: 0.6cqw 0 0.8cqw;
+.cover__line {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-2xs);
+  padding: 0.5cqw 0 0.6cqw;
+  font-family: var(--font-mono);
+  font-size: 1.6cqw;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
 }
 
-/* Sur la une, le titre prend toute la largeur disponible. */
-.cover__title .headline { margin-bottom: 0; }
+/* La scene : un aplat bleu nuit dont la photo occupe tout le bas, a sa taille
+   reelle -- aucun recadrage, elle est entiere. La bande sombre qui reste en
+   haut est exactement ce sur quoi le titre orange vient s'asseoir. */
+.cover__stage {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  margin: 0 -8cqw;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background: var(--blue-night);
+}
+
+.cover__shot {
+  width: 100%;
+  margin: 0;
+}
+
+.cover__shot .photo__frame {
+  border-width: var(--rule-box) 0 0;
+}
+
+.cover__shot img {
+  width: 100%;
+  height: auto;
+}
+
+/* Le titre orange s'assoit a cheval sur la bande sombre et sur le haut de la
+   photo. Pour qu'il tienne partout, la photo est assombrie sous lui. */
+.cover__word {
+  position: absolute;
+  z-index: 2;
+  top: 3.2cqw;
+  left: 8cqw;
+  right: 8cqw;
+  margin: 0;
+  font-size: 12.7cqw;
+  line-height: 0.93;
+  text-align: left;
+  text-wrap: initial;
+}
+
+/* Le titre tient sur la bande sombre : la photo n'a donc pas besoin d'etre
+   assombrie. Ce degrade ne sert qu'a raccorder la bande au haut de l'image. */
+.cover__stage::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 32%;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    var(--blue-night) 0%,
+    var(--blue-night) 62%,
+    transparent 100%
+  );
+}
+
+
+/* L'etiquette de planche se range en bas a droite de la photo. */
+.cover__stage .hero__tag {
+  top: auto;
+  bottom: 0;
+  background: var(--ink);
+}
+
+/* Fond de scene SANS photo : papier en haut, aplat de couleur en bas, la
+   gravure a cheval sur la ligne d'horizon. C'est deja une composition. */
+.hero--stage .hero__bg {
+  place-items: center;
+  background: linear-gradient(
+    to bottom,
+    var(--paper-200) 0 58%,
+    var(--orange) 58% 100%
+  );
+}
+
+.hero--stage .hero__mark {
+  width: 44%;
+  margin-top: 18%;
+  color: var(--blue-deep);
+  opacity: 0.66;
+}
+
+/* L'etiquette de planche se range en bas a droite de la photo. */
+.cover__stage .hero__tag {
+  top: auto;
+  bottom: 0;
+  background: var(--ink);
+}
+
+/* Le sol de l'affiche : un aplat orange pleine largeur, sous la photo. */
+.cover__blurb {
+  margin: 0 -8cqw;
+  padding: 0.9cqw 8cqw 1cqw;
+  background: var(--orange);
+  color: var(--paper-50);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 2.4cqw;
+  line-height: 1.3;
+  text-align: center;
+}
 
 .cover__frame {
   flex: 1 1 auto;
@@ -456,45 +539,98 @@
   display: flex;
 }
 
-.photo__slot--fill {
-  aspect-ratio: auto;
-  flex: 1;
-  height: 100%;
+
+
+/* --- La chanson ----------------------------------------------------------
+   Une page de paroles n'est pas un article : les couplets sont en colonnes,
+   les refrains reviennent en aplat, et le titre s'epelle lettre a lettre.
+   ------------------------------------------------------------------------- */
+.spell {
+  font-family: var(--font-display);
+  font-size: 5.4cqw;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  color: var(--sec);
+  text-transform: uppercase;
+  margin-bottom: 0.5cqw;
 }
 
-/* Une phrase sous la photo, pas un sommaire : celui-ci est page 2. */
-.cover__blurb {
-  padding: 0.9cqw 0 0;
+.lyrics {
+  columns: 2;
+  column-gap: 2.4cqw;
+  column-rule: var(--rule-thin) solid var(--rule-hair);
   font-family: var(--font-serif);
-  font-style: italic;
-  font-size: clamp(0.6rem, 2.3cqw, 1rem);
-  line-height: 1.35;
-  text-align: center;
-  color: var(--ink-soft);
+  font-size: 2.1cqw;
+  line-height: 1.42;
 }
 
-/* Liste des dons de l'horoscope : puces discretes dans une colonne. */
-.gifts {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 0.6em;
+.lyrics p {
+  break-inside: avoid;
+  margin-bottom: 0.55em;
   text-indent: 0;
 }
 
-.gifts li {
-  padding-left: 0.9em;
-  text-indent: -0.9em;
-  margin-bottom: 0.3em;
+.lyrics__part {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: 1.4cqw;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sec);
+  margin-bottom: 0.15em !important;
 }
 
-.gifts li::before {
-  content: "\2014\00a0";
-  color: var(--orange);
+/* Le refrain revient : il est traite comme un aplat, pas comme du texte. */
+.lyrics__chorus {
+  padding: 0.55cqw 0.9cqw 0.6cqw;
+  margin-bottom: 0.55em;
+  background: var(--sec);
+  color: var(--sec-on);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.3;
+}
+
+/* Chapeau de la page chanson : le titre a gauche, le disque a droite. */
+.song {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 1.4cqw;
+  margin-bottom: 0.6cqw;
+}
+
+.song__disc {
+  width: 18cqw;
+  height: 18cqw;
+  color: var(--sec);
+}
+
+.song__air {
+  font-family: var(--font-mono);
+  font-size: 1.6cqw;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 0.6cqw;
+}
+
+/* La derniere ligne d'une lettre : elle se detache du corps du texte. */
+.signoff {
+  margin-top: 0.6cqw;
+  padding-top: 0.7cqw;
+  border-top: 3px solid var(--sec);
+  font-family: var(--font-display);
+  font-size: 4.2cqw;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--sec);
 }
 
 /* --- Vignettes gravées ----------------------------------------------------
-   Dessins au trait heritant de la couleur du texte : ils passent donc en
-   orange dans un titre orange, en blanc sur un aplat bleu, et s'impriment.
+   Dessins au trait qui heritent de la couleur du texte : ils passent donc en
+   orange dans un titre orange, en creme sur un aplat bleu, et s'impriment.
    ------------------------------------------------------------------------- */
 .sprite {
   position: absolute;
@@ -511,38 +647,222 @@
 }
 
 .vignette--sm { width: 3cqw; height: 3cqw; }
-.vignette--lg { width: 9.5cqw; height: 9.5cqw; color: var(--orange); }
 
-/* Dans le fil du texte : cale sur la ligne de base. */
+/* Dans le fil du texte : calee sur la ligne de base. */
 .vignette--inline {
   display: inline-block;
   width: 1.15em;
   height: 1.15em;
   vertical-align: -0.22em;
-  color: var(--orange-deep);
+  color: var(--sec);
 }
 
-/* Devant les trois symboles offerts. */
-.vignette--gift {
-  display: inline-block;
-  width: 1.5em;
-  height: 1.5em;
-  vertical-align: -0.42em;
-  margin-right: 0.35em;
-  color: var(--blue);
+/* --- Remplir la page -----------------------------------------------------
+   La page est une colonne flex : un bloc marque .fill absorbe la hauteur qui
+   reste, et une image marquee .photo--grow s'etire dedans. C'est ce qui
+   evite les grands blancs en bas de page quand un article est court.
+   ------------------------------------------------------------------------- */
+.fill {
+  flex: 1 1 auto;
+  min-height: 0;
 }
 
-/* Bandeau astral : la frise du haut de rubrique. */
-.astro-band {
+.fill > section,
+.fill > aside,
+.fill > div {
   display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.photo--grow {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.photo--grow .photo__slot,
+.photo--grow .photo__frame,
+.photo--grow .player {
+  flex: 1 1 auto;
+  min-height: 0;
+  aspect-ratio: auto;
+}
+
+/* Une image qui s'etire est sortie du flux : sinon sa hauteur intrinseque et
+   la hauteur du cadre se courent apres, et la page deborde. Une photo est
+   recadree ; un document, jamais -- il se pose en entier sur son fond, comme
+   une piece sous une vitrine. */
+.photo--grow .photo__frame img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ...sauf un document. L'etirer laisserait des bandes de papier de chaque
+   cote, ou bien couperait l'ecriture : il garde donc son format d'origine et
+   c'est le reste de la page qui s'ajuste. */
+.photo--grow .photo__frame--doc { flex: 0 0 auto; }
+
+.photo--grow .photo__frame--doc img {
+  position: static;
+  width: 100%;
+  height: auto;
+  object-fit: fill;
+}
+
+/* --- Les chiffres de la redaction ---------------------------------------
+   Des nombres traites comme des images : corps enorme, legende minuscule.
+   ------------------------------------------------------------------------- */
+.tally {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1cqw;
+  border: var(--rule-box) solid var(--ink);
+}
+
+.tally li {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 3.2cqw;
-  padding: 0.2cqw 0 0.5cqw;
-  margin-bottom: 0.6cqw;
-  border-bottom: var(--rule-thin) solid var(--ink);
+  gap: 0.2cqw;
+  padding: 0.8cqw 0.5cqw 0.9cqw;
+  border-right: var(--rule-thin) solid var(--rule-hair);
+  text-align: center;
+}
+
+.tally li:last-child { border-right: 0; }
+.tally li:nth-child(odd) b { color: var(--sec); }
+.tally li:nth-child(even) b { color: var(--ink); }
+
+.tally b {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 9cqw;
+  line-height: 0.82;
+}
+
+.tally span {
+  font-family: var(--font-mono);
+  font-size: 1.4cqw;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
   color: var(--ink-soft);
 }
 
-.gifts li { display: block; }
-.gifts li::before { content: none; }
+/* --- Le generique --------------------------------------------------------
+   La page de remerciements : les noms en grand, la rubrique en petit dessous.
+   C'est un generique de fin, pas une liste.
+   ------------------------------------------------------------------------- */
+.credits {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.35cqw 1.6cqw;
+  list-style: none;
+  padding: 0.8cqw 0 0;
+  margin: 0 0 0.8cqw;
+  border-top: 3px solid var(--sec);
+}
+
+.credits li {
+  padding-bottom: 0.35cqw;
+  border-bottom: var(--rule-thin) dotted var(--ink-faint);
+}
+
+.credits b {
+  display: block;
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: 2.15cqw;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.credits span {
+  font-family: var(--font-mono);
+  font-size: 1.32cqw;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* --- Quatrieme de couverture ---------------------------------------------
+   Une affiche, pas une page : un aplat, un mot, une image, une signature.
+   ------------------------------------------------------------------------- */
+.finale {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1.4cqw;
+  height: 100%;
+}
+
+.finale__body {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.finale__kicker {
+  font-family: var(--font-mono);
+  font-size: 1.5cqw;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  padding-bottom: 0.8cqw;
+  margin-bottom: 1cqw;
+  border-bottom: var(--rule-box) solid currentColor;
+}
+
+.finale__word {
+  color: var(--paper-50);
+  font-size: 13.5cqw;
+  margin-bottom: 1.1cqw;
+}
+
+/* L'image prend toute la place qui reste : la page ne peut pas deborder. */
+.finale__photo {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  margin: 0 -8cqw;
+}
+
+.finale__photo .photo__slot {
+  flex: 1;
+  aspect-ratio: auto;
+  border-color: var(--paper-50);
+  border-width: var(--rule-box) 0;
+  background: var(--sec-pale);
+  color: var(--sec-deep);
+}
+
+.finale__photo .photo__mark { width: 32%; opacity: 0.5; }
+.finale__photo .photo__hint { background: var(--sec-deep); color: var(--paper-50); }
+
+.finale__sign {
+  padding-top: 1cqw;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 2.3cqw;
+  line-height: 1.35;
+}
+
+/* La rengaine verticale, en tranche : elle repete la seule chose a retenir. */
+.finale__side {
+  writing-mode: vertical-rl;
+  align-self: stretch;
+  overflow: hidden;
+  padding: 0 0.3cqw;
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: 1.6cqw;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0.55;
+}

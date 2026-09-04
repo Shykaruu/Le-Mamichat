@@ -118,7 +118,7 @@
 /* --- Bandeau de définition ------------------------------------------------ */
 .crossword__clue {
   font-family: var(--font-serif);
-  font-size: clamp(0.6rem, 2.1cqw, 0.92rem);
+  font-size: 2.1cqw;
   line-height: 1.35;
   padding: 0.5cqw 0.8cqw;
   border-left: var(--rule-thick) solid var(--orange);
@@ -148,12 +148,12 @@
   padding: 0.3em 0.9em;
   font-family: var(--font-sans);
   font-weight: 700;
-  font-size: clamp(0.5rem, 1.7cqw, 0.72rem);
+  font-size: 1.7cqw;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ink);
   background: var(--paper-50);
-  border: var(--rule-med) solid var(--ink);
+  border: var(--rule-box) solid var(--ink);
   border-radius: 999px;
   transition: background-color 140ms var(--ui-ease), color 140ms var(--ui-ease);
 }
@@ -165,7 +165,7 @@
 
 .crossword__status {
   font-family: var(--font-mono);
-  font-size: clamp(0.48rem, 1.6cqw, 0.68rem);
+  font-size: 1.6cqw;
   letter-spacing: 0.08em;
   color: var(--orange-deep);
 }
@@ -208,7 +208,7 @@
   flex: 0 0 auto;
   width: 1.7em;
   height: 1.9em;
-  border: var(--rule-med) solid currentColor;
+  border: var(--rule-box) solid currentColor;
   background: color-mix(in srgb, var(--paper-50) 25%, transparent);
   font-family: var(--font-sans);
   font-weight: 700;

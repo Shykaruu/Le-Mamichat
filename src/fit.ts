@@ -56,7 +56,7 @@ export function watchFit(): void {
     const tooFull = report.filter((p) => p.overflow > 0)
 
     if (tooFull.length === 0) {
-      console.info('%cMise en page : les 16 pages tiennent.', 'color:#1F6FA8;font-weight:bold')
+      console.info(`%cMise en page : les ${report.length} pages tiennent.`, 'color:#1F6FA8;font-weight:bold')
       return
     }
 

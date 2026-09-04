@@ -1,11 +1,10 @@
 /**
- * Stockage de l'etat du journal (bons detaches, et plus tard tout ce qui
- * doit survivre a un rechargement).
+ * Stockage de ce qui doit survivre a un rechargement.
  *
- * Aujourd'hui : le navigateur du lecteur, chacun voit ses propres bons.
- * Demain : une vraie base partagee, pour que toute la famille voie les memes.
- * Tout passe par cette interface, donc le jour ou l'on branche une base,
- * rien d'autre ne bouge dans le journal.
+ * Une seule chose en depend : la grille de mots croises en cours, qu'il serait
+ * cruel de perdre en rafraichissant. Les bons a detacher, eux, ne sont
+ * volontairement PAS conserves -- se dechirer est un geste, et chacun doit
+ * pouvoir le refaire.
  */
 
 export interface JournalStore {

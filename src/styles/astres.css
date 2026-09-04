@@ -1,0 +1,159 @@
+/* =========================================================
+   LES ASTRES
+
+   La rubrique la plus dessinee du journal : une double page
+   ou la page de droite bascule en bleu nuit et ou les
+   informations passent par la carte du ciel plutot que par
+   le texte. Trois blocs de composition :
+
+     .natal      la roue astrologique, gravee au trait
+     .gift-row   les trois symboles offerts, en cartes
+     .record     les deux chansons, sur un 45 tours
+   ========================================================= */
+
+/* --- Chapeau de la page de nuit ------------------------------------------ */
+.astro-head { margin-bottom: 1cqw; }
+
+.astro-date {
+  font-family: var(--font-mono);
+  font-size: 2cqw;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.astro-date b {
+  color: var(--sec);
+  font-size: 1.15em;
+}
+
+/* --- La carte du ciel ---------------------------------------------------- */
+.astro-chart {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  align-items: center;
+  gap: 2.4cqw;
+  margin: 0.6cqw 0 1.2cqw;
+}
+
+.natal {
+  width: 100%;
+  height: auto;
+  color: var(--blue-soft);
+}
+
+/* Les deux secteurs qui la concernent : le Soleil en Vierge, en haut,
+   et l'ascendant Sagittaire, a gauche. Tout le reste est en retrait. */
+.natal__wedge { fill: var(--orange); opacity: 0.22; }
+.natal__hot { color: var(--orange); }
+.natal__faint { opacity: 0.5; }
+
+.natal__label {
+  font-family: var(--font-mono);
+  /* En unites utilisateur du viewBox : le libelle suit l'echelle du dessin. */
+  font-size: 3.6%;
+  letter-spacing: 0.16em;
+  fill: var(--orange);
+}
+
+/* --- Les trois symboles -------------------------------------------------- */
+.gift-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1cqw;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1cqw;
+  break-inside: avoid;
+}
+
+.gift {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5cqw;
+  padding: 1.2cqw 0.8cqw 1.3cqw;
+  border: var(--rule-box) solid var(--ink);
+  background: var(--paper-200);
+}
+
+.gift:nth-child(1) { background: var(--orange); color: var(--paper-50); }
+.gift:nth-child(2) { background: var(--paper-200); color: var(--ink); }
+.gift:nth-child(3) { background: var(--blue-deep); color: var(--paper-50); }
+
+.gift__mark {
+  width: 12cqw;
+  height: 12cqw;
+  color: currentColor;
+}
+
+.gift__name {
+  font-family: var(--font-shout);
+  font-size: 2.9cqw;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.gift__text {
+  font-family: var(--font-mono);
+  font-size: 1.42cqw;
+  line-height: 1.45;
+  text-indent: 0;
+}
+
+/* --- Les deux chansons, sur un 45 tours ---------------------------------- */
+.record {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 1.2cqw;
+  padding: 1.1cqw;
+  border: var(--rule-box) solid var(--ink);
+  background: var(--paper-200);
+  break-inside: avoid;
+}
+
+.record__disc {
+  width: 15cqw;
+  height: 15cqw;
+  color: var(--blue-deep);
+}
+
+.record__head {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: 1.7cqw;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sec);
+  margin-bottom: 0.4em;
+}
+
+.record__song {
+  font-family: var(--font-serif);
+  font-size: 1.95cqw;
+  line-height: 1.35;
+  text-indent: 0;
+}
+
+.record__song b {
+  font-family: var(--font-sans);
+  font-weight: 800;
+}
+
+.record__sign {
+  grid-column: 1 / -1;
+  margin-top: 0.3cqw;
+  padding-top: 0.6cqw;
+  border-top: var(--rule-thin) solid var(--rule-hair);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.75cqw;
+  line-height: 1.35;
+  text-indent: 0;
+  color: var(--ink-soft);
+}
+

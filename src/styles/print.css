@@ -27,6 +27,16 @@
   /* Le grain a l'ecran devient de la bouillie en offset. */
   body::after { display: none; }
 
+  /* L'encre mangee des titres passe par un masque SVG (feTurbulence). Tous les
+     moteurs ne le rasterisent pas a l'impression, et un masque qui echoue
+     efface le titre : on imprime donc des capitales pleines. Si votre
+     imprimante s'en sort, supprimez ces trois lignes. */
+  .headline,
+  .masthead__title {
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+  }
+
   /* Chrome de lecture : hors sujet sur du papier. */
   .toolbar,
   .controls { display: none !important; }
