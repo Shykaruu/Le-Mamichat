@@ -1,10 +1,17 @@
-# Le Canard Orange
+# Le Mamichat
 
-Maquette de **journal rétro interactif** : on tourne les pages à l'écran comme on
-tournerait celles d'un quotidien papier.
+Un **journal interactif** de vingt-deux pages, offert à Marie-Charlotte pour ses
+quatre-vingts ans. On tourne les pages à l'écran comme celles d'un quotidien
+papier, on détache les bons, on remplit les mots croisés, et on l'imprime si on
+veut le tenir en main.
 
-Le contenu actuel est provisoire — le but de cette première version est la
-maquette : palette, typographie, grille et moteur de tourne-page.
+Écrit à plusieurs mains par toute la famille. Le moteur de tourne-page, la
+grille de mots croisés et la mise en page sont faits maison, sans aucune
+dépendance d'exécution.
+
+> Ce dépôt est publié pour le code et la démarche. Le contenu éditorial, les
+> photographies et les archives familiales appartiennent à leurs auteurs et ne
+> sont pas réutilisables.
 
 ## Direction artistique — « Grand large »
 
