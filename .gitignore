@@ -10,3 +10,13 @@ Thumbs.db
 # Les videos sont trop lourdes pour git (limite GitHub : 100 Mo par fichier).
 # Elles restent dans public/images/videos/ et partent avec le site.
 public/images/videos/
+
+# Identifiants FTP de mise en ligne : jamais dans le depot.
+.env.deploy
+
+# Cle SSH du serveur de mise en ligne, relevee au premier envoi.
+.sftp_known_hosts
+
+# Reglages d'outils, propres a chaque poste de travail.
+.claude/
+.idea/
