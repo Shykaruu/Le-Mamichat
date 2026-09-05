@@ -109,6 +109,10 @@
   /* Le lecteur video cede la place a l'affiche du film et a son QR code. */
   .player { display: none; }
   .reel { display: flex; }
+
+  /* L'affiche garde son format : ce bloc-la ne s'etire pas, sinon l'image se
+     retrouvait encadree de deux blancs. Le vide se rassemble en bas de page. */
+  .photo--grow:has(.reel) { flex: 0 0 auto; }
 }
 
 @media print {

@@ -935,49 +935,52 @@
 
 /* --- L'affiche du film ---------------------------------------------------
    A l'ecran, on regarde le film. Sur papier, un lecteur video ne veut rien
-   dire : il laisse la place a l'affiche et a un QR code vers la video.
-   Le bloc n'existe donc qu'a l'impression -- voir print.css pour la bascule.
+   dire : il laisse la place a l'affiche et a un QR code vers la video, poses
+   cote a cote -- empiles, le bloc faisait deux fois sa hauteur et debordait
+   des pages les plus etroites. Le bloc n'existe qu'a l'impression : voir
+   print.css pour la bascule.
    ------------------------------------------------------------------------- */
-/* Le bloc est une colonne : l'affiche prend la hauteur qui reste, le pied
-   garde la sienne. Sans ca, l'affiche deborde de la page et passe sous le
-   texte de l'article. */
 .reel {
   display: none;
-  flex-direction: column;
+  align-items: center;
+  gap: 3cqw;
   min-height: 0;
 }
 
+/* L'affiche garde le format de l'image : etiree sur la hauteur de la page,
+   elle devenait un carre recadre, bien trop gros pour ce qu'elle raconte. */
 .reel__still {
   flex: 1 1 auto;
-  min-height: 0;
-  width: 100%;
+  min-width: 0;
+  aspect-ratio: 16 / 9;
+  height: auto;
   object-fit: cover;
   border: var(--rule-box) solid var(--ink);
 }
 
+/* La colonne de droite : le QR, puis ce qu'il faut en faire. */
 .reel__foot {
-  flex: none;
+  flex: 0 0 26%;
   display: flex;
-  align-items: center;
-  gap: 3cqw;
-  padding-top: 2.5cqw;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.6cqw;
 }
 
 .reel__qr {
-  width: 24cqw;
-  flex: none;
+  width: 100%;
   border: var(--rule-box) solid var(--ink);
 }
 
 .reel__copy {
   display: flex;
   flex-direction: column;
-  gap: 0.8cqw;
+  gap: 0.6cqw;
 }
 
 .reel__copy b {
   font-family: var(--font-display);
-  font-size: 7cqw;
+  font-size: 5.4cqw;
   line-height: 0.9;
   text-transform: uppercase;
   color: var(--sec);
@@ -985,8 +988,9 @@
 
 .reel__copy span {
   font-family: var(--font-mono);
-  font-size: 2.2cqw;
-  letter-spacing: 0.16em;
+  font-size: 1.9cqw;
+  line-height: 1.4;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-soft);
 }
