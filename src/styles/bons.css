@@ -1,0 +1,263 @@
+/* ──────────────────────────────────────────────────────────────────────────
+   PAGE 15 — BONS MICHAËL
+   Tout est strictement scope sous .page--bons afin de ne pas entrer en
+   collision avec les .coupon/.coupon__* interactifs utilises ailleurs.
+   ────────────────────────────────────────────────────────────────────────── */
+
+.page--bons {
+  --bons-ink: #7b3049;
+  --bons-heart: #d96876;
+
+  /* La .page globale est normalement flex. Ici on la remplace explicitement
+     par 3 lignes : bandeau / grille / folio. */
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.page--bons > .flag,
+.page--bons > .colophon {
+  min-width: 0;
+}
+
+.page--bons > .colophon {
+  margin-top: 0;
+  align-self: end;
+}
+
+.page--bons .bons-grid {
+  min-width: 0;
+  min-height: 0;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+
+  gap: 1.05cqw 1.15cqw;
+  padding: 1.1cqw 0 0.95cqw;
+  box-sizing: border-box;
+}
+
+.page--bons .bon-card {
+  --bon-tint: 244 210 218;
+
+  position: relative;
+  isolation: isolate;
+
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+
+  display: grid;
+  grid-template-columns: 23% minmax(0, 1fr);
+
+  overflow: hidden;
+  box-sizing: border-box;
+
+  border-radius: 1.25cqw;
+  background: rgb(var(--bon-tint));
+  color: var(--bons-ink);
+
+  box-shadow:
+    inset 0 0 0 0.12cqw rgb(123 48 73 / 0.07),
+    0 0.1cqw 0 rgb(255 255 255 / 0.35);
+}
+
+.page--bons .bon-card--pink     { --bon-tint: 244 210 218; }
+.page--bons .bon-card--blue     { --bon-tint: 215 233 242; }
+.page--bons .bon-card--yellow   { --bon-tint: 250 235 174; }
+.page--bons .bon-card--green    { --bon-tint: 219 239 219; }
+.page--bons .bon-card--lavender { --bon-tint: 230 220 239; }
+.page--bons .bon-card--cream    { --bon-tint: 248 233 208; }
+
+/* Filet fin interieur comme sur les bons originaux. */
+.page--bons .bon-card::after {
+  content: "";
+  position: absolute;
+  z-index: 20;
+  inset: 0.85cqw;
+  border: 0.13cqw solid rgb(123 48 73 / 0.72);
+  pointer-events: none;
+}
+
+.page--bons .bon-card__stub {
+  position: relative;
+  z-index: 10;
+
+  min-width: 0;
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 2.05cqw 0.75cqw 2.05cqw 1.85cqw;
+  box-sizing: border-box;
+
+  border-right: 0.13cqw solid rgb(123 48 73 / 0.68);
+}
+
+/* Bord gauche ondule, rappel de la ligne de detachement du PDF. */
+.page--bons .bon-card__stub::before {
+  content: "";
+  position: absolute;
+  left: 0.78cqw;
+  top: 0.82cqw;
+  bottom: 0.82cqw;
+  width: 1.25cqw;
+
+  background:
+    radial-gradient(
+      ellipse 0.9cqw 1.28cqw at 0 1.28cqw,
+      transparent 0 0.70cqw,
+      rgb(123 48 73 / 0.72) 0.74cqw 0.82cqw,
+      transparent 0.87cqw
+    )
+    0 0 / 1.25cqw 2.56cqw repeat-y;
+
+  pointer-events: none;
+}
+
+.page--bons .bon-card__stub-text {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+
+  color: var(--bons-ink);
+  font-family: var(--font-sans, "Archivo", Arial, sans-serif);
+  font-size: 1.28cqw;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.page--bons .bon-card__heart {
+  color: var(--bons-heart);
+  font-size: 1.72cqw;
+  line-height: 1;
+}
+
+.page--bons .bon-card__body {
+  position: relative;
+  z-index: 1;
+
+  min-width: 0;
+  min-height: 0;
+
+  margin: 0.82cqw 0.82cqw 0.82cqw 0;
+  padding: 1.25cqw 1.45cqw 1.12cqw;
+  box-sizing: border-box;
+
+  overflow: hidden;
+
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  align-items: center;
+  text-align: center;
+}
+
+/* Vraie image HTML : le chargement et le chemin sont inspectables dans le
+   navigateur, contrairement a un pseudo-element d'arriere-plan. */
+.page--bons .bon-card__photo {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+
+  object-fit: cover;
+  object-position: center 44%;
+
+  filter: grayscale(88%) sepia(10%) contrast(0.9);
+  opacity: 0.25;
+
+  pointer-events: none;
+  user-select: none;
+}
+
+.page--bons .bon-card__tint {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: rgb(var(--bon-tint) / 0.37);
+  pointer-events: none;
+}
+
+.page--bons .bon-card__head,
+.page--bons .bon-card__message,
+.page--bons .bon-card__foot {
+  position: relative;
+  z-index: 2;
+}
+
+.page--bons .bon-card__head {
+  align-self: start;
+  padding-top: 0.15cqw;
+}
+
+.page--bons .bon-card__title {
+  margin: 0;
+
+  color: var(--bons-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 3.0cqw;
+  line-height: 0.95;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+.page--bons .bon-card__subtitle {
+  margin-top: 0.55cqw;
+
+  color: rgb(123 48 73 / 0.82);
+  font-family: var(--font-sans, "Archivo", Arial, sans-serif);
+  font-size: 0.82cqw;
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+}
+
+.page--bons .bon-card__message {
+  align-self: center;
+
+  color: var(--bons-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.95cqw;
+  line-height: 1.08;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+.page--bons .bon-card__foot {
+  width: 76%;
+  justify-self: center;
+
+  padding-top: 0.62cqw;
+  border-top: 0.1cqw solid rgb(123 48 73 / 0.62);
+
+  color: rgb(123 48 73 / 0.74);
+  font-family: var(--font-sans, "Archivo", Arial, sans-serif);
+  font-size: 0.72cqw;
+  line-height: 1.2;
+  letter-spacing: 0.015em;
+}
+
+@media print {
+  .page--bons,
+  .page--bons .bon-card {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page--bons .bon-card {
+    break-inside: avoid;
+  }
+}

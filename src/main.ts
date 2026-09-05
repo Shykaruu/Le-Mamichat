@@ -7,6 +7,7 @@ import './styles/astres.css'
 import './styles/rubriques.css'
 import './styles/crossword.css'
 import './styles/print.css'
+import './styles/bons.css'
 
 import { Flipbook, type FlipbookState } from './flipbook'
 import { setupCoupons } from './coupons'
