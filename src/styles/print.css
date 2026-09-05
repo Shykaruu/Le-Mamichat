@@ -105,6 +105,10 @@
 
   /* Un bon deja detache reste detache sur le papier. */
   .coupon__tear { display: none; }
+
+  /* Le lecteur video cede la place a l'affiche du film et a son QR code. */
+  .player { display: none; }
+  .reel { display: flex; }
 }
 
 @media print {

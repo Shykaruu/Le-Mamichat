@@ -932,3 +932,61 @@
 
 /* Le film absent : l'emplacement remplace le lecteur, il ne s'y ajoute pas. */
 .film__missing { aspect-ratio: 16 / 9; }
+
+/* --- L'affiche du film ---------------------------------------------------
+   A l'ecran, on regarde le film. Sur papier, un lecteur video ne veut rien
+   dire : il laisse la place a l'affiche et a un QR code vers la video.
+   Le bloc n'existe donc qu'a l'impression -- voir print.css pour la bascule.
+   ------------------------------------------------------------------------- */
+/* Le bloc est une colonne : l'affiche prend la hauteur qui reste, le pied
+   garde la sienne. Sans ca, l'affiche deborde de la page et passe sous le
+   texte de l'article. */
+.reel {
+  display: none;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.reel__still {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  object-fit: cover;
+  border: var(--rule-box) solid var(--ink);
+}
+
+.reel__foot {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 3cqw;
+  padding-top: 2.5cqw;
+}
+
+.reel__qr {
+  width: 24cqw;
+  flex: none;
+  border: var(--rule-box) solid var(--ink);
+}
+
+.reel__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8cqw;
+}
+
+.reel__copy b {
+  font-family: var(--font-display);
+  font-size: 7cqw;
+  line-height: 0.9;
+  text-transform: uppercase;
+  color: var(--sec);
+}
+
+.reel__copy span {
+  font-family: var(--font-mono);
+  font-size: 2.2cqw;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
