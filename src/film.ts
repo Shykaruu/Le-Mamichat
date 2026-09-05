@@ -1,5 +1,3 @@
-import QRCode from 'qrcode';
-
 /**
  * Le film, quand il n'est pas la.
  *
@@ -34,34 +32,4 @@ export function setupFilm(): void {
       if (video.isConnected && video.readyState === 0) placeholder(video)
     }, 4000)
   })
-}
-
-/**
- * Remplace les (de l'antarctique uniquement pour le moment) par des QR code pour le format PDF.
- **/
-export async function preparePrintQrCodes(): Promise<void> {
-  const images = document.querySelectorAll<HTMLImageElement>('img[data-qr-url]');
-
-  await Promise.all(Array.from(images).map(async (img) => {
-        const url = img.dataset.qrUrl;
-
-        console.log(url);
-        if (!url) {
-          return;
-        }
-
-        //Ne regen pas le QR à chaque impression
-        if (img.src) {
-          return;
-        }
-
-        img.src = await QRCode.toDataURL(url, {
-          width: 512,
-          margin: 2,
-          errorCorrectionLevel: 'H',
-        });
-
-        console.log("complete")
-      }),
-  );
 }

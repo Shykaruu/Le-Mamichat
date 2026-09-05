@@ -14,7 +14,7 @@ import { Flipbook, type FlipbookState } from './flipbook'
 import { setupCoupons } from './coupons'
 import { setupCrossword } from './crossword'
 import { setupLightbox } from './lightbox'
-import { setupFilm, preparePrintQrCodes } from './film'
+import { setupFilm } from './film'
 import { watchFit } from './fit'
 
 const book = document.querySelector<HTMLElement>('.book')
@@ -109,9 +109,7 @@ update(flipbook.state)
 // Export PDF : on passe par l'impression du navigateur, qui sait enregistrer
 // en PDF. La feuille de style d'impression remet au passage tous les bons.
 
-document
-    .querySelector<HTMLButtonElement>('[data-action="pdf"]')
-    ?.addEventListener('click', async () => {
-      await preparePrintQrCodes();
-      window.print();
-    });
+document.querySelector<HTMLButtonElement>('[data-action="pdf"]')?.addEventListener(
+  'click',
+  () => window.print(),
+)

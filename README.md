@@ -227,6 +227,23 @@ Le script s'en charge tout seul : il met de côté tout fichier de plus de 40 Mo
 (`FTP_MAX_FILE_MB`) et refuse de partir si le total dépasse le quota
 (`FTP_QUOTA_MB`). Il l'annonce à chaque envoi.
 
+**Le film est donc servi ailleurs** — il est hébergé en dehors du journal et le
+`<video>` pointe dessus. À l'impression, un lecteur vidéo ne veut rien dire :
+la page bascule sur l'affiche du film et un **QR code** vers la vidéo
+(`.reel`, voir [src/styles/print.css](src/styles/print.css)).
+
+Le QR est une image fixe, gravée une fois pour toutes :
+
+```bash
+npm run qr
+```
+
+À relancer seulement si l'adresse de la vidéo change, dans
+[scripts/qr.mjs](scripts/qr.mjs). Le générer dans le navigateur obligerait à
+embarquer une bibliothèque de 25 ko dans le journal — qui n'a par ailleurs
+aucune dépendance d'exécution — et ne marcherait que pour ceux passant par le
+bouton, pas par `Ctrl` + `P`.
+
 Côté journal, un `<video>` dont la source manque n'affiche pas un lecteur
 cassé : [src/film.ts](src/film.ts) le remplace par un emplacement dessiné. Il
 n'y a donc rien à changer dans les pages selon que le film est en ligne ou non.

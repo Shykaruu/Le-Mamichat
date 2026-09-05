@@ -684,6 +684,7 @@
 
 .photo--grow .photo__slot,
 .photo--grow .photo__frame,
+.photo--grow .reel,
 .photo--grow .player {
   flex: 1 1 auto;
   min-height: 0;

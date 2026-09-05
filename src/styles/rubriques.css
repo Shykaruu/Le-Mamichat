@@ -944,3 +944,65 @@
 
 /* Le film absent : l'emplacement remplace le lecteur, il ne s'y ajoute pas. */
 .film__missing { aspect-ratio: 16 / 9; }
+
+/* --- L'affiche du film ---------------------------------------------------
+   A l'ecran, on regarde le film. Sur papier, un lecteur video ne veut rien
+   dire : il laisse la place a l'affiche et a un QR code vers la video, poses
+   cote a cote -- empiles, le bloc faisait deux fois sa hauteur et debordait
+   des pages les plus etroites. Le bloc n'existe qu'a l'impression : voir
+   print.css pour la bascule.
+   ------------------------------------------------------------------------- */
+.reel {
+  display: none;
+  align-items: center;
+  gap: 3cqw;
+  min-height: 0;
+}
+
+/* L'affiche garde le format de l'image : etiree sur la hauteur de la page,
+   elle devenait un carre recadre, bien trop gros pour ce qu'elle raconte. */
+.reel__still {
+  flex: 1 1 auto;
+  min-width: 0;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  object-fit: cover;
+  border: var(--rule-box) solid var(--ink);
+}
+
+/* La colonne de droite : le QR, puis ce qu'il faut en faire. */
+.reel__foot {
+  flex: 0 0 26%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.6cqw;
+}
+
+.reel__qr {
+  width: 100%;
+  border: var(--rule-box) solid var(--ink);
+}
+
+.reel__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6cqw;
+}
+
+.reel__copy b {
+  font-family: var(--font-display);
+  font-size: 5.4cqw;
+  line-height: 0.9;
+  text-transform: uppercase;
+  color: var(--sec);
+}
+
+.reel__copy span {
+  font-family: var(--font-mono);
+  font-size: 1.9cqw;
+  line-height: 1.4;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
