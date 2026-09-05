@@ -725,6 +725,18 @@
   margin: 1cqw 0;
   border-top: var(--rule-med) solid var(--ink);
 }
+.photo--farewell .photo__frame {
+  height: auto;
+  min-height: 420px; /* ajuste ici */
+  aspect-ratio: auto;
+}
+
+.photo--farewell .photo__frame img {
+  width: 80%;
+  height: auto;
+  object-fit: contain;
+  object-position: top center;
+}
 
 .timeline li {
   display: grid;
