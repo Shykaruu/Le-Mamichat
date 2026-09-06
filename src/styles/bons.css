@@ -46,6 +46,10 @@
 .page--bons .bon-card {
   --bon-ground: var(--paper-200);
   --bon-ink: var(--ink);
+  /* Le filigrane pese moins sur un fond papier, ou il salit, que sur un aplat
+     sombre, ou il ne fait qu'eclairer. */
+  --bon-blend: multiply;
+  --bon-wash: 0.14;
 
   position: relative;
   isolation: isolate;
@@ -61,7 +65,9 @@
   overflow: hidden;
   box-sizing: border-box;
 
-  border-radius: 1.25cqw;
+  /* Angles vifs et filet tirete : c'est ainsi que le journal dessine un bon
+     a detacher (voir .coupon__sheet). Pas de coin arrondi nulle part ici. */
+  border: var(--rule-med) dashed var(--bon-ink);
   background: var(--bon-ground);
   color: var(--bon-ink);
 }
@@ -71,20 +77,26 @@
    retoucher les six cartes dans le balisage. */
 .page--bons .bon-card--pink,
 .page--bons .bon-card--green {
-  --bon-ground: var(--orange-pale);
-  --bon-ink: var(--orange-deep);
+  --bon-ground: var(--orange);
+  --bon-ink: var(--paper-50);
+  --bon-blend: screen;
+  --bon-wash: 0.3;
 }
 
 .page--bons .bon-card--blue,
 .page--bons .bon-card--lavender {
-  --bon-ground: var(--blue-pale);
-  --bon-ink: var(--blue-deep);
+  --bon-ground: var(--blue-deep);
+  --bon-ink: var(--paper-50);
+  --bon-blend: screen;
+  --bon-wash: 0.3;
 }
 
 .page--bons .bon-card--yellow,
 .page--bons .bon-card--cream {
   --bon-ground: var(--paper-200);
   --bon-ink: var(--ink);
+  --bon-blend: multiply;
+  --bon-wash: 0.14;
 }
 
 /* Filet fin interieur comme sur les bons originaux. */
@@ -93,7 +105,7 @@
   position: absolute;
   z-index: 20;
   inset: 0.85cqw;
-  border: 0.13cqw solid color-mix(in srgb, var(--bon-ink) 72%, transparent);
+  border: var(--rule-thin) dashed color-mix(in srgb, var(--bon-ink) 60%, transparent);
   pointer-events: none;
 }
 
@@ -112,7 +124,7 @@
   padding: 2.05cqw 0.75cqw 2.05cqw 1.85cqw;
   box-sizing: border-box;
 
-  border-right: 0.13cqw solid color-mix(in srgb, var(--bon-ink) 68%, transparent);
+  border-right: var(--rule-thin) dashed color-mix(in srgb, var(--bon-ink) 65%, transparent);
 }
 
 /* Bord gauche ondule, rappel de la ligne de detachement du PDF. */
@@ -149,10 +161,13 @@
   white-space: nowrap;
 }
 
+/* La vignette gravee, pas un caractere : elle prend l'encre de la carte et
+   s'imprime au trait comme le reste du journal. */
 .page--bons .bon-card__heart {
-  color: var(--bons-heart);
-  font-size: 1.72cqw;
-  line-height: 1;
+  width: 1.7cqw;
+  height: 1.7cqw;
+  color: var(--bon-ink);
+  opacity: 0.85;
 }
 
 .page--bons .bon-card__body {
@@ -189,8 +204,9 @@
   object-fit: cover;
   object-position: center 44%;
 
-  filter: grayscale(88%) sepia(10%) contrast(0.9);
-  opacity: 0.25;
+  filter: grayscale(1) contrast(1.1);
+  mix-blend-mode: var(--bon-blend);
+  opacity: var(--bon-wash);
 
   pointer-events: none;
   user-select: none;
@@ -200,7 +216,7 @@
   position: absolute;
   z-index: 1;
   inset: 0;
-  background: color-mix(in srgb, var(--bon-ground) 63%, transparent);
+  background: color-mix(in srgb, var(--bon-ground) 55%, transparent);
   pointer-events: none;
 }
 
