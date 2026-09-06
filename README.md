@@ -209,6 +209,25 @@ FTP_DIR=www/le-mamichat
 Le login se lit dans l'espace client OVH, onglet **FTP - SSH** de l'hébergement.
 `npm run deploy -- --dry-run` liste ce qui partirait sans rien envoyer.
 
+### Le poids des photos
+
+Les exports d'images arrivent souvent bien plus grands que l'usage qu'on en
+fait : les huit objets de la vente flash sortaient a 1900 px de large pour une
+vignette de 200 px, soit 17 Mo a eux seuls.
+
+```bash
+npm run images
+```
+
+ramene les PNG d'un dossier a 900 px de large au plus — assez pour la loupe et
+pour l'impression (~270 dpi sur une carte de 85 mm). Le dossier se passe en
+argument, **a dessein** : le carnet de Tunisie et la carte doivent garder leur
+definition, on les ouvre a la loupe pour lire l'ecriture.
+
+```bash
+node scripts/images.mjs public/images/famille
+```
+
 ### Le cache
 
 L'hébergement ne posait **aucun en-tête de cache sur `index.html`**. Un lecteur

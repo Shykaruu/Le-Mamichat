@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "deploy": "node scripts/deploy.mjs",
-    "qr": "node scripts/qr.mjs"
+    "qr": "node scripts/qr.mjs",
+    "images": "node scripts/images.mjs"
   },
   "devDependencies": {
     "qrcode": "^1.5.4",
