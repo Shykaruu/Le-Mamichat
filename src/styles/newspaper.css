@@ -867,3 +867,6 @@
   white-space: nowrap;
   opacity: 0.55;
 }
+
+/* Signature d'un encadre : « Relevé par Pacha », en bas du bloc. */
+.box__sign { margin-top: 0.5em; }

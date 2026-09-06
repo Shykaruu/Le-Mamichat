@@ -5,8 +5,10 @@
    ────────────────────────────────────────────────────────────────────────── */
 
 .page--bons {
-  --bons-ink: #7b3049;
-  --bons-heart: #d96876;
+  /* Le journal n'a que trois encres. Les six bons se distinguent par leur
+     rythme -- orange, bleu, papier -- pas par six teintes de plus. */
+  --bon-ink: var(--ink);
+  --bons-heart: var(--sec);
 
   /* La .page globale est normalement flex. Ici on la remplace explicitement
      par 3 lignes : bandeau / grille / folio. */
@@ -42,7 +44,8 @@
 }
 
 .page--bons .bon-card {
-  --bon-tint: 244 210 218;
+  --bon-ground: var(--paper-200);
+  --bon-ink: var(--ink);
 
   position: relative;
   isolation: isolate;
@@ -59,20 +62,30 @@
   box-sizing: border-box;
 
   border-radius: 1.25cqw;
-  background: rgb(var(--bon-tint));
-  color: var(--bons-ink);
-
-  box-shadow:
-    inset 0 0 0 0.12cqw rgb(123 48 73 / 0.07),
-    0 0.1cqw 0 rgb(255 255 255 / 0.35);
+  background: var(--bon-ground);
+  color: var(--bon-ink);
 }
 
-.page--bons .bon-card--pink     { --bon-tint: 244 210 218; }
-.page--bons .bon-card--blue     { --bon-tint: 215 233 242; }
-.page--bons .bon-card--yellow   { --bon-tint: 250 235 174; }
-.page--bons .bon-card--green    { --bon-tint: 219 239 219; }
-.page--bons .bon-card--lavender { --bon-tint: 230 220 239; }
-.page--bons .bon-card--cream    { --bon-tint: 248 233 208; }
+/* Trois traitements qui alternent : le carnet garde son rythme sans sortir de
+   la palette. Les anciens noms de couleur restent, pour ne pas avoir a
+   retoucher les six cartes dans le balisage. */
+.page--bons .bon-card--pink,
+.page--bons .bon-card--green {
+  --bon-ground: var(--orange-pale);
+  --bon-ink: var(--orange-deep);
+}
+
+.page--bons .bon-card--blue,
+.page--bons .bon-card--lavender {
+  --bon-ground: var(--blue-pale);
+  --bon-ink: var(--blue-deep);
+}
+
+.page--bons .bon-card--yellow,
+.page--bons .bon-card--cream {
+  --bon-ground: var(--paper-200);
+  --bon-ink: var(--ink);
+}
 
 /* Filet fin interieur comme sur les bons originaux. */
 .page--bons .bon-card::after {
@@ -80,7 +93,7 @@
   position: absolute;
   z-index: 20;
   inset: 0.85cqw;
-  border: 0.13cqw solid rgb(123 48 73 / 0.72);
+  border: 0.13cqw solid color-mix(in srgb, var(--bon-ink) 72%, transparent);
   pointer-events: none;
 }
 
@@ -99,7 +112,7 @@
   padding: 2.05cqw 0.75cqw 2.05cqw 1.85cqw;
   box-sizing: border-box;
 
-  border-right: 0.13cqw solid rgb(123 48 73 / 0.68);
+  border-right: 0.13cqw solid color-mix(in srgb, var(--bon-ink) 68%, transparent);
 }
 
 /* Bord gauche ondule, rappel de la ligne de detachement du PDF. */
@@ -115,7 +128,7 @@
     radial-gradient(
       ellipse 0.9cqw 1.28cqw at 0 1.28cqw,
       transparent 0 0.70cqw,
-      rgb(123 48 73 / 0.72) 0.74cqw 0.82cqw,
+      color-mix(in srgb, var(--bon-ink) 72%, transparent) 0.74cqw 0.82cqw,
       transparent 0.87cqw
     )
     0 0 / 1.25cqw 2.56cqw repeat-y;
@@ -127,8 +140,8 @@
   writing-mode: vertical-rl;
   transform: rotate(180deg);
 
-  color: var(--bons-ink);
-  font-family: var(--font-sans, "Archivo", Arial, sans-serif);
+  color: var(--bon-ink);
+  font-family: var(--font-sans);
   font-size: 1.28cqw;
   line-height: 1;
   font-weight: 800;
@@ -187,7 +200,7 @@
   position: absolute;
   z-index: 1;
   inset: 0;
-  background: rgb(var(--bon-tint) / 0.37);
+  background: color-mix(in srgb, var(--bon-ground) 63%, transparent);
   pointer-events: none;
 }
 
@@ -206,19 +219,19 @@
 .page--bons .bon-card__title {
   margin: 0;
 
-  color: var(--bons-ink);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 3.0cqw;
-  line-height: 0.95;
-  font-weight: 800;
+  color: var(--bon-ink);
+  font-family: var(--font-display);
+  font-size: 3.6cqw;
+  line-height: 0.88;
+  font-weight: 400;
   letter-spacing: 0.01em;
 }
 
 .page--bons .bon-card__subtitle {
   margin-top: 0.55cqw;
 
-  color: rgb(123 48 73 / 0.82);
-  font-family: var(--font-sans, "Archivo", Arial, sans-serif);
+  color: color-mix(in srgb, var(--bon-ink) 82%, transparent);
+  font-family: var(--font-sans);
   font-size: 0.82cqw;
   line-height: 1.15;
   font-weight: 700;
@@ -228,8 +241,8 @@
 .page--bons .bon-card__message {
   align-self: center;
 
-  color: var(--bons-ink);
-  font-family: Georgia, "Times New Roman", serif;
+  color: var(--bon-ink);
+  font-family: var(--font-serif);
   font-size: 1.95cqw;
   line-height: 1.08;
   font-weight: 700;
@@ -241,10 +254,10 @@
   justify-self: center;
 
   padding-top: 0.62cqw;
-  border-top: 0.1cqw solid rgb(123 48 73 / 0.62);
+  border-top: 0.1cqw solid color-mix(in srgb, var(--bon-ink) 62%, transparent);
 
-  color: rgb(123 48 73 / 0.74);
-  font-family: var(--font-sans, "Archivo", Arial, sans-serif);
+  color: color-mix(in srgb, var(--bon-ink) 74%, transparent);
+  font-family: var(--font-sans);
   font-size: 0.72cqw;
   line-height: 1.2;
   letter-spacing: 0.015em;
