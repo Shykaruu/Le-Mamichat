@@ -725,17 +725,13 @@
   margin: 1cqw 0;
   border-top: var(--rule-med) solid var(--ink);
 }
+/* Le cadre du Farewell prend la hauteur que la page lui laisse. Surtout pas de
+   hauteur en pixels ici : elle ne suivrait pas l'echelle de la page, et sur un
+   telephone la photo devorerait le reste. Voir world-tour.css pour la mise en
+   place sur la page 10. */
 .photo--farewell .photo__frame {
   height: auto;
-  min-height: 420px; /* ajuste ici */
   aspect-ratio: auto;
-}
-
-.photo--farewell .photo__frame img {
-  width: 80%;
-  height: auto;
-  object-fit: contain;
-  object-position: top center;
 }
 
 .timeline li {
@@ -1005,4 +1001,14 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-soft);
+}
+
+/* Un cadre duotone peut prendre un format impose, comme un emplacement vide :
+   les huit produits de la vente flash gardent alors la meme decoupe et les
+   cartes restent alignees, quelles que soient les proportions des photos. */
+.photo__frame--wide { aspect-ratio: 16 / 7; }
+
+.photo__frame--wide img {
+  height: 100%;
+  object-fit: cover;
 }
