@@ -85,7 +85,6 @@ function setupOnePlayer(root: HTMLElement): void {
   const lyricsClose = root.querySelector<HTMLButtonElement>('[data-lyrics-close]')
   const ambientLine = root.querySelector<HTMLElement>('[data-ambient-line]')
   const ambientSinger = root.querySelector<HTMLElement>('[data-ambient-singer]')
-  const trackTitle = root.querySelector<HTMLElement>('[data-track-title]')
 
   if (
       !audio ||
@@ -104,10 +103,6 @@ function setupOnePlayer(root: HTMLElement): void {
   const pauseIconEl = pauseIcon
   const seekEl = seek
   const lyricsWindowEl = lyricsWindow
-
-  if (trackTitle) {
-    trackTitle.textContent = karaokeTrack.title
-  }
 
   const singerById = new Map<SingerId, Singer>(
       karaokeTrack.singers.map((singer) => [singer.id, singer]),
@@ -153,6 +148,7 @@ function setupOnePlayer(root: HTMLElement): void {
     button.append(singerLabel, text)
 
     button.addEventListener('click', () => {
+      if (!karaokeTrack.timingVerified) return
       audioEl.currentTime = getLineStart(line)
       update(true)
     })
@@ -365,6 +361,7 @@ function setupOnePlayer(root: HTMLElement): void {
   }
 
   function update(forceScroll = false): void {
+    if (!karaokeTrack.timingVerified) return
     const time = audioEl.currentTime || 0
 
     if (!seeking) {

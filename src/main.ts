@@ -10,6 +10,7 @@ import './styles/bons.css'
 import './styles/world-tour.css'
 import './styles/print.css'
 import './styles/music.css'
+import './styles/bonus.css'
 
 import { Flipbook, type FlipbookState } from './flipbook'
 import { setupCoupons } from './coupons'
@@ -88,6 +89,32 @@ function saveReadingPosition(state: FlipbookState): void {
 }
 
 if (!book) throw new Error('Aucun element .book dans le document.')
+
+// La page 20 remplace l'ancien player : le feuillet historique en doublon ne
+// doit pas compter dans la pagination ni initialiser un deuxième lecteur.
+const legacyMusicSheet = book
+  .querySelectorAll<HTMLElement>('[data-music-player]')[1]
+  ?.closest<HTMLElement>('.sheet')
+legacyMusicSheet?.remove()
+
+// Le cahier bonus se lit avant la dernière : le feuillet de clôture reste bien
+// la conclusion du journal, quelle que soit la quantité de bonus ajoutés.
+const finalSheet = book.querySelector<HTMLElement>('.finale')?.closest<HTMLElement>('.sheet')
+if (finalSheet) book.append(finalSheet)
+
+book.querySelectorAll<HTMLElement>('.face .page').forEach((page, index) => {
+  const folio = index + 1
+  page.querySelector<HTMLElement>('.flag__folio b')?.replaceChildren(String(folio))
+  const colophon = page.querySelector<HTMLElement>('.colophon')
+  if (colophon) {
+    colophon.querySelector<HTMLElement>('span:last-child')?.replaceChildren(`Page ${folio}`)
+  } else {
+    const footer = document.createElement('footer')
+    footer.className = 'colophon'
+    footer.innerHTML = `<span>Le Mamichat</span><span>Page ${folio}</span>`
+    page.append(footer)
+  }
+})
 
 // Declare avant le Flipbook : son constructeur declenche deja un update().
 const dots: HTMLButtonElement[] = []
