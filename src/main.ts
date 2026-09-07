@@ -108,7 +108,7 @@ book.querySelectorAll<HTMLElement>('.face .page').forEach((page, index) => {
   const colophon = page.querySelector<HTMLElement>('.colophon')
   if (colophon) {
     colophon.querySelector<HTMLElement>('span:last-child')?.replaceChildren(`Page ${folio}`)
-  } else {
+  } else if (!page.classList.contains('page--field')) {
     const footer = document.createElement('footer')
     footer.className = 'colophon'
     footer.innerHTML = `<span>Le Mamichat</span><span>Page ${folio}</span>`
