@@ -26,10 +26,75 @@ const counter = document.querySelector<HTMLElement>('[data-counter]')
 const progress = document.querySelector<HTMLElement>('[data-progress]')
 const pager = document.querySelector<HTMLElement>('[data-pager]')
 
+const READING_POSITION_KEY = 'mamichat:reading-position'
+
+type ReadingPosition = {
+  page: number
+  spread: number
+}
+
+function loadReadingPosition(): ReadingPosition | null {
+  try {
+    const raw = localStorage.getItem(READING_POSITION_KEY)
+    if (!raw) return null
+
+    const parsed = JSON.parse(raw) as Partial<ReadingPosition>
+
+    if (
+        typeof parsed.page !== 'number' ||
+        typeof parsed.spread !== 'number'
+    ) {
+      return null
+    }
+
+    return {
+      page: parsed.page,
+      spread: parsed.spread,
+    }
+  } catch {
+    return null
+  }
+}
+
+function loadPageFromUrl(): number | null {
+  const params = new URLSearchParams(window.location.search)
+  const raw = params.get('page')
+
+  if (!raw) return null
+
+  const page = Number.parseInt(raw, 10)
+
+  if (!Number.isInteger(page) || page < 1) {
+    return null
+  }
+
+  // L'URL utilise des pages humaines : page=19.
+  // Flipbook utilise un index commençant à 0 : 18.
+  return page - 1
+}
+
+function saveReadingPosition(state: FlipbookState): void {
+  try {
+    localStorage.setItem(
+        READING_POSITION_KEY,
+        JSON.stringify({
+          page: state.page,
+          spread: state.spread,
+        }),
+    )
+  } catch {
+    // localStorage indisponible : on laisse simplement le journal fonctionner.
+  }
+}
+
 if (!book) throw new Error('Aucun element .book dans le document.')
 
 // Declare avant le Flipbook : son constructeur declenche deja un update().
 const dots: HTMLButtonElement[] = []
+
+const requestedPage = loadPageFromUrl()
+const savedReadingPosition = loadReadingPosition()
+let restoringReadingPosition = true
 
 const flipbook = new Flipbook(book, { onChange: update })
 
@@ -46,6 +111,51 @@ if (pager) {
     dots.push(dot)
   }
 }
+
+// --- Restauration de la position de lecture -------------------------------
+// Priorité :
+// 1. ?page=XX dans l'URL
+// 2. dernière position enregistrée dans localStorage
+// 3. couverture par défaut
+
+if (requestedPage !== null) {
+  const page = Math.max(
+      0,
+      Math.min(
+          requestedPage,
+          flipbook.state.pageCount - 1,
+      ),
+  )
+
+  flipbook.goToPage(page)
+} else if (savedReadingPosition) {
+  if (flipbook.state.mode === 'single') {
+    const page = Math.max(
+        0,
+        Math.min(
+            savedReadingPosition.page,
+            flipbook.state.pageCount - 1,
+        ),
+    )
+
+    flipbook.goToPage(page)
+  } else {
+    const spread = Math.max(
+        0,
+        Math.min(
+            savedReadingPosition.spread,
+            flipbook.spreadCount,
+        ),
+    )
+
+    flipbook.goToSpread(spread)
+  }
+}
+
+restoringReadingPosition = false
+
+// Enregistre aussi immédiatement la position réellement restaurée.
+saveReadingPosition(flipbook.state)
 
 function goToSpread(index: number): void {
   if (flipbook.state.mode === 'single') {
@@ -82,6 +192,10 @@ function update(state: FlipbookState): void {
   // Derniere feuille tournee : plus de page a droite, on recentre.
   if (state.spread >= state.spreadCount) root.dataset.closing = ''
   else delete root.dataset.closing
+
+  if (!restoringReadingPosition) {
+    saveReadingPosition(state)
+  }
 }
 
 function pad(value: number): string {
