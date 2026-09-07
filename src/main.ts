@@ -139,6 +139,36 @@ for (let index = 0; index < faces.length; index += 2) {
   book.append(sheet)
 }
 
+const dossierStories = [
+  {
+    label: 'L’enquête',
+    title: 'Une fuite qui fait trembler les tiroirs',
+    body: [
+      'Notre rédaction a reçu, à l’aube, une enveloppe sans timbre glissée sous la porte. À l’intérieur : des copies floues, une odeur de savon noir et une consigne manuscrite — « ne pas laisser ce dossier près d’une prise ». Un de nos journalistes, qui demande à rester anonyme depuis l’incident du grille-pain, affirme avoir obtenu ces éléments au péril de sa vie domestique.',
+      'Les feuillets évoquent un cercle clandestin d’objets courants, organisé autour de la disparition stratégique. Télécommande, clé, chaussette et câble USB y suivent un plan étrangement méthodique : frapper au moment précis où Mamicha en a besoin. La pièce A n’est donc pas une simple affiche : elle serait l’extrait photographié d’un conseil de crise.',
+    ],
+  },
+  {
+    label: 'Le recoupement',
+    title: 'Le Goulp, simple cachette ou centre opérationnel ?',
+    body: [
+      'La pièce B, obtenue par le même canal, apporte un détail qui change l’affaire : le Goulp n’est pas présenté comme un monstre, mais comme une infrastructure. Détection discrète, ouverture silencieuse, aspiration douce puis fermeture sans trace : le vocabulaire est celui d’une opération parfaitement rodée. Les lieux cités dans nos précédentes enquêtes pourraient n’être que des antennes.',
+      'Aucune autorité compétente n’a souhaité commenter ces documents. Une source, se présentant seulement comme « le Presse-Papier », promet toutefois d’autres éléments : la liste des complices, le rôle du robot récalcitrant et l’emplacement du fameux couvercle. En attendant, la rédaction conseille de garder son chargeur à vue et de ne jamais sous-estimer une boîte de menthes.',
+    ],
+  },
+]
+
+book.querySelectorAll<HTMLElement>('[data-rub="dossier"]').forEach((page, index) => {
+  const story = dossierStories[index]
+  const dossier = page.querySelector<HTMLElement>('.dossier')
+  if (!story || !dossier) return
+
+  const section = document.createElement('section')
+  section.className = 'dossier__story'
+  section.innerHTML = `<p class="dossier__eyebrow">${story.label}</p><h3>${story.title}</h3>${story.body.map((paragraph) => `<p>${paragraph}</p>`).join('')}`
+  dossier.after(section)
+})
+
 book.querySelectorAll<HTMLElement>('.face .page').forEach((page, index) => {
   const folio = index + 1
   page.querySelector<HTMLElement>('.flag__folio b')?.replaceChildren(String(folio))

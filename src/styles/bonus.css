@@ -21,8 +21,12 @@
 .recipes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8cqw; }
 .recipe-card { padding: .75cqw; border-top: var(--rule-thick) solid var(--sec); background: color-mix(in srgb, var(--sec-pale) 54%, transparent); }
 .recipe-card h3 { margin-bottom: .35cqw; font-family: var(--font-sans); font-size: 2cqw; text-transform: uppercase; }
-.recipe-card ol, .recipe-card ul { margin: 0; padding-left: 1.35em; font-size: 1.65cqw; line-height: 1.45; }
-.recipe-card__podium { display: block; width: 5.6rem; height: auto; margin: 0 0 .38cqw; color: var(--sec-deep); }
+.recipe-card ol, .recipe-card ul { margin: 0; padding: 0; font-size: 1.65cqw; line-height: 1.45; }
+.recipe-card ol { counter-reset: recipe-rank; list-style: none; }
+.recipe-card li { display: grid; grid-template-columns: 1.35em minmax(0, 1fr); gap: .45em; align-items: center; counter-increment: recipe-rank; }
+.recipe-card li::before { content: counter(recipe-rank); display: grid; place-items: center; width: 1.35em; aspect-ratio: 1; border: 1px solid var(--sec-deep); border-radius: 50%; color: var(--ink); font-family: var(--font-sans); font-size: .78em; font-weight: 800; line-height: 1; }
+.recipe-card li:first-child::before { background: var(--orange); }
+.recipe-card__podium { display: none; }
 .recipe-card__podium circle { fill: var(--paper-50); stroke: currentColor; stroke-width: 1.5; }
 .recipe-card__podium circle:first-child { fill: var(--orange); }
 .recipe-card__podium text { fill: var(--ink); font-family: var(--font-sans); font-size: 10px; font-weight: 800; text-anchor: middle; }
@@ -48,10 +52,14 @@
 .dossier__piece figcaption { padding: .55cqw .7cqw; font-family: var(--font-mono); font-size: 1.25cqw; line-height: 1.35; }
 .dossier__note { padding: .8cqw; border: var(--rule-box) solid var(--ink); background: var(--paper-50); font-size: 1.6cqw; line-height: 1.4; }
 .dossier__stamp { display: inline-block; margin-bottom: .55cqw; padding: .25em .55em; border: 2px solid var(--orange-deep); color: var(--orange-deep); font-family: var(--font-mono); font-size: 1.3cqw; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; transform: rotate(-2deg); }
-.page[data-rub='dossier'] .dossier { grid-template-columns: 1fr; grid-template-rows: minmax(0, 1fr) auto; }
+.page[data-rub='dossier'] .dossier { grid-template-columns: 1fr; grid-template-rows: auto; }
 .page[data-rub='dossier'] .dossier__piece { display: grid; grid-template-columns: minmax(0, 1fr) 14rem; align-items: stretch; }
 .page[data-rub='dossier'] .dossier__piece img { height: 43cqw; max-height: none; object-fit: contain; object-position: center; background: var(--blue-night); }
 .page[data-rub='dossier'] .dossier__piece figcaption { display: flex; flex-direction: column; justify-content: end; }
+.dossier__story { margin-top: .9cqw; padding-top: .75cqw; border-top: var(--rule-thick) solid var(--sec); font-size: 1.64cqw; line-height: 1.38; }
+.dossier__story p + p { margin-top: .55cqw; }
+.dossier__eyebrow { font-family: var(--font-mono); font-size: .8em; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--sec-deep); }
+.dossier__story h3 { margin: .15cqw 0 .45cqw; font-family: var(--font-display); font-size: 3.1cqw; line-height: .95; text-transform: uppercase; }
 .page[data-rub='philo'] .bonus-layout { display: block; }
 .page[data-rub='philo'] .ocean-figure { float: right; width: 30%; margin: 0 0 .8cqw 1cqw; }
 .page[data-rub='philo'] .bonus-copy::after { content: ''; display: block; clear: both; }
