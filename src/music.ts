@@ -123,6 +123,7 @@ function setupOnePlayer(root: HTMLElement): void {
 
     const button = document.createElement('button')
     button.type = 'button'
+
     button.className = `music-rubric__lyric-line ${singer?.cssClass ?? ''}`
     button.dataset.lineIndex = String(lineIndex)
 
@@ -439,42 +440,44 @@ function setupOnePlayer(root: HTMLElement): void {
     }
   })
 
+  function previewSeek(): void {
+    seeking = true
+    seekToSliderValue()
+  }
+
+  function commitSeek(): void {
+    seekToSliderValue()
+
+    seeking = false
+
+    update(true)
+  }
+
   seekEl.addEventListener('pointerdown', () => {
     seeking = true
   })
 
   seekEl.addEventListener('input', () => {
-    seeking = true
-
-    const total = audioEl.duration || 0
-    const ratio = Number(seekEl.value) / 1000
-    const previewTime = total * ratio
-
-    seekEl.style.setProperty(
-        '--music-progress',
-        `${ratio * 100}%`,
-    )
-
-    if (current) {
-      current.textContent = formatTime(previewTime)
-    }
-
-    setActiveLine(
-        findActiveLine(previewTime),
-        false,
-    )
-
-    updateWords(previewTime)
+    previewSeek()
   })
 
-  const commitSeek = (): void => {
-    seekToSliderValue()
+  seekEl.addEventListener('pointerup', () => {
+    commitSeek()
+  })
+
+  seekEl.addEventListener('pointercancel', () => {
     seeking = false
     update(true)
-  }
+  })
 
-  seekEl.addEventListener('change', commitSeek)
-  seekEl.addEventListener('pointerup', commitSeek)
+  /*
+   * `change` sert aussi de fallback tactile/clavier.
+   */
+  seekEl.addEventListener('change', () => {
+    if (!seeking) {
+      commitSeek()
+    }
+  })
 
   audioEl.addEventListener('loadedmetadata', () => {
     setSeekVisual(audioEl.currentTime)
