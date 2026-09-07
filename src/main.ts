@@ -102,6 +102,43 @@ legacyMusicSheet?.remove()
 const finalSheet = book.querySelector<HTMLElement>('.finale')?.closest<HTMLElement>('.sheet')
 if (finalSheet) book.append(finalSheet)
 
+function mergeArticleContinuation(
+  root: HTMLElement,
+  selector: string,
+  contentSelector: string,
+): void {
+  const pages = Array.from(root.querySelectorAll<HTMLElement>(selector))
+  const [first, continuation] = pages
+  const target = first?.querySelector<HTMLElement>(contentSelector)
+  const source = continuation?.querySelector<HTMLElement>(contentSelector)
+
+  if (!first || !continuation || !target || !source) return
+
+  target.append(...Array.from(source.children))
+  continuation.querySelector<HTMLElement>('.sources')?.remove()
+  continuation.closest<HTMLElement>('.face')?.remove()
+}
+
+mergeArticleContinuation(book, '[data-rub="philo"]', '.bonus-copy')
+mergeArticleContinuation(book, '[data-rub="faits"]', '.faits')
+
+// Les articles regroupés laissent deux faces vides : on recompose les
+// feuillets dans l'ordre éditorial plutôt que de conserver des pages blanches.
+const faces = Array.from(book.querySelectorAll<HTMLElement>('.face'))
+book.querySelectorAll<HTMLElement>('.sheet').forEach((sheet) => sheet.remove())
+for (let index = 0; index < faces.length; index += 2) {
+  const sheet = document.createElement('div')
+  sheet.className = 'sheet'
+
+  faces.slice(index, index + 2).forEach((face, faceIndex) => {
+    face.classList.remove('face--front', 'face--back')
+    face.classList.add(faceIndex === 0 ? 'face--front' : 'face--back')
+    sheet.append(face)
+  })
+
+  book.append(sheet)
+}
+
 book.querySelectorAll<HTMLElement>('.face .page').forEach((page, index) => {
   const folio = index + 1
   page.querySelector<HTMLElement>('.flag__folio b')?.replaceChildren(String(folio))

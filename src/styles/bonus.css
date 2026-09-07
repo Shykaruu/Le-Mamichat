@@ -35,6 +35,8 @@
 .ocean-figure figcaption { margin-top: .35cqw; font-family: var(--font-mono); font-size: 1.2cqw; color: var(--ink-soft); }
 
 .faits { display: grid; gap: .85cqw; }
+.page[data-rub='faits'] .faits { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.page[data-rub='faits'] .fait:first-child { grid-column: span 2; }
 .fait { padding: .75cqw .9cqw; border-left: var(--rule-thick) solid var(--sec); background: color-mix(in srgb, var(--sec-pale) 46%, transparent); }
 .fait__meta { font-family: var(--font-mono); font-size: 1.25cqw; letter-spacing: .12em; color: var(--sec-deep); }
 .fait h3 { margin: .18cqw 0 .42cqw; font-family: var(--font-display); font-size: 3.2cqw; line-height: .95; text-transform: uppercase; }
@@ -50,6 +52,9 @@
 .page[data-rub='dossier'] .dossier__piece { display: grid; grid-template-columns: minmax(0, 1fr) 14rem; align-items: stretch; }
 .page[data-rub='dossier'] .dossier__piece img { height: 43cqw; max-height: none; object-fit: contain; object-position: center; background: var(--blue-night); }
 .page[data-rub='dossier'] .dossier__piece figcaption { display: flex; flex-direction: column; justify-content: end; }
+.page[data-rub='philo'] .bonus-layout { display: block; }
+.page[data-rub='philo'] .ocean-figure { float: right; width: 30%; margin: 0 0 .8cqw 1cqw; }
+.page[data-rub='philo'] .bonus-copy::after { content: ''; display: block; clear: both; }
 
 .music-rubric__description { margin-top: .45rem; font-family: var(--font-serif); font-size: .72rem; line-height: 1.35; }
 .music-rubric__player { position: relative; z-index: 2; }
@@ -68,6 +73,9 @@
   .recipe-card h3 { font-size: 2.7cqw; }
   .recipe-card ol, .recipe-card ul { font-size: 2.25cqw; }
   .fait h3 { font-size: 4.2cqw; }
+  .page[data-rub='faits'] .faits { grid-template-columns: 1fr; }
+  .page[data-rub='faits'] .fait:first-child { grid-column: auto; }
+  .page[data-rub='philo'] .ocean-figure { width: 40%; }
   .sources, .video-bonus figcaption, .dossier__piece figcaption { font-size: 1.8cqw; }
   .dossier__piece img { max-height: 42cqw; }
   .page[data-rub='dossier'] .dossier__piece { grid-template-columns: 1fr; }
