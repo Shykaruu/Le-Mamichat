@@ -346,7 +346,7 @@
                           <p class="weather__note">Ciel clair, léger parfum de jasmin</p>
                         </div>
                         <div class="weather__cell">
-                          <p class="weather__place">Le Tampon</p>
+                          <p class="weather__place">Saint Leu</p>
                           <p class="weather__temp">21°</p>
                           <p class="weather__note">Alizé faible, mer belle</p>
                         </div>
@@ -483,6 +483,7 @@
                   <span class="byline__author">Par Madame Irmaryse</span>
                   <span class="byline__sep">&bull;</span>
                   <span>Depuis les étoiles</span>
+                  <img src="images/famille/marise.png" width="60" height="50" style="margin-left: 260px">
                 </p>
 
                 <div class="columns dropcap">
@@ -1856,100 +1857,150 @@
           <div class="sheet">
 
             <div class="face face--front">
-              <article class="page" data-rub="musique">
-                <span class="thumb" aria-hidden="true">Le tube de l'été</span>
-
-                <header class="flag">
-                  <span class="flag__badge">
-                    <svg class="flag__mark" aria-hidden="true"><use href="#vg-disque" /></svg>
-                    Le tube de l'été
-                  </span>
-                  <span class="flag__strip" aria-hidden="true"></span>
-                  <span class="flag__folio">Page&nbsp;<b>19</b></span>
-                </header>
-
-                <div class="song">
-                  <div>
-                    <span class="kicker">Paroles &amp; musique</span>
-                    <h2 class="headline headline--sm">Michotte, c'est bon pour le moral&nbsp;!</h2>
-                    <p class="song__air">Sur l'air de <i>C'est bon pour le moral</i></p>
-                    <p class="spell">M-I-C-H-O-T-T-E&nbsp;!</p>
+              <article class="page page--music" data-rub="musique">
+                <!-- Rubrique musique / karaoké -->
+                <section class="music-rubric" data-music-player>
+                  <div class="music-rubric__topline">
+                    <span class="music-rubric__eyebrow">Le tube de l'été</span>
+                    <span class="music-rubric__catalog">DISQUE N° 01</span>
                   </div>
-                  <svg class="song__disc" aria-hidden="true"><use href="#vg-disque" /></svg>
-                </div>
 
-                <p class="byline">
-                  <span class="byline__author">Par Elsa Titaïna</span>
-                  <span class="byline__sep">&bull;</span>
-                  <span>À chanter debout</span>
-                </p>
+                  <div class="music-rubric__hero">
+                    <button
+                            class="music-rubric__lyrics-toggle"
+                            type="button"
+                            data-lyrics-toggle
+                            aria-expanded="false"
+                            aria-controls="music-lyrics-drawer"
+                    >
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M5 5.75A1.75 1.75 0 0 1 6.75 4h10.5A1.75 1.75 0 0 1 19 5.75v8.5A1.75 1.75 0 0 1 17.25 16H10l-4.55 3.41A.9.9 0 0 1 4 18.69V5.75Z"/>
+                      </svg>
+                      <span>Paroles</span>
+                    </button>
 
-                <div class="lyrics">
-                  <p class="lyrics__chorus">
-                    Michotte&nbsp;! C'est bon pour le moral&nbsp;!<br />
-                    Michotte&nbsp;! C'est bon pour le moral&nbsp;!
-                  </p>
+                    <!-- Paroles courantes en arrière-plan -->
+                    <div class="music-rubric__ambient-lyrics" aria-hidden="true">
+                      <span class="music-rubric__ambient-singer" data-ambient-singer></span>
+                      <p class="music-rubric__ambient-line" data-ambient-line></p>
+                    </div>
 
-                  <p class="lyrics__part">1 &middot; La voyageuse et l'érudite</p>
-                  <p>
-                    Quatre-vingts ans au compteur, mais regarde son punch&nbsp;!<br />
-                    Elle a couru le monde, de Boussay jusqu'à Tahaa.<br />
-                    Une grande voyageuse qui a tout visité,<br />
-                    et quand elle nous raconte, on reste tous scotchés&nbsp;!<br />
-                    Avec toute sa culture, son savoir infini,<br />
-                    elle a toujours l'histoire qui éclaire nos esprits&nbsp;!
-                  </p>
+                    <div class="music-rubric__disc-zone">
+                      <div class="music-rubric__disc" data-disc>
+                        <img
+                                class="music-rubric__disc-image"
+                                src="/images/musique/tunis-goulette-marsa.png"
+                                alt="Disque de Michotte, c'est bon pour le moral"
+                        />
+                        <span class="music-rubric__disc-hole" aria-hidden="true"></span>
+                      </div>
 
-                  <p class="lyrics__chorus">
-                    Michotte, c'est bon pour le moral,<br />
-                    Michotte, c'est bon pour le moral, c'est bon, c'est bon&nbsp;!
-                  </p>
+                    </div>
 
-                  <p class="lyrics__part">2 &middot; La cuisinière au grand cœur</p>
-                  <p>
-                    Cuisinière hors pair, reine des bons petits plats&nbsp;;<br />
-                    dès qu'on passe à sa table, on est tous aux anges, voilà&nbsp;!<br />
-                    Mais son secret magique, sa plus grande recette,<br />
-                    c'est sa douceur extrême qui nous tourne la tête&nbsp;!<br />
-                    Une bienveillance immense, un amour infini&nbsp;:<br />
-                    c'est le soleil secret de toute notre famille&nbsp;!
-                  </p>
+                    <div class="music-rubric__player">
+                      <header class="music-rubric__track-head">
+                        <h2 class="music-rubric__title" data-track-title>
+                          Michotte, c'est bon pour le moral !
+                        </h2>
+                        <p class="music-rubric__credits">
+                          <span>
+                            <b>Auteurs :</b> Dalichat &amp; Fabien Deloin
+                          </span>
+                          <span>
+                            <b>Paroles par :</b> Elsa Titaï
+                          </span>
+                        </p>
+                      </header>
 
-                  <p class="lyrics__chorus">
-                    Michotte, c'est bon pour le moral,<br />
-                    Michotte, c'est bon pour le moral, c'est bon, c'est bon&nbsp;!
-                  </p>
+                      <audio
+                              data-audio
+                              preload="metadata"
+                              src="/audio/michotte-cest-bon-pour-le-moral.mp3"
+                      ></audio>
 
-                  <p class="lyrics__part">3 &middot; Conclusion</p>
-                  <p>
-                    Alors ce soir, Michotte, on va penser à toi&nbsp;;<br />
-                    lève ton verre très haut, la famille est là&nbsp;!<br />
-                    Souffle tes quatre-vingts bougies, garde ton beau sourire&nbsp;;<br />
-                    on est venus t'aimer et surtout te dire&nbsp;:<br />
-                    que t'avoir à nos côtés, c'est un bonheur total&nbsp;!
-                  </p>
+                      <div class="music-rubric__controls">
+                        <button
+                                class="music-rubric__transport"
+                                type="button"
+                                data-transport
+                                aria-label="Lire"
+                                aria-pressed="false"
+                        >
+                          <!-- PLAY -->
+                          <svg
+                                  class="music-rubric__transport-icon music-rubric__transport-icon--play"
+                                  data-icon-play
+                                  viewBox="0 0 24 24"
+                                  aria-hidden="true"
+                          >
+                            <path d="M8.25 5.35a1.25 1.25 0 0 1 1.9-1.06l10.05 6.65a1.25 1.25 0 0 1 0 2.12L10.15 19.7a1.25 1.25 0 0 1-1.9-1.06V5.35Z"/>
+                          </svg>
 
-                  <p class="lyrics__chorus">
-                    Michotte, c'est bon pour le moral,<br />
-                    tata Michotte, c'est bon pour le moral, c'est bon, c'est bon&nbsp;!
-                  </p>
-                </div>
+                          <!-- PAUSE -->
+                          <svg
+                                  class="music-rubric__transport-icon music-rubric__transport-icon--pause"
+                                  data-icon-pause
+                                  viewBox="0 0 24 24"
+                                  aria-hidden="true"
+                                  hidden
+                          >
+                            <rect x="6" y="5" width="4" height="14" rx="1.25"/>
+                            <rect x="14" y="5" width="4" height="14" rx="1.25"/>
+                          </svg>
+                        </button>
 
-                <div class="coupon coupon--blue" data-coupon="karaoke">
-                  <div class="coupon__sheet">
-                    <p class="coupon__kicker">Bon à détacher</p>
-                    <p class="coupon__title">Une reprise en direct</p>
-                    <p class="coupon__text">
-                      Valable pour un karaoké familial, debout, à l'unisson et sans
-                      partition. Reprises illimitées.
-                    </p>
-                    <button class="coupon__tear" type="button">Détacher ce bon</button>
+                        <div class="music-rubric__timeline">
+                          <input
+                                  class="music-rubric__seek"
+                                  data-seek
+                                  type="range"
+                                  min="0"
+                                  max="1000"
+                                  step="1"
+                                  value="0"
+                                  aria-label="Position dans la chanson"
+                          />
+
+                          <div class="music-rubric__times">
+                            <time data-current>0:00</time>
+                            <span aria-hidden="true">/</span>
+                            <time data-duration>0:00</time>
+                          </div>
+                        </div>
+                      </div>
+
+                      <p class="music-rubric__shortcut">Espace : lecture / pause</p>
+                    </div>
                   </div>
-                  <div class="coupon__stub">
-                    Bon détaché<br />
-                    <span data-stub-date></span>
-                  </div>
-                </div>
+
+                  <!-- Drawer paroles -->
+                  <aside
+                          class="music-rubric__lyrics-drawer"
+                          id="music-lyrics-drawer"
+                          data-lyrics-drawer
+                          aria-hidden="true"
+                  >
+                    <div class="music-rubric__lyrics-drawer-head">
+                      <div>
+                        <span class="music-rubric__drawer-kicker">Karaoké</span>
+                        <h3>Paroles</h3>
+                      </div>
+
+                      <button
+                              class="music-rubric__drawer-close"
+                              type="button"
+                              data-lyrics-close
+                              aria-label="Fermer les paroles"
+                      >
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M6.7 6.7 17.3 17.3M17.3 6.7 6.7 17.3"/>
+                        </svg>
+                      </button>
+                    </div>
+
+                    <div class="music-rubric__lyrics-window" data-lyrics-window></div>
+                  </aside>
+                </section>
 
                 <footer class="colophon">
                   <span>Le tube de l'été</span>

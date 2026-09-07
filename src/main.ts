@@ -9,12 +9,14 @@ import './styles/crossword.css'
 import './styles/bons.css'
 import './styles/world-tour.css'
 import './styles/print.css'
+import './styles/music.css'
 
 import { Flipbook, type FlipbookState } from './flipbook'
 import { setupCoupons } from './coupons'
 import { setupCrossword } from './crossword'
 import { setupLightbox } from './lightbox'
 import { setupFilm } from './film'
+import { setupMusicPlayer } from './music'
 import { watchFit } from './fit'
 
 const book = document.querySelector<HTMLElement>('.book')
@@ -99,6 +101,7 @@ setupCoupons()
 setupCrossword()
 setupLightbox()
 setupFilm()
+setupMusicPlayer()
 
 // Controle de mise en page : signale les pages trop pleines pendant le dev.
 if (import.meta.env.DEV) watchFit()
