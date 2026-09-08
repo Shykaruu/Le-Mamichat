@@ -222,4 +222,12 @@
   .crossword__clue { display: none; }
   .cw-cell--mot { background: var(--paper-50); }
   .cw-input:focus { background: transparent; }
+
+  /* Le miroir d'impression clone la grille avec sa largeur calculée pour la
+     fenêtre. On la laisse reprendre exactement la largeur de la page papier. */
+  .print-journal .crossword__grid {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1;
+  }
 }
