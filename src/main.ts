@@ -308,7 +308,10 @@ function preparePrintJournal(): void {
 
   book.querySelectorAll<HTMLElement>('.face > .page').forEach((page) => {
     const sheet = document.createElement('section')
-    sheet.className = 'print-journal__page'
+    const face = page.closest<HTMLElement>('.face')
+    sheet.className = face?.classList.contains('face--back')
+      ? 'print-journal__page print-journal__page--back'
+      : 'print-journal__page print-journal__page--front'
 
     const copy = page.cloneNode(true) as HTMLElement
     copy.querySelectorAll<HTMLElement>('[id]').forEach((element) => element.removeAttribute('id'))

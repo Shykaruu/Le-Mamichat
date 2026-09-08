@@ -89,6 +89,18 @@
 
   .print-journal__page:last-child { break-after: auto; }
 
+  /* Les onglets de tranche conservent leur cote et leur sens recto/verso. */
+  .print-journal__page--front .thumb {
+    right: 0;
+    box-shadow: -2px 2px 0 0 rgba(31, 27, 22, 0.25);
+  }
+
+  .print-journal__page--back .thumb {
+    left: 0;
+    rotate: 180deg;
+    box-shadow: -2px 2px 0 0 rgba(31, 27, 22, 0.25);
+  }
+
   .sheet {
     position: static;
     width: 100%;
