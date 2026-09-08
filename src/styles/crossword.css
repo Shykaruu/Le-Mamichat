@@ -223,4 +223,15 @@
   .crossword__clue { display: none; }
   .cw-cell--mot { background: var(--paper-50); }
   .cw-input:focus { background: transparent; }
+
+  /* Les demi-pixels des ombres de cases disparaissent par endroits dans le
+     PDF. Une gouttière d'un pixel donne une grille continue et régulière. */
+  .crossword__grid {
+    gap: 1px;
+    border-width: 1px;
+    background: var(--ink);
+  }
+
+  .cw-cell,
+  .cw-cell--pleine { box-shadow: none; }
 }
