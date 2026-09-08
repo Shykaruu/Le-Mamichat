@@ -70,10 +70,10 @@
 .music-rubric__retro { display: block; margin: .4rem 0 0; }
 .music-rubric__retro { position: relative; z-index: 3; isolation: isolate; padding-top: .65rem; border-top: var(--rule-med) solid var(--music-blue); background: var(--music-paper); }
 .music-rubric__retro .player {
-  width: min(100%, clamp(7rem, 19cqw, 10rem));
+  width: 100%;
   height: auto;
   max-height: none;
-  aspect-ratio: 1;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   margin-top: 0;
 }
@@ -97,7 +97,7 @@
   .page[data-rub='dossier'] .dossier__piece img { height: 46cqw; }
   .music-rubric__ambient-lyrics { left: 50%; right: 2%; bottom: 2%; max-width: 46%; }
   .page--music .music-rubric__hero { min-height: 0; }
-  .music-rubric__retro .player { width: min(100%, 8rem); }
+  .music-rubric__retro .player { width: 100%; }
 }
 
 @media print { .video-bonus .player, .music-rubric__retro { display: none !important; } }
