@@ -18,6 +18,7 @@ import { setupCrossword } from './crossword'
 import { setupLightbox } from './lightbox'
 import { setupFilm } from './film'
 import { setupMusicPlayer } from './music'
+import { setupPrintMedia } from './print-media'
 import { watchFit } from './fit'
 
 const book = document.querySelector<HTMLElement>('.book')
@@ -296,6 +297,45 @@ function pad(value: number): string {
   return String(value).padStart(2, '0')
 }
 
+let printJournal: HTMLElement | null = null
+
+function preparePrintJournal(): void {
+  if (printJournal || !book) return
+
+  const journal = document.createElement('main')
+  journal.className = 'print-journal'
+  journal.setAttribute('aria-hidden', 'true')
+
+  book.querySelectorAll<HTMLElement>('.face > .page').forEach((page) => {
+    const sheet = document.createElement('section')
+    sheet.className = 'print-journal__page'
+
+    const copy = page.cloneNode(true) as HTMLElement
+    copy.querySelectorAll<HTMLElement>('[id]').forEach((element) => element.removeAttribute('id'))
+    sheet.append(copy)
+    journal.append(sheet)
+  })
+
+  document.body.append(journal)
+  document.documentElement.dataset.printReady = 'true'
+  printJournal = journal
+}
+
+function clearPrintJournal(): void {
+  printJournal?.remove()
+  printJournal = null
+  delete document.documentElement.dataset.printReady
+}
+
+function printJournalAsPdf(): void {
+  preparePrintJournal()
+
+  // Le navigateur doit avoir compose les pages papier avant la capture PDF.
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => window.print())
+  })
+}
+
 // Rend le journal accessible depuis la console pour bidouiller pendant le dev.
 declare global {
   interface Window {
@@ -308,8 +348,12 @@ window.flipbook = flipbook
 setupCoupons()
 setupCrossword()
 setupLightbox()
+setupPrintMedia()
 setupFilm()
 setupMusicPlayer()
+
+window.addEventListener('beforeprint', preparePrintJournal)
+window.addEventListener('afterprint', clearPrintJournal)
 
 // Controle de mise en page : signale les pages trop pleines pendant le dev.
 if (import.meta.env.DEV) watchFit()
@@ -322,5 +366,5 @@ update(flipbook.state)
 
 document.querySelector<HTMLButtonElement>('[data-action="pdf"]')?.addEventListener(
   'click',
-  () => window.print(),
+  printJournalAsPdf,
 )

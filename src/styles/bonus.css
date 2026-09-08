@@ -69,6 +69,7 @@
 .music-rubric__ambient-lyrics { left: 52%; right: 3%; bottom: 3%; max-width: 45%; }
 .music-rubric__retro { display: block; margin: .4rem 0 0; }
 .music-rubric__retro { position: relative; z-index: 3; isolation: isolate; padding-top: .65rem; border-top: var(--rule-med) solid var(--music-blue); background: var(--music-paper); }
+.music-rubric__print-audio { display: none; }
 .music-rubric__retro .player {
   width: 100%;
   height: auto;
@@ -100,4 +101,10 @@
   .music-rubric__retro .player { width: 100%; }
 }
 
-@media print { .video-bonus .player, .music-rubric__retro { display: none !important; } }
+@media print {
+  .video-bonus .player { display: none !important; }
+  .page--music .music-rubric__hero { display: none !important; }
+  .page--music .music-rubric__retro { display: block !important; }
+  .music-rubric__print-audio { display: block !important; margin-top: .8cqw; }
+  .music-rubric__print-audio .reel__still { object-fit: contain; background: var(--blue-pale); }
+}

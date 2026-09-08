@@ -1367,28 +1367,24 @@
                   <span>Copie fournie par Erick</span>
                 </p>
 
-                <figure class="photo photo--bleed photo--grow">
+                <figure
+                  class="photo photo--bleed photo--grow"
+                  data-print-media
+                  data-print-title="Antartica"
+                  data-print-description="Scannez pour regarder le film"
+                  data-print-preview="images/bateau/film_preview.png"
+                  data-print-qr="images/divers/qr-antartica.png"
+                >
                   <video
                     class="player"
                     controls
                     preload="metadata"
                     playsinline
                     poster="images/bateau/film_preview.png"
+                    data-fallback-check="true"
+                    data-fallback-label="Le film · à demander à Erick"
                     src="https://photos.er-974.com/api/assets/a96d0b5e-fc7d-4192-b58d-8c737da69e74/video/playback?slug=mamicha-video&amp;c=BQgKDYIHuHeJdoiBfUWneQZ5YJEH"
                   ></video>
-
-                  <!-- Sur papier, un lecteur video ne sert a rien : on imprime
-                       l'affiche du film et un QR code vers la video. -->
-                  <div class="reel" aria-hidden="true">
-                    <img class="reel__still" src="images/bateau/film_preview.png" alt="" />
-                    <div class="reel__foot">
-                      <img class="reel__qr" src="images/divers/qr-antartica.png" alt="" />
-                      <p class="reel__copy">
-                        <b>Antartica</b>
-                        <span>Scannez pour regarder le film</span>
-                      </p>
-                    </div>
-                  </div>
 
                   <figcaption>
                     Antarctique, 2014. Embarquée comme cheffe cuistot sur un voilier
@@ -1912,7 +1908,25 @@
                       <p class="music-rubric__shortcut">Espace : lecture / pause</p>
                     </div>
                   </div>
-                  <figure class="music-rubric__retro"><video class="player" controls playsinline preload="metadata" src="/video/karaoke-70-ans.mp4">Votre navigateur ne peut pas lire cette vidéo.</video><figcaption>70 ans : la vidéo d'anniversaire. 80 ans : la nouvelle version audio et son karaoké.</figcaption></figure>
+                  <figure
+                    class="music-rubric__retro"
+                    data-print-media
+                    data-print-title="Les 70 ans"
+                    data-print-description="Scannez pour regarder la vidéo"
+                    data-print-preview="images/divers/mistinguette-preview.png"
+                    data-print-qr="images/divers/qr-mistinguette.png"
+                  >
+                    <video class="player" controls playsinline preload="metadata" src="https://photos.er-974.com/api/assets/c3c7624c-2832-4496-8749-a3a60e0a5504/video/playback?slug=mistinguette&c=k1kGHIZwO3qwiWpiq3b2vMa%2Fag%3D%3D">Votre navigateur ne peut pas lire cette vidéo.</video>
+                    <figcaption>70 ans : la vidéo d'anniversaire. 80 ans : la nouvelle version audio et son karaoké.</figcaption>
+                  </figure>
+                  <figure
+                    class="music-rubric__print-audio"
+                    data-print-media
+                    data-print-title="Tunis Goulette Marsa"
+                    data-print-description="Scannez pour écouter la musique"
+                    data-print-preview="images/musique/tunis-goulette-marsa.png"
+                    data-print-qr="images/divers/qr-goulette-marsa.png"
+                  ></figure>
                   <aside class="music-rubric__lyrics-drawer" id="music-lyrics-drawer-80" data-lyrics-drawer data-no-page-swipe aria-hidden="true"><div class="music-rubric__lyrics-drawer-head"><div><span class="music-rubric__drawer-kicker">Karaoké</span><h3>Paroles des 80 ans</h3></div><button class="music-rubric__drawer-close" type="button" data-lyrics-close aria-label="Fermer les paroles"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.7 6.7 17.3 17.3M17.3 6.7 6.7 17.3"/></svg></button></div><div class="music-rubric__lyrics-window" data-lyrics-window></div></aside>
                 </section>
                 <footer class="colophon"><span>Le nouveau tube des années 80</span><span>Page 20</span></footer>
@@ -2297,12 +2311,41 @@
             <div class="face face--back">
               <article class="page" data-rub="qigong">
                 <span class="thumb" aria-hidden="true">Le saviez-vous ?</span>
-                <header class="flag"><span class="flag__badge">Le saviez-vous ?</span><span class="flag__strip" aria-hidden="true"></span><span class="flag__folio">Page&nbsp;<b>24</b></span></header>
+                <header class="flag"><span class="flag__badge">Le saviez-vous ?</span>
+                  <span class="flag__strip" aria-hidden="true"></span>
+                  <span class="flag__folio">Page&nbsp;<b>24</b></span>
+                </header>
                 <div class="bonus-layout">
-                  <section class="bonus-copy"><p class="qigong__mark" lang="zh">氣功</p><div class="opener"><span class="kicker kicker--ghost">Mamichaw</span><h2 class="headline headline--md">La grande maîtresse de la plage</h2></div><p>En 2018, sur une plage des Tuamutu, une petite fille prodige de 4 ans propose déjà une séance de Qi Gong (gratuite évidemment). Il faut dire qu'elle avait été initiée dès son plus jeune âge par sa grand-mère, grande maîtresse de Qi Gong... qui n'est autre que Mamichat, connue de ses adeptes comme Mamichaw.</p><p class="qigong__note">La prononciation est « Chi Kong », mais on trouve également les écritures « Chi Kung » ou « Qi Gong ».</p><p class="testimony">« Qi Gong se frotte à Mamichaw s'y pique. »<span class="testimony__author">— Papichaw, disciple</span></p></section>
-                  <aside><figure class="video-bonus"><video class="player" controls playsinline preload="metadata" src="/video/marilou-Qi-qong.mp4">Votre navigateur ne peut pas lire cette vidéo.</video><figcaption>Vidéo bonus : séance de Mamichaw aux Tuamotu. Le lien externe et son QR seront ajoutés dès que leur URL sera définie.</figcaption></figure><p class="video-bonus__pending">Lien et QR vidéo : à venir.</p></aside>
+                  <section class="bonus-copy">
+                    <div class="opener">
+                      <span class="kicker kicker--ghost">Mamichaw</span>
+                      <h2 class="headline headline--md">La grande maîtresse de la plage</h2>
+                    </div>
+                    <p class="qigong__mark" lang="zh">氣功</p>
+                    <p>En 2018, sur une plage des Tuamutu, une petite fille prodige de 4 ans propose déjà une séance de Qi Gong (gratuite évidemment). Il faut dire qu'elle avait été initiée dès son plus jeune âge par sa grand-mère, grande maîtresse de Qi Gong... qui n'est autre que Mamichat, connue de ses adeptes comme Mamichaw.</p>
+                    <p class="qigong__note">La prononciation est « Chi Kong », mais on trouve également les écritures « Chi Kung » ou « Qi Gong ».</p>
+                    <p class="testimony">« Qi Gong se frotte à Mamichaw s'y pique. »
+                      <span class="testimony__author">— Papichaw, disciple</span>
+                    </p>
+                  </section>
+                  <aside>
+                    <figure
+                      class="video-bonus photo photo--bleed photo--grow"
+                      data-print-media
+                      data-print-title="Qi Gong avec Marilou"
+                      data-print-description="Scannez pour voir la séance de Qi Gong"
+                      data-print-preview="images/divers/marilou_qi-gong-preview.png"
+                      data-print-qr="images/divers/qr-marilou-qi-gong.png"
+                    >
+                      <video class="player" controls playsinline preload="metadata" src="https://photos.er-974.com/api/assets/ce547e35-df1f-4e75-b8d5-1d177b3619a3/video/playback?slug=marilou-qi-gong&c=o9cNJIaHZ4iAh3h1iIhncGQGZw%3D%3D">Votre navigateur ne peut pas lire cette vidéo.</video>
+                      <figcaption>Séance de Mamichaw aux Tuamotu.</figcaption>
+                    </figure>
+                  </aside>
                 </div>
-                <footer class="colophon"><span>Le saviez-vous ?</span><span>Page 24</span></footer>
+                <footer class="colophon">
+                  <span>Le saviez-vous ?</span>
+                  <span>Page 24</span>
+                </footer>
               </article>
             </div>
           </div>
